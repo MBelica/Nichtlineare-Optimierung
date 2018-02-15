@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 \documentclass[11pt]{scrreprt}
+=======
+\documentclass[11pt]{book}
+>>>>>>> master
 
 \usepackage{cmap}
 
@@ -13,10 +17,13 @@
 \usepackage{amsthm}
 \usepackage{amsfonts}
 \usepackage{mathtools}
+<<<<<<< HEAD
 \usepackage{xpatch}
 \makeatletter
 \xpatchcmd{\proof}{\@addpunct{.}}{\@addpunct{:}}{}{}
 \makeatother
+=======
+>>>>>>> master
 
 \setlength{\parindent}{0cm}
 \newcounter{thm}
@@ -24,19 +31,29 @@
 
 \newtheorem{definition}[thm]{Definition}
 \newtheorem{satz}[thm]{Satz}
+<<<<<<< HEAD
 \newtheorem{korollar}[thm]{Korollar}
 \newtheorem{uebung}[thm]{Übung}
 \newtheorem{beispiel}[thm]{Beispiel}
+=======
+\newtheorem{uebung}[thm]{Übung}
+>>>>>>> master
 \newtheorem{lemma}[thm]{Lemma}
 \newtheorem*{bemerkung*}{Bemerkung}
 \newtheorem*{definition*}{Definition}
 \begin{document}
 
+<<<<<<< HEAD
 \chapter*{I. Unrestringierte Probleme}
 \setcounter{chapter}{1}
 \setcounter{section}{1}
 
 \section{Lösbarkeit}
+=======
+\chapter{Unrestringierte Probleme}
+
+\setcounter{section}{2}
+>>>>>>> master
 
 \setcounter{thm}{2}
 
@@ -101,6 +118,7 @@
 	Für eine (nicht notwendigerweise beschränkte oder abgeschlossene) Menge $M \subseteq \mathbb{R}^n$ sei $f \colon M \rightarrow \mathbb{R}$ stetig, und mit einem $\alpha \in \mathbb{R}$ sei $\operatorname{lev}_{\leq}^{\alpha}(f, M)$ nichtleer und kompakt. Dann besitzt $f$ auf $M$ (mindestens) einen globalen Minimalpunkt.
 \end{satz}
 
+<<<<<<< HEAD
 \setcounter{thm}{20}
 
 \begin{definition}[Koerzivität]
@@ -183,4 +201,6 @@
 
 \section{Optimalitätsbedingungen}
 
+=======
+>>>>>>> master
 \end{document}
