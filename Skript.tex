@@ -1,0 +1,96 @@
+\documentclass[11pt]{book}
+
+\usepackage{cmap}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english, ngerman]{babel}
+
+\usepackage{microtype}
+\usepackage{csquotes}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+
+\setlength{\parindent}{0cm}
+\newcounter{thm}
+\numberwithin{thm}{section}
+
+\newtheorem{definition}[thm]{Definition}
+\newtheorem{satz}[thm]{Satz}
+\newtheorem{uebung}[thm]{Übung}
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem*{bemerkung*}{Bemerkung}
+\newtheorem*{definition*}{Definition}
+\begin{document}
+
+\chapter{Unrestringierte Probleme}
+
+\setcounter{section}{2}
+
+\setcounter{thm}{2}
+
+\begin{definition}[Lösbarkeit] ~\\
+	Das Minimierungsproblem $P$ heißt \textbf{lösbar}, falls ein $\overline{x} \in M$ existiert mit
+	$$ \inf_{x \in M} f(x) = f(\overline{x}) $$
+\end{definition}
+
+\setcounter{thm}{4}
+
+\begin{satz}
+	Das Minimierungsproblem $P$ ist genau dann lösbar, wenn es einen globalen Minimalpunkt besitzt.
+\end{satz}
+
+\begin{bemerkung*}
+	Es können drei Fälle der Unlösbarkeit auftreten:
+
+	\begin{itemize}
+		\item $\inf_{x \in M} f(x) = + \infty$
+		\item $\inf_{x \in M} f(x) = - \infty$
+		\item Ein endliches Infimum wird nicht angenommen.
+	\end{itemize}	
+\end{bemerkung*}
+
+
+\begin{satz}[Satz von Weierstraß] ~\\
+	Die Menge $M \subseteq \mathbb{R}^n$ sei nichtleer und kompakt, und die Funktion $f \colon M \rightarrow \mathbb{R}$ sei stetig. Dann besitzt $f$ auf $M$ (mindestens) einen globalen Minimalpunkt und einen globalen Maximalpunkt.
+\end{satz}
+
+\setcounter{thm}{7}
+
+\begin{definition}[Untere Niveaumenge]
+	Für $X \subseteq \mathbb{R}^n, f \colon X \rightarrow \mathbb{R}$ und $\alpha \in \mathbb{R}$ heißt
+	$$ \operatorname{lev}_{\leq}^{\alpha}(f, X) = \big\{ x \in X ~|~ f(x) \leq \alpha \big\} $$
+	\textbf{untere Niveaumenge von $f$ auf $X$ zum Niveau $\alpha$}. Im Fall $X = \mathbb{R}^n$ schreiben wir auch kurz
+	$$ f_{\leq}^{\alpha} \coloneqq \operatorname{lev}_{\leq}^{\alpha}(f, \mathbb{R}^n) = \big\{ x \in \mathbb{R}^n ~|~ f(x) \leq \alpha \big\} $$
+\end{definition}
+
+\setcounter{thm}{9}
+
+\begin{uebung}
+	Für eine abgeschlossene Menge $X \subseteq \mathbb{R}^n$ sei die Funktion $f \colon X \rightarrow \mathbb{R}$. Dann ist die Menge $\operatorname{lev}_{\leq}^{\alpha}(f, X)$ für alle $\alpha \in \mathbb{R}$ abgeschlossen.	
+\end{uebung}
+
+\begin{uebung}
+	Für eine abgeschlossene Menge $X \subseteq \mathbb{R}^n$ und endliche Indexmengen $I$ und $J$ seien die Funktion $g_i \colon X \rightarrow \mathbb{R}, i \in I$, und $h_j \colon X \rightarrow \mathbb{R}, j \in J$, stetig. Dann ist die Menge 
+		$$ M = \big\{ x \in X ~|~g_i(x) \leq 0, i \in I, ~ h_j(x) = 0, j \in J \big\} $$
+		abgeschlossen.	
+\end{uebung}
+
+\begin{definition*}
+	Die Menge der globalen Minimalpunkte lautet:
+	$$ S = \big\{ \overline{x} \in M ~|~ \forall x \in M: f(x) \geq f(\overline{x}) \big\} $$
+\end{definition*}
+
+\begin{lemma}
+	Für ein $\alpha \in \mathbb{R}$ sei $\operatorname{lev}_{\leq}^{\alpha}(f, M) \neq \emptyset$. Dann gilt 
+	$$ S \subseteq \operatorname{lev}_{\leq}^{\alpha}(f, M). $$
+\end{lemma}
+
+\begin{satz}[Verschärfter Satz von Weierstraß]
+	Für eine (nicht notwendigerweise beschränkte oder abgeschlossene) Menge $M \subseteq \mathbb{R}^n$ sei $f \colon M \rightarrow \mathbb{R}$ stetig, und mit einem $\alpha \in \mathbb{R}$ sei $\operatorname{lev}_{\leq}^{\alpha}(f, M)$ nichtleer und kompakt. Dann besitzt $f$ auf $M$ (mindestens) einen globalen Minimalpunkt.
+\end{satz}
+
+\end{document}
