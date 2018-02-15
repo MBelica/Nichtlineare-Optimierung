@@ -1,4 +1,4 @@
-\documentclass[11pt]{book}
+\documentclass[11pt]{scrreprt}
 
 \usepackage{cmap}
 
@@ -13,6 +13,10 @@
 \usepackage{amsthm}
 \usepackage{amsfonts}
 \usepackage{mathtools}
+\usepackage{xpatch}
+\makeatletter
+\xpatchcmd{\proof}{\@addpunct{.}}{\@addpunct{:}}{}{}
+\makeatother
 
 \setlength{\parindent}{0cm}
 \newcounter{thm}
@@ -20,15 +24,19 @@
 
 \newtheorem{definition}[thm]{Definition}
 \newtheorem{satz}[thm]{Satz}
+\newtheorem{korollar}[thm]{Korollar}
 \newtheorem{uebung}[thm]{Übung}
+\newtheorem{beispiel}[thm]{Beispiel}
 \newtheorem{lemma}[thm]{Lemma}
 \newtheorem*{bemerkung*}{Bemerkung}
 \newtheorem*{definition*}{Definition}
 \begin{document}
 
-\chapter{Unrestringierte Probleme}
+\chapter*{I. Unrestringierte Probleme}
+\setcounter{chapter}{1}
+\setcounter{section}{1}
 
-\setcounter{section}{2}
+\section{Lösbarkeit}
 
 \setcounter{thm}{2}
 
@@ -92,5 +100,87 @@
 \begin{satz}[Verschärfter Satz von Weierstraß]
 	Für eine (nicht notwendigerweise beschränkte oder abgeschlossene) Menge $M \subseteq \mathbb{R}^n$ sei $f \colon M \rightarrow \mathbb{R}$ stetig, und mit einem $\alpha \in \mathbb{R}$ sei $\operatorname{lev}_{\leq}^{\alpha}(f, M)$ nichtleer und kompakt. Dann besitzt $f$ auf $M$ (mindestens) einen globalen Minimalpunkt.
 \end{satz}
+
+\setcounter{thm}{20}
+
+\begin{definition}[Koerzivität]
+	Gegeben seien eine abgeschlossene Menge $X \subseteq \mathbb{R}^n$ und eine Funktion $f \colon \mathbb{R}$ fall für alle Folgen $(x^k) \subseteq X$ mit $\lim_k \| x^k \| = +\infty$ auch
+	$$ \lim_k f(x^k) = +\infty $$
+	gilt, dann heißt $f$ \textbf{koerziv} auf $X$.
+\end{definition}
+
+\setcounter{thm}{23}
+
+\begin{uebung}
+		Gegeben sei die quadratische Funktion $q(x) = \frac{1}{2} x^T A x + b^T x$ mit einer symmetrischen $(n, n)$-Matrix $A$ (d.h. es gilt $A = A^T$) und $b \in \mathbb{R}^n$. Die Funktion $q$ ist genau dann koerziv auf $\mathbb{R}^n$, wenn $A$ positiv definit ist (d.h. wenn $d^T A d > 0$ für alle $d\in \mathbb{R}^n \setminus \{ 0 \}$ gilt).
+\end{uebung}
+
+\begin{beispiel}
+	Auf kompakten Mengen $X$ ist jede Funktion $f$ trivialerweise koerziv.	
+\end{beispiel}
+
+\begin{lemma}
+	Die Funktion $f \colon X \rightarrow \mathbb{R}$ sei stetig und koerziv auf der (nicht notwendigerweise beschränkten) abgeschlossenen Menge $X \subseteq \mathbb{R}^n$. Dann ist die Menge $\operatorname{lev}_{\leq}^{\alpha}(f, X)$ für jedes Niveau $\alpha \in \mathbb{R}$ kompakt.
+\end{lemma}
+
+\begin{korollar}
+	Es sei $M$ nichtleer und abgeschlossen, aber nicht notwendigerweise beschränkt. Ferner sei die Funktion $f \colon M \rightarrow \mathbb{R}$ stetig und koerziv auf $M$. Dann besitzt $f$ auf $M$ (mindestens) einen globalen Minimalpunkt.
+\end{korollar}
+
+\section{Rechenregeln und Umformungen}
+
+\begin{uebung}[Skalare Vielfache und Summen]
+	Gegeben seien $M \subseteq \mathbb{R}^n$ und $f,g \colon M \rightarrow \mathbb{R}$. Dann gilt
+	\begin{enumerate}[label=\alph*\upshape)]
+		\item $\forall \alpha \geq 0$, $\beta \in \mathbb{R} \colon \min_{x \in M} \left( \alpha f(x) + \beta \right) = \alpha \left( \min_{x \in M} f(x) \right) + \beta$
+		\item $\forall \alpha <0$, $\beta \in \mathbb{R} \colon \min_{x \in M} \left( \alpha f(x) + \beta \right) = \alpha \left( \max_{x \in M} f(x) \right) + \beta$
+		\item $\min_{x \in M} \left( f(x) + g(x) \right) \geq \min_{x \in M} f(x) + \min_{x \in M} g(x)$
+	\end{enumerate}
+\end{uebung}
+
+\begin{uebung}[Separable Zielfunktion auf kartesischem Produkt]
+	Es seien $X \subseteq \mathbb{R}^n$, $Y \subseteq \mathbb{R}^m$, $f \colon X \rightarrow \mathbb{R}$ und $g \colon Y \rightarrow \mathbb{R}$. Dann gilt
+	$$ \min_{(x,y) \in X \times Y} \left( f(x) + g(y) \right) = \min_{x \in X} f(x) + \min_{y \in Y} g(y) $$	
+\end{uebung}
+
+\begin{uebung}[Vertauschung von Minima und Maxima]
+	Es seien $X \subseteq \mathbb{R}^n$, $Y \subseteq \mathbb{R}^m$, $M = X \times Y$ und $f \colon M \rightarrow \mathbb{R}$ gegeben. Dann gilt:
+	\begin{enumerate}[label=\alph*\upshape)]
+		\item $\min_{(x,y) \in M} f(x, y) = \min_{x \in X} \min_{y \in Y} f(x,y) = \min_{y \in Y} \min_{x \in X} f(x, y)$
+		\item $\max_{(x,y) \in M} f(x, y) = \max_{x \in X} \max_{y \in Y} f(x,y) = \max_{y \in Y} \max_{x \in X} f(x, y)$
+		\item $\min_{x \in X} \max_{y \in Y} f(x, y) \geq \max_{y \in Y} \min_{x \in X} f(x, y)$
+	\end{enumerate}
+\end{uebung}
+
+\begin{uebung}[Monotone Transformation]
+	Zu $M \subseteq \mathbb{R}^n$ und einer Funktion $f \colon M \rightarrow Y$ mit $Y\subseteq \mathbb{R}$ sei $\psi \colon Y \rightarrow \mathbb{R}$ eine streng monoton wachsende Funktion. Dann gilt
+	$$ \min_{x \in M} \psi \left( f(x) \right) = \psi \left( \min_{x \in M} f(x) \right), $$
+	und die lokalen bzw. globalen Minimalpunkte stimmen überein.
+\end{uebung}
+
+\begin{uebung}[Epigraphumformulierung]
+	Gegeben seien $M \subseteq \mathbb{R}^n$ und eine Funktion $f \colon M \rightarrow \mathbb{R}$. Dann sind die Probleme
+	$$ P \colon \min_{x \in \mathbb{R}^n} f(x) \text{ s.t. } x \in M ~\text{ und } ~ P_{epi} \colon \min_{(x, \alpha) \in \mathbb{R}^n \times \mathbb{R}} \alpha \text{ s.t. } f(x) \leq \alpha, x \in M $$
+	äquivalent, d.h. die Minimalwerte stimmen überein und Minimalpunkte entsprechen sich.
+\end{uebung}
+
+\begin{definition}[Parallelprojektion]
+	Es sei $M \subseteq \mathbb{R}^n \times \mathbb{R}^m$. Dann heißt
+	$$ \operatorname{pr}_x M = \big\{ x \in \mathbb{R}^n ~|~\exists y \in \mathbb{R}^m : (x, y) \in M \big\} $$
+	\textbf{Parallelprojektion} von $M$ (den \enquote{$x$-Raum}) $\mathbb{R}^n$.
+\end{definition}
+
+\begin{uebung}[Projektionsumformulierung]
+	Gegeben seien $M \subseteq \mathbb{R}^n \times \mathbb{R}^m$ und eine Funktion $f \colon \mathbb{R}^n \rightarrow \mathbb{R}$, die nicht von den Variablen aus $\mathbb{R}^m$ abhängt. Dann sind die Probleme 
+	$$ P \colon \min_{(x, y) \in \mathbb{R}^n \times \mathbb{R}^m} f(x) ~\text{ s.t.} (x, y) \in M ~\text{ und } ~ P_{proj} \colon \min_{x \in \mathbb{R}^n} f(x) \text{ s.t. } x \in \operatorname{pr}_x M $$
+	äquivalent, d.h. die Minimalwerte stimmen überein und Minimalpunkte entsprechen sich.
+\end{uebung}
+
+\setcounter{chapter}{2}
+\setcounter{section}{0}
+
+\newpage
+
+\section{Optimalitätsbedingungen}
 
 \end{document}
