@@ -14,14 +14,24 @@
 \usepackage{amsthm}
 \usepackage{amsfonts}
 \usepackage{mathtools}
-
 \usepackage{xpatch}
+
 \makeatletter
-\xpatchcmd{\proof}{\@addpunct{.}}{\@addpunct{:}}{}{}
+	\xpatchcmd{\proof}{\@addpunct{.}}{\@addpunct{:}}{}{}
+	\setlength{\parindent}{0cm}
 \makeatother
 
-\setlength{\parindent}{0cm}
 \newcounter{thm}
+\newtheoremstyle{thmstyle}
+  {1em} % Space above
+  {1.25em} % Space below
+  {} % Body font
+  {} % Indent amount
+  {\bfseries} % Theorem head font
+  {.} % Punctuation after theorem head
+  {.5em} % Space after theorem head
+  {} % Theorem head spec (can be left empty, meaning `normal')
+\theoremstyle{thmstyle} 
 \numberwithin{thm}{section}
 
 \newtheorem{beispiel}[thm]{Beispiel}
@@ -525,7 +535,8 @@ Neben der Stetigkeit der Zielfunktion $f$ werden wir im gesamten Abschn. 2.2 for
 Zu $x \in f_{\leq}^{f(x^0)}$ sei eine Abstiegsrichtung erster Ordnung $d$ für $f$ in $x$ gegeben. Wegen $\varphi_d'(0) = \langle \nabla f(x), d \rangle < 0$ gilt $\varphi_d(t) < \varphi_d(0)$ für kleine positive $t$. Für beschränktes $f_{\leq}^{f(x^0)}$ besitzt $\varphi_d$ nach dem Satz von Weierstraß sogar globale Minimalpunkte $t_e> 0$, die exakte Schrittweiten genannt werden. Per Definition der eindimensionalen Einschränkung $\varphi_d$ erfüllen sie
 $$ f(x + t_e d) = \min_{t > 0} f(x + td) $$
 
-Eine exakte Schrittweite zu berechnen, um den größtmöglichen Abstieg von $x$ aus entlang d zu erzielen, ist im Allgemeinen sehr aufwendig, so dass wir dieses Konzept meist nur für theoretische Zwecke benutzen werden und später stattdessen zu inexakten Schrittweiten übergehen werden. 
+Eine exakte Schrittweite zu berechnen, um den größtmöglichen Abstieg von $x$ aus entlang d zu erzielen, ist im Allgemeinen sehr aufwendig, so dass wir dieses Konzept meist nur für theoretische Zwecke benutzen werden und später stattdessen zu inexakten Schrittweiten übergehen werden.  Es gilt
+	$$ 0 = \varphi_d(t_e) = \langle \nabla f(x + t_ed), d \rangle $$
 
 \begin{uebung}
 	Gegeben sei die quadratische Funktion $q(x) = \frac{1}{2} x^T A x + b^T x$ mit $A = A^T \succ 0$ und $b \in \mathbb{R}^n$, die nach Übung 1.2.24 koerziv und nach Übung 2.1.43 konvex ist. Für 
@@ -594,7 +605,7 @@ Aufgrund seiner geometrischen Grundidee ist dies das Verfahren des steilsten Abs
 \end{definition*}
 
 \begin{uebung}
-	Gegeben sei die quadratische Funktion $q(x) = \frac{1}{2} x^T A x + b^T x$ mit $A = A^T$ und $b \in \mathbb{R}^n$. Zeigen Sie, dass der Gradient $\nabla q$ auf ganz $\mathbb{R}^n$ Lipschitz-stetig mit $L = \| A \|_2$ ist. 
+	Gegeben sei die quadratische Funktion $q(x) = \frac{1}{2} x^T A x + b^T x$ mit $A = A^T$ und $b \in \mathbb{R}^n$. Der Gradient $\nabla q$ ist auf ganz $\mathbb{R}^n$ Lipschitz-stetig mit $L = \| A \|_2$. 
 \end{uebung}
 
 \begin{beispiel}
@@ -631,4 +642,594 @@ Der folgende Satz zeigt, dass das Gradientenverfahren schon für sehr angenehme 
 	$$ |q(x^{k+1}) - q(x^*)| \leq \left( \frac{\lambda_{max} - \lambda_{min}}{\lambda_{max} + \lambda_{min}} \right)^2 |q(x^k) - q(x^*)|. $$
 \end{satz}
 
+Nach Satz 2.2.23 minimiert das Gradientenverfahren (mit exakten Schrittweiten) eine konvex-quadratische Funktion $q(x) = \frac{1}{2}x^T A x + b^T x$ in einem einzigen Schritt, wenn der kleinste und größte Eigenwert $\lambda_{min}$ bzw. $\lambda_{max}$ von $A$ übereinstimmen. Dann stimmen natürlich auch alle Eigenwerte von $A$ miteinander überein, so dass $q$ sphärenförmige Niveaumengen besitzt.
+
+\subsection*{Variable-Metrik-Verfahren}
+
+Im Allgemeinen existiert stets ein rechtwinkliges Koordinatensystem, das zur Lage der ellipsodialen Niveaumengen von $q$ \enquote{passend ausgerichtet} ist, sodass in einem neuen Koordinatensystem die Niveaulinien sphärenförmig sind. ~\bigskip
+
+Für eine nicht notwendigerweise konvex-quadratische Funktion $f \in C^1(\mathbb{R}^n, \mathbb{R})$ beschränkt man sich darauf, approximativ eine Konstruktion wie bei konvex-quadratischen Funktionen zu benutzen:
+
+\setcounter{thm}{26}
+
+\begin{definition}[Gradient bezüglich einer positiv definiten Matrix]
+	Für $f \in C^1(\mathbb{R}^n, \mathbb{R})$ und eine $(n, n)$-Matrix $A = A^T \succ 0$ heißt
+	$$ \nabla_A f(x) \coloneqq A^{-1} \nabla f(x) $$
+	\textbf{Gradient von $f$ bezüglich $A$} an $x$.
+\end{definition} 
+
+Die verschiedenen Variable-Metrik-Verfahren unterscheiden sich durch die Wahl der Matrix $A$, mit deren Hilfe die Suchrichtung $- \nabla_A f(x)$ gebildet wird. Für jedes $A = A^T \succ 0$ ist diese Suchrichtung an einem nichtkritischen Punkt $x$ jedenfalls eine Abstiegsrichtung erster Ordnung, denn da mit $A$ auch $A^{-1}$ positiv definit ist, gilt
+
+$$ \langle \nabla f(\overline{x}), - \nabla_A f(\overline{x}) \rangle = - \nabla f(\overline{x})^T A^{-1} \nabla f(\overline{x}) < 0 $$
+
+\begin{uebung}
+	Für jedes $A = A^T \succ 0$ ist die Funktion $\langle x, y \rangle_A \coloneqq x^T A y$ ein Skalarprodukt auf $\mathbb{R}^n$.
+\end{uebung}
+
+\begin{uebung}
+	Für jedes $A = A^T \succ 0$ und für das von $A$ induzierte Skalarprodukt $\langle \cdot, \cdot \rangle_A$ ist die folgende Funktion eine Norm auf $\mathbb{R}^n$:
+	$$ \| x \|_A \coloneqq \sqrt{\langle x, x \rangle_{A}} $$
+\end{uebung}
+
+\begin{uebung}
+	Es gilt unter für die konvex-quadratische Funktion $q(x) = \frac{1}{2} x^T A x + b^T x$ mit $A = A^T \succ 0$, $b \in \mathbb{R}^n$ und mit exakten Schrittweiten:
+	$$ \frac{1}{2} \| x - x^* \|_A^2 = q(x) - q(x^*) $$
+\end{uebung}
+
+Da die quadrierten Abstände der Iterierten zum Grenzpunkt linear konvergieren, erhält man aus Übung 2.2.30 eine sogar noch langsamere als lineare (nämlich eine sog. sublineare) Konvergenzgeschwindigkeit der Iterierten selbst.
+
+\begin{uebung}
+	Gegeben sei die quadratische Funktion $q(x) = \frac{1}{2} x^T A x + b^T x$ mit $A = A^T$ und $b \in \mathbb{R}^n$. Für die exakte Schrittweite des Gradientenverfahrens gilt die Formel 
+	$$ t_e = \frac{\| \nabla q(x) \|_2^2}{\| \nabla q(x) \|_A^2} $$
+\end{uebung}
+
+\begin{uebung}
+	Für das durch $A = A^T \succ 0$ induzierte Skalarprodukt $\langle \cdot, \cdot \rangle_A$ und die induzierte Norm $\| \cdot \|_A$ gilt die Cauchy-Schwarz-Ungleichung:
+		$$ \forall x,y \in \mathbb{R}^n: \quad \left| \langle x, y \rangle_A \right| \leq \| x \|_A \cdot \| y \|_A $$
+	und die Abschätzung ist scharf.
+\end{uebung}
+
+\begin{lemma}
+	Es sei $\nabla f(x) \neq 0$. Dann löst der Vektor 
+	$$ d = - \frac{- \nabla_A f(x)}{\| \nabla_A f(x) \|_A} $$
+	das Problem $\min \langle \nabla f(x), d \rangle$ s.t. $\| d \|_A = 1$, und zwar mit optimalem Wert $- \| \nabla_A f(x) \|_A$.
+\end{lemma}
+
+\begin{center}
+	\includegraphics[scale=0.5]{a26}
+\end{center}
+
+In Zeile 2 von Algorithmus 2.6 wählt man häufig $A^0 = E$, also als erste Suchrichtung die Gradientenrichtung $d^0 = - \nabla f(x^0)$. In Zeile 3 wäre ein konsistenteres Abbruchkriterium eigentlich 
+		$$ \| \nabla_{A^{k}} f(x^k) \|_{A^k} \leq \epsilon, $$
+	aber wegen
+		$$ \| \nabla_{A^{k}} f(x^k) \|_{A^k} = \sqrt{D f(x^k) (A^k)^{-1} \nabla f(x^k)} = \| \nabla f(x^k) \|_{(A^k)^{-1}} $$
+	und der Äquivalenz von $\| \cdot \|_{(A^{k})^{-1}}$ und $\| \cdot \|_2$ (d. h., es gibt Konstanten $c_1, c_2 > 0$, so dass alle $x \in \mathbb{R}^n$ die Abschätzungen $c_1 \| x \|_{(A^{k})^{-1}}\leq \| x \|_2 \leq c_2 \| x \|_{(A^k)^{-1}}$ erfüllen) kann man ebensogut das angegebene und weniger aufwendigere Kriterium testen. In Zeile 4 berechnet man die Suchrichtung $d^k$ numerisch nicht durch die eine Matrixinversion enthaltende Definition $-(A^k)^{-1} \nabla f(x^k)$, sondern weniger aufwendig als Lösung des linearen Gleichungssystems $A^k d = - \nabla f(x^k)$. ~\bigskip
+
+Möchte man die Konvergenz von Variable-Metrik-Verfahren im Sinne von Satz 2.2.9 garantieren, benötigt man neben der Effizienz der Schrittweiten auch die Gradientenbezogenheit der Suchrichtungen. Diese muss man noch fordern.
+
+\begin{definition}[Gleichmäßig positiv definite und beschränkte Matrizen]
+	Eine Folge $(A^k)$ symmetrischer $(n,n)$-Matrizen heißt \textbf{gleichmäßig positiv definit} und \textbf{beschränkt}, falls folgendes gilt:
+	$$ \exists 0 < c_1 \leq c_2 ~\forall d \in B_{=}(0, 1), ~k \in \mathbb{N}: \quad c_1 \leq d^T A^k d \leq c_2 $$
+\end{definition}
+
+\begin{uebung}
+	Die Folge $(A^k)$ sei gleichmäßigpositiv definit und beschränkt mit Konstanten $c_1$ und $c_2$. Dann ist die Folge $\left( (A^k)^{-1} \right)$ auch gleichmäßig positiv definit und beschränkt mit Konstanten $\frac{1}{c_2}$ und $\frac{1}{c_1}$. Außerdem ist die Folge $\left( \lambda_{max} \big( (A^k)^{-1} \big) \right)$ der größten Eigenwerte von $\left( (A^k)^{-1} \right)$ durch $\frac{1}{c_1}$ nach oben beschränkt.
+\end{uebung}
+
+\begin{satz}
+	Die Folge $(A^k)$ sei gleichmäßig positivdefinit und beschränkt. Dann ist die Folge $(d^k)$ mit $d^k = - \left( A^k \right)^{-1} \nabla f(x^k)$, $k \in \mathbb{N}$, gradientenbezogen.
+\end{satz}
+
+\begin{satz}
+	Die Menge $f_{\leq}^{f(x^0)}$ sei beschränkt, die Funktion $\nabla f$ sei Lipschitz-stetig auf $\operatorname{conv}(f_{\leq}^{f(x^0)})$, die Folge $(A^k)$ sei gleichmäßig positiv definit und beschränkt, und in Zeile 5 seien exakte Schrittweite $(t_e^k)$ oder Armijo-Schrittweiten $(t_a^k)$ gewählt. Dann terminiert Algorithmus 2.6 für jedes $\epsilon > 0$ nach endlich vielen Schritten.
+\end{satz}
+
+\begin{bemerkung}[Spektralnorm und Eigenwerte]
+		Durch die in Abschnitt 2.2.3 eingeführte Spektralnorm $\|A \|_2 \coloneqq \max \big\{ \| Ad \|_2 ~|~\|d\|_2 = 1 \big\}$ können die Eigenwerte einer Matrix $A$ durch die semidefinite Matrix $A^T A$ berechnet werden. Es ist
+		$$ \| A \|_2 = \sqrt{ \lambda_{max}(A^TA)} = \sqrt{ \left( \lambda_{max}(A) \right)^2} = |\lambda_{max}(A) | $$
+		Damit ist nach Bemerkung 2.2.24 und Übung 2.2.5 die Länge der längsten Halbachse des Niveau-Ellipsoids
+		$$ \frac{1}{\sqrt{\lambda_{min}(A^TA)^{-1})}} = \sqrt{ \lambda_{max}(A^TA)} $$
+\end{bemerkung}
+
+\subsection*{Newton-Verfahren mit und ohne Dämpfung}
+
+Wählt man in Algorithmus 2.6 für $f \in C^2(\mathbb{R}^n, \mathbb{R})$ in jedem Schritt $A^k = D^2 f(x^k)$, so erhält man das Newton-Verfahren, sofern die Matrizen $D^2 f (x^k)$ positiv definit sind. ~\bigskip
+
+Ist $x^*$ nichtdegenerierter lokaler Minimalpunkt von $f$, dann gilt aus den bereits am Ende von Abschnitt 2.1.5. aufgeführten Stetigkeitsgründen $D^2 f(x) \succ 0$ für alle $x$ aus einer Umgebung von $x^*$.  Für $x^0$ aus dieser Umgebung  kann man also $A^k = D^2 f (x^k)$ setzen und erhält ein wohldefiniertes Abstiegsverfahren. Ferner sind die Suchrichtungen $d^k = - \left( D^2 f(x^k) \right)^{-1} \nabla f(x^k)$ gradientenbezogen, falls $f$ und $x$ gleichmäßig konvex ist, d. h. falls für eine Umgebung $U$ von $x$ gilt:
+
+	$$ \exists c > 0 ~\forall x \in U, d\in B_{=}(0, 1): \quad c \leq d^T D^2 f(x) d $$
+	
+Die für diese Folgerung nach Satz 2.2.36 noch erforderliche Beschränktheit der Folge $(D^2 f (x^k ))$ resultiert dabei aus der Stetigkeit von $D^2 f$. Die Nichtdegeneriertheit des lokalen Minimalpunkts $x^*$ gilt bei gleichmäßig konvexem $f$ automatisch. ~\bigskip
+
+Die Dämpfung des Newton-Verfahrens hat den Vorteil, dass der Konvergenzradius (also der mögliche Abstand von $x_0$ zu $x^*$) etwas größer wird. Andererseits ist zunächst nicht klar, ob die Dämpfung nicht auch die lokale Konvergenz verlangsamt. Das ungedämpfte Newton-Verfahren konvergiert unter schwachen Voraussetzungen jedenfalls quadratisch.
+
+\begin{satz}[Quadratische Konvergenz des Newton-Verfahrens]
+	Die durch
+	$$ x^{k+1} = x^k - \left( D^2 f(x^k) \right)^{-1} \nabla f(x^k) $$
+	definierte Folge $(x^k)$ konveriere gegen einen nichtdegenerierten lokalen Minimalpunkt $x^*$, und $D^2 f$ sei Lipschitz-stetig auf einer konvexe Umgebung von $x^*$. Dann konvergiert die Folge $(x^k)$ quadratisch gegen $x^*$.
+\end{satz}
+
+\begin{bemerkung}
+	Die Voraussetzungen von Satz 2.2.39 lassen sich noch erheblich abschwächen. Erstens gilt die Aussage für jeden nichtdegenerierten kritischen Punkt $x^*$ also nicht nur für lokale Minimalpunkte. Zweitens zeigt Satz 2.2.48, dass die Konvergenz der Folge $(x^k)$ bereits impliziert, dass der Grenzpunt $x^*$ ein nichtdegenerierter kritischer Punkt ist.	
+\end{bemerkung}
+
+Die Konvergenzgeschwindigkeit überträgt sich aus Satz 2.2.39 natürlich auf das gedämpfte Newton-Verfahren, falls man mit einem $k_0 \in \mathbb{N}$ für alle $k \geq k_0$ nur $t_k = 1$ wählt. Die folgende Übung gibt eine natürliche Bedingung dafür an.
+
+\begin{uebung}
+	Für $f \in C^2(\mathbb{R}^n, \mathbb{R})$ liege $x$ in einer genügend kleinen Umgebung eines nichtdegenerierten lokalen Minimalpunkts, und die Suchrichtung $d$ werde mit dem gedämpften Newton-Verfahren per Armijo-Regel mit $t^0 = 1$ und $\sigma < \frac{1}{2}$ bestimmt. Dann gilt $\langle \nabla f(x), d \rangle < 0$ und dass die Armijo-Regel die Schrittweite $t_a = 1$ wählt.
+\end{uebung}
+
+\begin{uebung}
+	Das ungedämpfte Newton-Verfahren liefert für die Funktion $q(x) = \frac{1}{2} x^T A x + b^T x$ mit $A = A^T \succ 0$ und $b \in \mathbb{R}^n$ von jedem Startpunkt $x^0 \in \mathbb{R}^n$ nach einem Schritt den globalen Minimalpunkt von $q$.
+\end{uebung}
+
+\begin{uebung}
+	Für $f \in C^2(\mathbb{R}^n, \mathbb{R})$ sei eine Iterierte $x^k$ mit $D^2 f(x^k) \succ 0$ gegeben. Die vom Newton-Verfahren erzeugte Suchrichtung $d^k$ ist der eindeutige lokale Minimalpunkt der konvex-quadratischen Funktion 
+	$$ q(d) = f(x^k) + \langle \nabla f(x^k) , d \rangle + \frac{1}{2} d^T D^2 f(x^k) d $$
+\end{uebung}
+
+\begin{bemerkung*}
+	Für spezielle Funktionen, wie bei Kleinste-Quadrate-Problemen, also $f(x) = \frac{1}{2} \| r(x) \|_2^2$ mit einer glatten Funktion $r \colon \mathbb{R}^n \rightarrow \mathbb{R}^m$. Es ist
+	
+	$$ D^2 f(x) = \nabla r(x) D r(x) + \sum_{j=1}^m r_j(x) D^2 r_j(x). $$
+	
+	Als Modifikation, dem Gauß-Newton-Verfahren, wäre anstatt $A^k = D^2 f (x^k)$ in Zeile 4 $A^k = \nabla r(x^k) Dr(x^k)$ zu wählen. Dass die restlichen Summanden in der Darstellung von eine untergeordnete Rolle spielen, kann zum einen daran liegen, dass für $m \geq n$ überlicherweise ein Punkt $x^*$ mit $r(x^*) = 0$ dass für $m \geq n$ approximiert wird, so dass die Werte $r_j (x^k)$ fast verschwinden, oder zum anderen daran, dass die Krümmung der Funktionen $r_j$ an $x^*$ vernachlässigbar sind, so dass sich die Matrizen $D^2 r_j (x^k)$ in der Nähe der Nullmatrix aufhalten. ~\bigskip
+	
+	Obwohl zum Aufstellen von $A^k$ im Gauß-Newton-Verfahren also nur Ableitungsinformationen erster Ordnung (die Matrix $Dr(x^k)$) erforderlich sind, lässt sich unter bestimmten Zusatzvoraussetzungen sogar quadratische Konvergenz zeigen. Zusätzlich sind die Suchrichtungen $d^k$ im Gauß-Newton-Verfahren im Gegensatz zum allgemeinen Newton-Verfahren garantiert Abstiegsrichtungen (erster Ordnung), so dass eine Schrittweitensteuerung etwa per Armijo-Regel möglich ist. ~\bigskip
+	
+	Sollte die Jacobi-Matrix $D r(x^k)$ nicht den vollen Rang besitzen oder zumindest schlecht konditioniert sein, so lässt das Gauß-Newton-Verfahren sich durch die Wahl $A^k = \nabla r(x^k) Dr(x^k) + \sigma^k E$ mit gewissen $\sigma^k > 0$ und der Einheitsmatrix $E$ passender Dimension stabilisieren, was auf das Levenberg-Marquardt-Verfahren führt.
+\end{bemerkung*}
+
+\subsection*{Superlineare Konvergenz}
+
+Falls im Newton-Verfahren $x^0$ zu weit von einem nichtdegenerierten Minimalpunkt entfernt liegt, ist $D^2 f (x^k)$ nicht notwendigerweise positiv definit und die Newton-Richtung  entweder nicht definiert oder nicht notwendigerweise eine Abstiegsrichtung. Man versucht daher, das Newton-Verfahren zu globalisieren, d. h. Konvergenz im Sinne von Satz 2.2.9 gegen einen lokalen Minimalpunkt von jedem Startpunkt $x^0 \in \mathbb{R}^n$ aus zu erzwingen. Ein erster Ansatz dazu besteht darin, in Zeile 2 von Algorithmus 2.6 $A^0 = E$ zu wählen sowie in Zeile 7 (ähnlich wie im Levenberg-Marquardt-Verfahren)
+		$$ A^{k+1} = D^2 f(x^{k+1}) + \sigma^{k+1} \cdot E $$
+	mit einem so großen Skalar $\sigma^{k+1}$, dass $A^{k+1}$ positiv definit ist, und bei hinreichend großen $k$ wieder $\sigma^{k} = 0$ (d. h. das Verfahren startet als Gradientenverfahren und geht nach endlich vielen Schritten in das gedämpfte Newton-Verfahren über). Ein Nachteil des Verfahrens besteht darin, dass die Bestimmung von   $\sigma_k$ sehr aufwendig sein kann: Man halbiert oder verdoppelt $\sigma^{k}$ so lange, bis ein Test auf positive Definitheit von  erfolgreich ist.  ~\bigskip
+	
+	Im Folgenden werden wir Verfahren kennenlernen, die nicht nach endlich vielen Schritten, sondern nur asymptotisch in das gedämpfte Newton-Verfahren übergehen. Für diese lässt sich immerhin noch superlineare Konvergenz zeigen. Der entsprechende Konvergenzsatz erfordert einige Vorbereitungen.  ~\bigskip
+	
+	Zunächst besitzt die Folge der Iterierten $(x^k)$ nach Satz 2.2.9 einen Häufungspunkt, und jeder solche Häufungspunkt ist kritisch, sofern die Menge $f_{\leq}^{f(x^0)}$ beschränkt ist und gradientenbezogene Suchrichtungen sowie effiziente Schrittweiten benutzt werden. Die Gradientenbezogenheit der Suchrichtungen wird durch Satz 2.2.36 für gleichmäßig positiv definite und beschränkte $(A^k)$ garantiert. Sei dazu
+	
+	$$ H^k \coloneqq t^k \left( A^k \right)^{-1}, $$
+	
+	sodass $x^{k+1} = x^k - H^k \nabla f(x^k)$. Daraus folgt die Definition der superlinearen Konvergenz und diese ist äquivalent zu $\limsup_k \frac{\| x^{k+1} - x^* \|}{\| x^k - x^* \|} = 0$.
+	
+\setcounter{thm}{45}	
+	
+\begin{lemma}
+	Die Folge $(x^k)$ sei nach obiger Vorschrift gebildet und gegen $x^*$ konvergent. Ferner seien die Folgen $(\| H^k \|_2)$ und $(\| (H^k)^{-1} \|_2)$ beschränkt. Dann gilt
+	\begin{enumerate}[label=\alph*\upshape)]
+		\item $\nabla f(x^*) = 0$
+		\item $\limsup_k \| x^{k+1} - x^* \|_2 / \| x^k - x^*\|_2 \leq \limsup_k \| E - H^k D^2 f(x^*) \|_2$
+	\end{enumerate}
+\end{lemma}	
+
+\begin{lemma}
+	Für zwei $(n,n)$-Matrizen $A$ und $B$ sei $L \coloneqq \| E - AB \|_2 < 1$. Dann gilt
+	\begin{enumerate}[label=\alph*\upshape)]
+		\item $A$ und $B$ sind nichtsingulär
+		\item $\|A\|_2 \leq (1+ L) \cdot \| B^{-1} \|_2$
+		\item $\| A^{-1} \| \leq \frac{\| B \|_2}{(1-L)}$
+	\end{enumerate}
+\end{lemma}
+	
+\begin{satz}
+	Die Folge $(x^k)$ sei nach obiger Vorschrift gebildet und gegen $x^*$ konvergent. Ferner sei $L \coloneqq \limsup_k \| E - H^k D^2 f(x^*) \|_2 < 1$. Dann gelten die folgenden Aussagen:
+	
+	\begin{enumerate}[label=\alph*\upshape)]
+		\item $D^2 f(x^*)$ ist nichtsingulär.
+		\item $\nabla f(x^*) = 0$
+		\item $(x^k)$ konvergiert mindestens linear gegen $x^*$
+		\item Es gilt $L = 0$ genau im Fall von $\lim_k H^k = \left( D^2 f(x^*) \right)^{-1}$, und in diesem Fall konvergiert $(x^k)$ superlinear gegen $x^*$
+	\end{enumerate}
+\end{satz}	
+
+Nach Satz 2.2.48 sollte Algorithmus 2.6 also asymptotisch in das ungedämpfte Newton-Verfahren übergehen, um superlineare Konvergenz zu garantieren. Wegen
+
+	$$ H^k = t^k \cdot \left( A^k \right)^{-1} $$
+
+sind natürliche Bedingungen dafür $\lim_k t^k = 1$ und $\lim_k A^k = D^2 f(x^*)$. Das zu Beginn dieses Kapitels vorgeschlagene Verfahren erreicht dies mit hohem Aufwand bereits nach endlich vielen Schritten, ist in diesem Sinne also nicht effizient.
+	
+\subsection*{Quasi-Newton-Verfahren}
+	
+Ein möglicher Ansatz Matrizen $A^k$ zu finden mit $\lim_k A^k = D^2 f(x^*)$ besteht darin, zunächst das Sekantenverfahren zur Nullstellensuche einer Funktion von $\mathbb{R}$ nach $\mathbb{R}$ zu betrachten. 
+
+\begin{center}
+	\includegraphics[scale=0.4]{ab28}
+\end{center}
+
+Hieraus erhält man für $n \geq 1$ di Gleichung
+$$ \nabla f(x^{k+1}) - \nabla f(x^k) = A^{k+1} \cdot \left( x^{k+1} - x^k \right) $$
+die als Sekantengleichung oder Quasi-Newton-Bedingung an die $(n, n)$-Matrix $A^{k+1}$ bezeichnet wird. Man zählt leicht nach, dass (2.13) $n$ Gleichungen für die $n^2$ Einträge von $A^{k+1}$ liefert. Selbst wenn man $A^{k+1}$ als symmetrisch voraussetzt, sind noch immer $n(n+1)/2$ Einträge zu bestimmen. Aus diesem Grunde existieren viele Möglichkeiten, verschiedene Quasi-Newton-Verfahren anzugeben. ~\bigskip
+
+Die Grundidee der folgenden Verfahren besteht darin, die Matrix $A^{k+1}$ nicht in jedem Iterationsschritt komplett neu zu berechnen, sondern sie als möglichst einfaches Update der Matrix $A^k$ aus dem vorherigen Schritt aufzufassen. Als erfolgreicher Ansatz hat sich dabei erwiesen, mit $A^0 \succ 0$ zu starten und in Zeile 7 von Algorithmus 2.6 die Matrix $A^{k+1}$ aus $A^k$ durch Addition einer symmetrischen Matrix vom Rang eins oder zwei zu gewinnen:
+	$$ A^{k+1} = A^k + \alpha_k (u^k) (u^k)^T + \beta_k (v^k) (v^k)^T $$
+	mit Skalaren $\alpha_k, \beta_k \in \mathbb{R}$ und Vektoren $u^k, v^k \in \mathbb{R}^n$, die so gewählt sind, dass $A^{k+1}$ die Sekantengleichung erfüllt. Mit $s^k \coloneqq x^{k+1} - x^k$ und $y^{k} \coloneqq \nabla f(x^{k+1}) - \nabla f(x^k)$ heißt
+	$$ A^{k+1} = A + \frac{y y^T}{y^T s} - \frac{As s^T A}{ s^T A s } $$
+	BFGS-Update. Da man allerdings in Zeile 4 von Algorithmus 2.6 die Suchrichtung
+	$$ d^k = - \left( A^k \right)^{-1} \nabla f(x^k) $$
+	wählt, wäre es günstig, die Matrix $(A^k)^{-1}$ explizit angeben zu können.
+	
+\begin{uebung}[Sherman-Morrison-Woodbury-Formel] ~\
+	\begin{enumerate}[label=\alph*\upshape)]
+		\item Für eine nichtsinguläre $(n, n)$-Matrix $A$ und Vektoren $b, c \in \mathbb{R}^n$ gelte, dass $A + b c^T$ genau dann nichtsingulär ist, wenn $1 + c^T A^{-1} b$ nicht verschwindet.
+		\item Es gilt die Sherman-Morrion-Woodbury-Formel für eine $(n, n)$-Matrix $A$ und Vektoren $b, c \in \mathbb{R}^n$, wobei $A$ und $A + b c^T$ nichtsingulär seien:
+			$$ (A + b c^T)^{-1} = A^{-1} - \frac{A^{-1} b c^T A^{-1}}{1 + c^T A^{-1} b} $$ 
+	\end{enumerate}
+\end{uebung}
+
+Übung 2.2.49 liefert eine Update-Formel für die inversen Matrizen $B \coloneqq A^{-1}$ und $B^+ \coloneqq (A^+)^{-1}$, nämlich
+	$$ B_{BFGS}^+ = B + \frac{s s^T}{s^T y} - \frac{By y^T B}{y^T B y} + r r^T $$
+	mit $r \coloneqq \sqrt{y^T B y} \cdot \left( \frac{s}{s^T y} - \frac{B y}{y^T B y} \right)$. In Zeile 2 wählt man daher eine Matrix $B^0 \succ 0$ anstelle von $A^0$. In Zeile 4 setzt man
+		$$ d^k = -B^k \cdot \nabla f(x^k) $$
+		und in Zeile 7 wählt man $B^{k+1} = B_{BFGS}^{k+1}$. Analog kann man auch das DFP-Update definieren, und zwar mit $s$ und $y$ vertauscht
+		$$ D_{DFP}^+ = B + \frac{s s^T}{s^T y} - \frac{B y y^T B}{y^T B y} $$
+		Dies unterscheidet sich vom BFGS-Update lediglich durch den Term $r r^T$. Die Einführung eines zusätzlichen Parameters $\theta \in \mathbb{R}$ liefert die Updates der Broyden-Familie
+		$$ B_{\theta}^+ = B_{DFP}^+ + \theta \cdot r r^T $$
+		Offenbar gilt $B_0^+ = B_{DFP}^+$ und $B_1^+ = B_{BFGS}^+$. Außerdem gilt für die Wahl $\theta = \frac{s^T y}{s^T y - y^T B y}$:
+		$$ B_{SR1}^+ \coloneqq B_{\theta}^+ = B + \frac{(s- By) (s - By)^T}{(s - By)^T y} $$
+		so dass die Update-Matrix nur den Rang 1 besitzt. Man spricht dann vom SR1-Update (SR1 = symmetric rank 1).
+		
+\begin{uebung}
+	Sei $B^k \succ 0$ in einer Iteration eines Quasi-Newton-Verfahrens. Unter der Wahl von exakten Schrittweiten $t^k_e$ gilt die Ungleichung
+	$$ (y^k)^T s^k > 0 $$
+\end{uebung}	
+
+\begin{lemma}
+	Es sei $\theta \geq 0$ beliebig. Dann gilt unter den Bedingungen $B \succ 0$ und $s^T y > 0$ auch $B_{\theta}^+ \succ 0$
+\end{lemma}
+
+Zur Division durch die Zahlen $s^T y$ und $y^T B y$ in den Update-Formeln lässt sich also anmerken, dass für mit $B \succ 0$ auch alle iterierten Matrizen $B^k$ positiv definit sind, sofern $(s^k)^T y^k > 0$ positiv ist. Insbesondere gilt dann $y_k \neq 0$ und $(y^k)^T B^k y^k > 0$. Angemerkt sei, dass die Voraussetzung $\theta$ aus Lemma 2.2.51 zwar für den SR1-Update nicht garantiert ist, er in der Praxis aber dennoch häufig gute Ergebnisse liefert. ~\bigskip
+
+Wählt man exakte Schrittweiten $t_e^k$, so hängt nur der Koeffizient des Vektors $r^k$ von $\theta$ ab, und somit ist die Suchrichtung für jedes $\theta \in \mathbb{R}$ identisch. Weil man aber entlang dieser Richtung exakt eindimensional minimiert, liefern alle Verfahren der Broyden-Familie identische Lösungsfolgen $(x^k)$. ~\bigskip
+
+Dieses überraschende Ergebnis wird dadurch relativiert, dass man in der Praxis meist nicht exakt, sondern inexakt eindimensional minimiert, etwa per Armijo-Schrittweitensteuerung mit Backtracking Line Search. Während zum Beispiel das DFPUpdate dazu tendiert, schlecht konditionierte Matrizen $B^k$ zu erzeugen, verhält sich das BFGS-Update für Probleme mittlerer Größe numerisch oft sehr robust. ~\bigskip
+
+Leider lässt sich nicht zeigen, dass die Matrizen $B^k$ stets gegen $(D2f(x^*))^{-1}$ streben, wie es zur Anwendung von Satz 2.2.48 zur superlinearen Konvergenz wünschenswert wäre. Mit einer recht technischen Verallgemeinerung von Satz 2.2.48 lässt sich für $\lim_k t^k = 1$ trotzdem die superlineare Konvergenz der BFGS- und DFP-Verfahren nachweisen, falls $(B^k)^{-1}$ und $D^2 f(x^*)$ wenigstens entlang der Suchrichtungen $d^k$ asymptotisch gleich sind.
+		
+\subsection*{Konjugierte Richtungen}		
+		
+Für viele Anwendungsprobleme ist die Anzahl der Variablen so hoch, dass sich zwar Vektoren der Länge $n$ wie $x^k$ und $d^k$ noch gut abspeichern lassen, die Speicherung der $n(n + 1)/2$ Einträge von Matrizen wie $B^k$ aber zu einem Platzproblem führt.	
+		
+\begin{definition}[Konjugiertheit bezüglich einer positiv definiten Matrix]
+	Es sei $A$ eine $(n,n)$-Matrix mit $A = A^T \succ 0$. Zwei Vektoren $v, w \in \mathbb{R}^n$ heißen \textbf{konjugiert bezüglich $A$}, falls $\langle v, w \rangle = 0$ gilt.
+\end{definition}	
+
+Im Folgenden betrachten wir das allgemeine Abstiegsverfahren $x^{k+1} = x^k + t_e^k d^k$ mit exakten Schrittweiten $t_e^k$ und Abstiegsrichtungen erster Ordnung $d_k$ für die konvex-quadratische Funktion
+	$$ q(x) = \frac{1}{2}x^T A x + b^T x $$
+mit $A = A^T \succ 0$ und $b \in \mathbb{R}^n$.
+
+\begin{uebung}
+	Für $k \in \mathbb{N}$ seien $d^0, \dotsc, d^k$ paarweise konjugiert bezüglich $A$ und sämtlich ungleich null. Es gilt
+	\begin{enumerate}[label=\alph*\upshape)]
+		\item Die Vektoren $d^0, \dotsc, d^k$ sind linear unabhängig. insbesondere gilt $k < n$
+		\item Für $k = n - 1$ gilt
+			$$ A^{-1} = \sum_{l=0}^{n-1} \frac{(d^l)(d^l)^T}{(d^l)^T A (d^l)} $$	
+	\end{enumerate}
+\end{uebung}	
+		
+\begin{lemma}
+	Für $k\in \mathbb{N}$ seien $d^0, \dotsc, d^k$ paarweise konjugiert bezüglich $A$. Dann gilt
+	$$ \forall 0 \leq l \leq k: \quad \langle \nabla q(x^{k+1}), d^l \rangle = 0. $$
+\end{lemma}		
+
+\begin{satz}
+	Die Vektoren $d^0, \dotsc, d^{n-1}$ seien paarweise konjugiert bezüglich $A$ und sämtlich ungleich null. Dann ist $x^n$ der globale Minimalpunkt von $q$.
+\end{satz}
+		
+Satz 2.2.55 besagt, dass ein Abstiegsverfahren für die konvex-quadratische Funktion $q$ bei exakter Schrittweitensteuerung und paarweise konjugierten Suchrichtungen nach höchstens n Schritten den globalen Minimalpunkt von q findet. Da für ein Abstiegsverfahren wegen $f (x^{k+1}) < f(x^k)$ stets $t_e^k \cdot d^k = x^{k+1} - x^k \neq 0$ gilt, kann insbesondere keiner der Vektoren $d^k$ verschwinden. ~\bigskip
+
+Im nächsten Schritt suchen wir nach Möglichkeiten, konjugierte Suchrichtungen explizit zu erzeugen. Der folgende Satz besagt, dass man konjugierte Richtungen zum Beispiel aus den Quasi-Newton-Verfahren der Broyden-Familie erhält.
+
+\begin{satz}
+	Für $\theta \geq 0$ werde Algorithmus 2.6 mit $t^k = t_e^k$ und $B^{k+1} = B^{k+1}_{\theta}$ auf $q() = \frac{1}{2} x^T A x + b^T x$ mit $A = A^T \succ 0$ angewendet, und für ein $k \in \mathbb{N}$ seien die Iterierten $x^0, \dotsc, x^k$ paarweise verschieden. Dann sind die Richtungen $d^0, \dotsc, d^{k-1}$ paarweise konjugiert bezüglich $A$ und sämtlich von null verschieden.
+\end{satz}
+
+Bei Wahl exakter Schrittweiten minimieren die Quasi-Newton-Verfahren der Broyden-Familie konvex-quadratische Funktionen also in höchstens $n$ Schritten. Für eine beliebige $C^2$-Funktion $f$ lässt sich das dahingehend interpretieren, dass sie die lokale quadratische Approximation an $f$ in $n$ Schritten minimieren, im Hinblick auf Übung 2.2.43 also einen Schritt des Newton-Verfahrens simulieren. Unter geeigneten Voraussetzungen und mit Neustarts nach jeweils $n$ Schritten konvergieren sie daher \enquote{n-Schritt-quadratisch}.
+
+\subsection*{Konjugierte-Gradienten-Verfahren}
+
+Wir betrachten weiterhin das Abstiegsverfahren $x^{k+1} = x^k + t_e^k d^k$ mit exakten Schrittweiten $t_e^k$ und Abstiegsrichtungen erster Ordnung $d_k$ für die konvex-quadratische Funktion
+	$$ q(x) = \frac{1}{2}x^T A x + b^T x $$
+mit $A = A^T \succ 0$ und $b \in \mathbb{R}^n$. Gesucht sind Möglichkeiten, konjugierte Suchrichtungen $(d^k)$ zu erzeugen. ~\bigskip
+
+Die Grundidee wird im Folgenden sein, die Suchrichtungen $d^k$ rekursiv zu wählen, nämlich als Kombination des aktuellen negativen Gradienten $-\nabla q(x^k)$ und der letzten Suchrichtung $d^{k-1}$ mit Hilfe eines noch zu bestimmenden \enquote{Gewichts} $\alpha^k  \in \mathbb{R}$ zu
+		
+		$$ d^k = - \nabla q(x^k) + \alpha_k \cdot d^{k-1}, k = 1,2, \dotsc $$
+
+Zu Beginn dieser Rekursion setzen wir $d^0 = -\nabla q(x^0)$. Das folgende Lemma wird zur Bestimmung der Werte $\alpha_k$ wesentlich sein.
+
+\begin{lemma}
+	Es seien $d^0, \dotsc, d^{k-1}$ paarweise konjugiert bezüglich $A$ und $x^1, \dotsc, x^k$ schon generiert mit $x^l \neq x^{l-1}$ für $1 \leq l \leq k$. Dann ist $d^k$ genau dann konjugiert zu einem $d^l$ mit $0 \leq l \leq k-1$, wenn folgendes erfüllt ist
+	$$ \langle \nabla q(x^{l+1}) - \nabla q(x^l), d^k \rangle = 0 $$
+\end{lemma}
+
+\begin{satz}
+	Unter den Voraussetzungen von Lemma 2.2.58 ist die Richtung $d^k = -\nabla q(x^k) + \alpha_k \cdot d^{k-1}$ genau für
+	$$ \alpha_k = \frac{\| \nabla q(x^k) \|_2^2}{\| \nabla q(x^{k-1}) \|_2^2} $$
+	konjugiert zu den Vektoren $d^0, \dotsc, d^{k-1}$.
+\end{satz}
+
+Satz 2.2.58 motiviert den Algorithmus 2.7, da er für $f (x) = q(x) = \frac{1}{2} x^T A x + b^T x$ mit $A = A^T \succ 0$ nach höchstens $n$ Schritten den globalen Minimalpunkt liefert. Man benutzt dieses Verfahren zum Beispiel zur Lösung hochdimensionaler linearer Gleichungssysteme $Ax = b$ durch den Kleinste-Quadrate-Ansatz, also per Minimierung von $\| r(x) \|_2^2$ mit dem Residuum $r(x) = Ax - b$. ~\bigskip
+
+Wegen Rundungsfehlern bricht das Verfahren aber selten tatsächlich nach $n$ Schritten ab, so dass auch seine Konvergenzgeschwindigkeit untersucht wurde. Es stellt sich heraus, dass sie von der Wurzel der Konditionszahl (also dem Quotienten aus größtem und kleinstem Eigenwert) der Matrix $A^T A$ abhängt. Es bietet sich daher an, das Gleichungssystem $Ax = b$ zunächst so äquivalent umzuformen, dass diese Konditionszahl sinkt. Dies ist als Präkonditionierung bekannt.
+
+\begin{center}
+	\includegraphics[scale=0.5]{a27}
+\end{center}
+
+\begin{bemerkung}
+	Der Kleinste-Quadrate-Ansatz per CG-Verfahren zur Lösung linearer Gleichungssysteme $Ax = b$ lässt sich auch auf überbestimmte Gleichungssysteme anwenden, die keine Lösung besitzen.	
+\end{bemerkung}
+
+Entscheidend für die Einsetzbarkeit von Algorithmus 2.7 ist, dass für $f = q$ nirgends explizit die Matrix $A$ eingeht, aber trotzdem bezüglich$A$ konjugierte Suchrichtungen erzeugt werden. Man kann das Verfahren also auch für beliebige $C^1$-Funktionen formulieren, wobei die Armijo-Schrittweite für gewöhnlich verwendet wird. Unter geeigneten Voraussetzungen erhält man wieder, dass $n$ CG-Schritte einen Newton-Schritt simulieren, also \enquote{$n$-Schrittquadratische Konvergenz}. 
+
+\subsection*{Trust-Region-Verfahren}
+
+Im Gegensatz zu klassischen Suchrichtungsverfahren wählen Trust-Region-Verfahren erst den Suchradius $t$ und dann die Suchrichtung $d$. Dazu benutzt man in Iteration k des allgemeinen Abstiegsverfahrens aus Algorithmus 2.3 wie folgt ein quadratisches Modell für $f$. ~\bigskip
+
+Nach dem Satz von Taylor (Satz 2.1.30b) gilt für $f \in C^2(\mathbb{R}^n, \mathbb{R})$
+$$ f(x^k + d) \approx f(x^k) + \langle \nabla f(x^k) , d \rangle + \frac{1}{2} d^T D^2 f(x^k) d $$
+Mit $c^k \coloneqq f(x^k)$, $b^k = \nabla f(x^k)$ und einer symmetrischen Matrix $A^k$ (zum Beispiel, aber nicht notwendigerweise, $A^k = D^2 f(x^k)$) nennt man die Funktion
+$$ m^k(d) \coloneqq c^k + \langle b^k, d \rangle + \frac{1}{2} d^T A^k d $$
+ein lokales quadratisches Modell für $f$ um $x^k$.  ~\bigskip
+
+Man betrachtet daher $m^k$ nur für $\| d \|_2 \leq t^k$ und bestimmt man einen optimalen Punkt $d^k$ des Trust-Region-Hilfsproblems
+$$ TR^k: \quad \min_{d \in \mathbb{R}^n} m^k(d) \text{ s.t. } \| d \|_2 \leq t^k $$
+Der folgende Quotient misst dabei die Güte der Approximation
+$$ r^k \coloneqq \frac{f(x^k) - f(x^k + d^k)}{m^k(0)- m^k(d^k)} $$
+
+\begin{itemize}
+	\item Ein Wert $r^k < 0$ impliziert daher $f (x^k + d^k) > f (x^k)$, d. h., $x^{k+1} = x^k + d^k$ würde einen Anstieg im Zielfunktionswert liefern. Folglich ist die Trust Region zu groß, und ihr Radius $t^k$ muss verkleinert werden.
+	\item Liegt andererseits $r^k$ nahe bei eins, dann beschreibt das lokale Modell die Funktion $f$ sehr gut; man setzt $x^{k+1} = x^k + d^k$ und vergrößert in der nächsten Iteration probeweise den Trust-Region-Radius $t^k$.
+	\item Insbesondere für $r^k \geq \frac{1}{4}$ wird $t^k$ dort nicht verkleinert, und der Schritt wird angenommen, für $r^k < 0$ wird $t^k$ verkleinert, und der Schritt wird abgelehnt, und für $r^k \in [0, \frac{1}{4})$ wird $t^k$ verkleinert, und der Schritt wird dann abgelehnt, wenn $r^k \leq \eta$ gilt.
+\end{itemize}
+
+Ein entscheidender Vorteil von Trust-Region-Verfahren gegenüber Variable-Metrik-Verfahren besteht allerdings darin, dass die Matrizen $A^k$ nicht positiv definit zu sein brauchen. Insbesondere für $A^k \equiv 0$ erhält man als \enquote{Trust-Region-Gradientenverfahren} lediglich ein übliches Gradientenverfahren mit einer speziellen Schrittweitensteuerung. Von einem solchen Verfahren ist wegen Satz 2.2.23 keine schnelle Konvergenz zu erwarten. ~\bigskip
+
+ Allerdings auch hier eine inexakte Lösung von $TR^k$, um globale Konvergenz zu gewährleisten. Eine Möglichkeit dafür besteht darin, die zulässige Menge von TR k stark zu verkleinern und beispielsweise nur nichtnegative Vielfache der beim Verfahren gefundenen Suchrichtung zuzulassen:
+$$ TR_C^k: \quad \min_{s \in \mathbb{R}} m^k \left( - \frac{s \cdot t^k}{\| \nabla f(x^k) \|_2} \cdot \nabla f(x^k) \right) \text{ s.t. } 0 \leq s \leq 1 $$
+Die Lösung zu diesem Problem ergibt sich $d_C^k \coloneqq - \frac{s^k t^k}{\| \nabla f(x^k) \|_2} \nabla f(x^k)$ mit
+$$ s^k \coloneqq \begin{cases} 1, & \text{ falls } Df(x^k) A^k \nabla f(x^k)\leq 0 \\ \min \left\{ \frac{\| \nabla f(^k) \|_2^3}{t^k Df(x^k) A^k \nabla f(x^k)}, 1 \right\}, & \text{ sonst} \end{cases} $$
+
+\begin{center}
+	\includegraphics[scale=0.75]{a28}
+\end{center}
+
+\begin{definition}[Cauchy-Punkt]
+	Der Punkt $x_C^{k+1}	 = x^k + d^k_C$ heißt \textbf{Cauchy-Punkt} zu $x^k$ und $t^k$.
+\end{definition}
+
+\begin{uebung}
+	Der Vektor $d^k = d_C^k$ erfüllt die folgende Ungleichung mit $c = 0.5$
+	\begin{equation}
+		m^k(0) - m^k(d^k) \geq c \cdot \| \nabla f(x^k) \|_2 \cdot \min \left\{ t^k, \frac{\| \nabla f(x^k) \|_2}{\| A^k \|_2} \right\}  \tag*{(2.24)}
+	\end{equation}
+	$$ $$
+\end{uebung}
+
+\begin{bemerkung} 
+	Die exakte Lösung $d_e^k$ von $TR^k$ erfüllt wegen der Zulässigkeit von $d_C^k$ für $TR^k$ die Ungleichung $m^k (d_e^k) \leq m^k (d_C^k)$ und damit nach Übung 2.2.61 ebenfalls (2.24) mit $c = 0.5$.	
+\end{bemerkung}
+
+\begin{satz}
+	Die Menge $f_{\leq}^{f(x^0)}$ sei beschränkt, die Funktion $\nabla f$ sei Lipschitz-stetig auf $\operatorname{conv}(f_{\leq}^{f(x^0)})$, die Folge $(\|A^k\|_2)$ sei beschränkt, und die Folge $(d^k)$ der inexakten Lösungen von $TR^k$ erfülle (2.24) mit $c > 0$. Dann gilt in Algorithmus 2.8:
+	\begin{enumerate}[label=\alph*\upshape)]
+		\item Für $\eta = 0$ ist $\liminf_k \| \nabla f(x^k) \|_2 = 0$ (d.h. $(x^k)$ besitzt einen Häufungspunkt $x^*$ mit $\nabla f(x^*) = 0$).
+		\item Für $\eta \in (0, 1)$ ist $\lim_k  \nabla f(x^k) = 0$ (d.h. alle Häufungspunkte von $(x^k)$ sind kritisch).
+	\end{enumerate}
+\end{satz}
+
+Nach Übung 2.2.61, Bemerkung 2.2.62 und Satz 2.2.63 liefern sowohl die inexakten Lösungen $d_C^k$ als auch die exakten Lösungen $d_e^k$ von $TR^k$ globale Konvergenz. Während die exakte Lösung $d_e^k$ wie erwähnt schwer berechenbar sein kann, ist das Ausweichen auf die inexakte Lösung $d_C^k$ selten ratsam, da die Matrix $A^k$ lediglich die Länge von $d_C^k$ beeinflusst und man so im Wesentlichen nach wie vor das Gradientenverfahren erhält.
+
+\subsubsection*{Dogleg-Methode}
+
+Sei $A$ positiv definit und $d_A \coloneqq - A^{-1} \nabla f(x)$. Die Dogleg-Methode approximiert diese Kurve durch einen Polygonzug von $x$ nach $x+d_A$ mit zwei Segmenten, wobei als Zwischenpunkt $x+d_G$ mit dem exakten Minimalpunkt $d_G$ von $m$ entlang $-\nabla f(x)$ gewählt wird, den man zu
+$$ d_G = - \frac{\| \nabla f(x) \|_2^2}{D f(x) A \nabla f(x)} \nabla f(x) $$
+berechnet. Formal lautet der Polygonzug damit $\{ x + \hat{d}(s) ~|~ s \in [0, 2] \}$ mit
+$$ \hat{d}(s) = \begin{cases}
+	s \cdot d_G, & 0 \leq s \leq 1 \\ d_G + (s-1) (d_A - d_G), & 1 \leq s \leq 2
+\end{cases} $$
+
+\begin{center}
+	\includegraphics[scale=0.5]{ab210}
+\end{center}
+
+\begin{uebung}
+	Es gilt für $A = A^T \succ 0$:
+	\begin{enumerate}[label=\alph*\upshape)]
+		\item $\|\hat{d}(s)\|_2$ ist monoton wachsend in $s$.
+		\item $m(\hat{d}(s))$ ist monoton fallend in $s$.
+	\end{enumerate}
+\end{uebung}
+
+Somit ergibt die Dogleg-Moethode die inexakte Lösung $x + d_{DL}(t)$ mit
+$$ d_{DL} = \begin{cases}
+ d_A, & \text{ falls } \| d_A \|_2 < t \\ \| s \cdot d_G \|_2 = t & \text{ falls } t < \| d_G \|_2 \\ \| d_G + (s - 1) (d_A - d_G) \|_2= t, & \text{ sonst}	
+ \end{cases}
+ $$
+ 
+ \subsubsection*{Minimierung auf einem zweidimensionalen Teilraum}
+
+Die inexakte Lösung von $TR$ durch die Dogleg-Methode kann verbessert werden, indem man $TR$ nicht auf den eindimensionalen Polygonzug einschränkt, sondern auf den zweidimensionalen Teilraum, der von d G und d A aufgespannt wird. In diesem Raum liegen insbesondere alle Punkte des Polygonzugs. Man erhält das Hilfsproblem
+
+$$ \min_{d \in \mathbb{R}^n} m(d) \text{ s.t. } \| d \|_2 \leq t, ~ d \in \operatorname{bild}(\nabla f(x), A^{-1} \nabla f(x)) $$
+
+Ein Hauptvorteil dieses Ansatzes besteht darin, dass er sich im Gegensatz zur DoglegMethode sinnvoll auf indefinite Matrizen A erweitern lässt. Für Details sei auf [25] verwiesen.
+
+\chapter*{II. Restringierte Probleme}
+
+\setcounter{chapter}{3}
+\setcounter{section}{1}
+\setcounter{thm}{1}
+
+Wir betrachten im folgenden Problem
+$$ P: \quad \min_{x \in \mathbb{R}^n} f(x) ~\text{ s.t. }~ g_i(x) \leq 0, i \in I, ~ h_j(x) = 0, j \in J $$
+Mit von vektorwertigen Funktionen lässt sich die Menge $M$ der für $P$ zulässigen Punkte schreiben als
+$$ M = \big\{ x \in \mathbb{R}^n ~|~ g(x) \leq 0, h(x) = 0 \big\} $$
+
+\section*{Topologische Eigenschaften}
+
+In Übung 1.2.11 haben wir bereits gesehen, dass $M$ unter der Stetigkeitsvoraussetzung an die Funktionen $g$ und $h$ eine abgeschlossene Menge ist.
+
+\begin{definition}[Aktive-Index-Menge]
+	Zu $\overline{x} \in M$ heißt
+	$$ I_0(\overline{x}) = \big\{ i \in I ~|~ g_i(\overline{x}) = 0 \big\} $$
+	Menge der aktiven Indizes oder auch \textbf{Aktive-Index-Menge}.
+\end{definition}
+
+\setcounter{thm}{2}
+
+\begin{satz}
+	Für jedes $\overline{x} \in M$ existiert eine Umgebung $U$ von $\overline{x}$ mit
+	$$ U \cap M = U \cap \big\{ x \in \mathbb{R}^n ~|~ g_i(x) \leq 0, i \in I_0(\overline{x}), h_j(x) = 0, j \in J \big\} $$
+\end{satz}
+
+\begin{definition}[Zulässge Abstiegsrichtung]
+	Gegeben sei das Problem
+		$$ P: \quad \min f(x) \text{ s.t. } x \in M $$
+	mit (nicht notwendigerweise in funktionaler Beschreibung vorliegender) zulässiger Menge $M \subseteq \mathbb{R}^n$. Dann heißt ein Vektor $d \in \mathbb{R}^n$ \textbf{zulässige Abstiegsrichtung} für $P$ in $\overline{x} \in M$, falls folgendes gilt
+		$$ \exists \hat{t} > 0 ~\forall t \in (0, \hat{t}): \quad f(\overline{x} + td) < f(\overline{x}), ~\overline{x} + td \in M $$
+\end{definition}
+
+\begin{uebung}
+	Für das Problem $P$ aus Definition 3.1.4 sei $\overline{x}$ ein lokaler Minimalpunkt. Dann existiert keine zulässige Abstiegsrichtung für $P$ in $\overline{x}$.
+\end{uebung}
+
+\begin{uebung}
+	Gegeben sei das Problem
+	$$ P: \quad \min f(x) \text{ s.t. } g_i(x) \leq 0, i \in I, h_j(x) = 0, j \in J $$
+	Ein Vektor $d \in \mathbb{R}^n$ ist genau dann zulässige Abstiegsrichtung für $P$ in $\overline{x} \in M$, wenn folgendes gilt
+	$$ \exists \hat{t} > 0 ~\forall t \in (0, \hat{t}: f(\overline{x} + td) < f(\overline{x}), \overline{x} + td \in M  $$
+\end{uebung}
+
+\begin{definition}[Äußerer Linearisierungskegel]
+	Für $\overline{x} \in \mathbb{R}^n$ heißt 
+		$$ L_{\leq}(\overline{x}, M) = \big\{ d \in \mathbb{R}^n ~|~\langle \nabla g_i(\overline{x}), d \rangle \leq 0, i \in I_0(\overline{x}) \big\} $$
+	\textbf{äußerer Linearisierungksegel} an $M$ in $\overline{x}$.
+\end{definition}
+
+\begin{definition*}
+	Eine Menge $A \subseteq \mathbb{R}^n$ wird als Kegel bezeichnet, wenn
+	$$ \forall a \in A, \lambda > 0: \quad \forall \cdot a \in A $$
+\end{definition*}
+
+\begin{uebung}
+	Am Punkt $\overline{x} \in M$ seien die Funktionen $g_i$, $i \in I_0(\overline{x})$, differenzierbar, dann ist $L_{\leq}(\overline{x}, M)$ ein konvexer Kegel.
+\end{uebung}
+
+Die funktionale Beschreibung einer zulässigen Menge kann so ungeschickt sein kann, dass ein äußerer Linearisierungskegel die lokale Struktur der Menge nicht notwendigerweise gut wiedergibt.
+
+\setcounter{thm}{10}
+
+\begin{definition}[Innerer Linearisierungskegel]
+	Für $\overline{x} \in \mathbb{R}^n$ heißt
+		$$ L_{<}(\overline{x}, M) = \big\{ d \in \mathbb{R}^n ~|~\langle \nabla g_i(\overline{x}), d \rangle < 0, i \in I_0(\overline{x}) \big\} $$
+		\textbf{innerer Linearisierungskegel} an $M$ in $\overline{x}$.	
+\end{definition}
+
+\begin{definition}[Nichtdegenerierte funktionale Beschreibung einer Menge]
+	Die funktionale Beschreibung von $M$ heißt an $\overline{x}$ \textbf{nichtdegeneriert}, wenn $\operatorname{cl} L_{<}(\overline{x}, M) = L_{\leq}(\overline{x}, M)$ gilt. Ansonsten heißt sie \textbf{degeneriert}. Diese Gleichheit ist auch als Cottle-Bedingung (Cottle constraint qualification) bekannt.
+\end{definition}
+
+\setcounter{thm}{14}
+
+\begin{satz}
+	Die funktionale Beschreibung von $M$ ist an $\overline{x}$ genau dann nichtdegeneriert, wenn $L_{<}(\overline{x}, M) \neq \emptyset$ gilt.	
+\end{satz}
+
+Es gibt zudem Fälle, in denen schon die Geometrie der zulässigen Menge so ungünstig ist, dass keine funktionale Beschreibung die gewünschte „gute“ Approximation erster Ordnung liefert.
+
+\begin{center}
+	\includegraphics[scale=0.5]{ab34}
+\end{center}
+
+\begin{definition}[Innerer und äußerer Tangentialkegel]
+	Es seien $\overline{x} \in \mathbb{R}^n$ und $M \subseteq \mathbb{R}^n$. Eine Richtung $\overline{d} \in \mathbb{R}^n$ liegt im
+	\begin{enumerate}[label=\alph*\upshape)]
+		\item \textbf{inneren Tangentialkegel} $\Gamma(\overline{x}, M)$ an $M$ in $\overline{x}$, fall ein $\hat{t} > 0$ und eine Umgebung von $\overline{d}$ existieren mit 
+			$$ \forall t \in (0, \hat{t}), d \in D: \quad \overline{x} +td \in M, $$
+		\item \textbf{äußeren Tangentialkegel} $C(\overline{x}, M)$ an $M$ in $\overline{x}$, falls Folgen $(t^k)$ und $(d^k)$ existieren mit
+			$$ t^k \searrow 0, d^k \rightarrow \overline{d}, ~\forall k \in \mathbb{N}: \quad \overline{x} + t^k d^k \in M $$
+	\end{enumerate}	
+\end{definition}
+
+Der äußere Tangentialkegel ist im Gegensatz zum äußeren Linearisierungskegel nicht notwendigerweise konvex.
+
+Abb. 3.5 zeigt Beispiele für innere und äußere Tangentialkegel sowie Vektoren $\overline{d}^1 \notin \Gamma(\overline{x}^1, M)$ und $\overline{d}^2 \in C(\overline{x}^2, M)$. Würde man in Definition 3.1.17 keine variablen Richtungen zulassen, so resultierte dies hingegen in $\overline{d}^1 \in \Gamma(\overline{x}^1, M)$ und $\overline{d}^2 \notin C(\overline{x}^2, M)$.
+
+\begin{center}
+	\includegraphics[scale=0.5]{ab35}
+\end{center}
+
+\begin{lemma}
+	Es seien $\overline{x} \in \mathbb{R}^n$ und $M \subseteq \mathbb{R}^n$. Dann gilt:
+	\begin{enumerate}[label=\alph*\upshape)]
+		\item $\Gamma(\overline{x}, M) \subseteq C(\overline{x}, M)$.
+		\item $\Gamma(\overline{x}, M)^C = C(\overline{x}, M^c)$.
+		\item $\Gamma(\overline{x}, M)$ ist ein offener und $C(\overline{x}, M)$ ein abgeschlossener Kegel.
+	\end{enumerate}
+\end{lemma}
+
+\begin{definition}[Nichtdegenerierte Geometrie einer Menge]
+	Die Geometrie von $M$ heißt an $\overline{x}$ \textbf{nichtdegeneriert}, wenn $\operatorname{cl} \Gamma(\overline{x}, M) = C(\overline{x}, M)$ gilt. Ansonsten heißt sie \textbf{degeneriert}.
+\end{definition}
+
+\begin{satz}
+	Für alle $\overline{x} \in M$ gilt die Inklusions
+	$$ L_{<}(\overline{x}, M) \subseteq \Gamma(\overline{x}, M) \subseteq C(\overline{x}, M) \subseteq L_{\leq}(\overline{x}, M). $$
+\end{satz}
+
+\begin{korollar}
+	Die funktionale Beschreibung der Menge $M$ sei an $\overline{x}$ nichtdegeneriert. Dann ist auch die Geometrie von $M$ an $\overline{x}$ nichtdegeneriert.
+\end{korollar}
+
+\section*{Optimalitätsbedingungen}
+
+\subsection*{Stationarität}
+
+\setcounter{section}{2}
+\setcounter{thm}{0}
+
+Da wir dabei nur die Geometrie von $M$ benutzen wollen, definieren wir Stationarität mit Hilfe einer geometrischen Approximation erster Ordnung, nämlich des äußeren Tangentialkegels.
+
+\begin{definition}[Stationärer Punkt - restringierter Fall]
+	Die Funktion $f \colon \mathbb{R}^n \rightarrow \mathbb{R}$ sei an $\overline{x} \in M$ differenzierbar. Dann heißt $\overline{x}$ stationärer Punkt von $P$, falls $\langle \nabla f(\overline{x}), d \rangle \geq 0$ für jede Richtung $d \in C(\overline{x}, M)$ gilt.
+\end{definition}
+
+\begin{satz}
+	Die Funktion $f \colon \mathbb{R} \rightarrow \mathbb{R}$ sei an einem lokalen Minimalpunkt $\overline{x}$ von $P$ differenzierbar. Dann ist $\overline{x}$ stationärer Punkt im Sinne von Definition 3.2.1.	
+\end{satz}
+
+Hier nutzen wir aus, dass differenzierbare Funktionen auch einseitige richtungsdifferenzierbar im Sinne von Hadamard sind:
+$$ \langle \nabla f(x), d) = \lim_k \frac{f(x + t^k d^k) - f(x)}{t^k} $$
+
+\subsection*{Constraint Qualifications}
+
+Diese Beobachtungen führen zur Definition von zwei Regularitätsbedingungen (constraint qualifications).
+
+\begin{definition}[Abadie- und Mangasarian-Fromowitz-Bedingung für $J = \emptyset$]
+	An $\overline{x} \in M$ gilt
+	\begin{enumerate}[label=\alph*\upshape)]
+		\item die \textbf{Abadie-Bedingung} (AB) für $J = \emptyset$, falls folgendes erfüllt ist
+			$$ C(\overline{x}, M) = L_{\leq}(\overline{x}, M) $$
+		\item die \textbf{Mangasarian-Fromowitz-Bedingung} (MFB) für $J = \emptyset$, falls folgendes gilt
+			$$ L_{<}(\overline{x}, M) \neq \emptyset $$
+	\end{enumerate}
+\end{definition}
+
+Nach Definition des inneren Linearisierungskegels ist die MFB an einem Punkt $\overline{x}$ genau dann erfüllt, wenn eine Richtung $d \in \mathbb{R}$ mit folgendem existiert
+$$ \langle \nabla g_i(\overline{x}), d \rangle < 0, ~i \in I_0(\overline{x}) $$
+Die MFB kann an einem Punkt bloß deshalb verletzt sein kann, weil die dort geometrisch nichtdegenerierte zulässige Menge degeneriert funktional beschrieben ist.
+
+\begin{korollar}
+	An einem lokalen Minimalpunkt $\overline{x}$ von $P$ seien $f$ und die Funktionen $g_i$, $i \in I_0(\overline{x})$ differenzierbar.
+	\begin{enumerate}[label=\alph*\upshape)]
+		\item Dann ist das folgende System mit keinem $d \in \mathbb{R}^n$ lösbar:
+			$$ \langle \nabla f(\overline{x}), d \rangle < 0, ~\langle \nabla g_i(\overline{x}), d \rangle < 0 \quad i \in I_0(\overline{x}) $$
+		\item Falls an $\overline{x}$ die AB gilt, dann ist sogar das folgende System mit keinem $d \in \mathbb{R}^n$ lösbar:
+			$$ \langle \nabla f(\overline{x}), d \rangle < 0, ~ \langle \nabla g_i(\overline{x}), d \rangle \leq 0 \quad i \in I_0(\overline{x}) $$
+	\end{enumerate}
+\end{korollar}
+ 
 \end{document}
