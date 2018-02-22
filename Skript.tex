@@ -1144,6 +1144,8 @@ Es gibt zudem Fälle, in denen schon die Geometrie der zulässigen Menge so ung�
 	\includegraphics[scale=0.5]{ab34}
 \end{center}
 
+\setcounter{thm}{16}
+
 \begin{definition}[Innerer und äußerer Tangentialkegel]
 	Es seien $\overline{x} \in \mathbb{R}^n$ und $M \subseteq \mathbb{R}^n$. Eine Richtung $\overline{d} \in \mathbb{R}^n$ liegt im
 	\begin{enumerate}[label=\alph*\upshape)]
@@ -1175,10 +1177,14 @@ Abb. 3.5 zeigt Beispiele für innere und äußere Tangentialkegel sowie Vektoren
 	Die Geometrie von $M$ heißt an $\overline{x}$ \textbf{nichtdegeneriert}, wenn $\operatorname{cl} \Gamma(\overline{x}, M) = C(\overline{x}, M)$ gilt. Ansonsten heißt sie \textbf{degeneriert}.
 \end{definition}
 
+\setcounter{thm}{23}
+
 \begin{satz}
 	Für alle $\overline{x} \in M$ gilt die Inklusions
 	$$ L_{<}(\overline{x}, M) \subseteq \Gamma(\overline{x}, M) \subseteq C(\overline{x}, M) \subseteq L_{\leq}(\overline{x}, M). $$
 \end{satz}
+
+\setcounter{thm}{25}
 
 \begin{korollar}
 	Die funktionale Beschreibung der Menge $M$ sei an $\overline{x}$ nichtdegeneriert. Dann ist auch die Geometrie von $M$ an $\overline{x}$ nichtdegeneriert.
@@ -1226,10 +1232,303 @@ Die MFB kann an einem Punkt bloß deshalb verletzt sein kann, weil die dort geom
 	An einem lokalen Minimalpunkt $\overline{x}$ von $P$ seien $f$ und die Funktionen $g_i$, $i \in I_0(\overline{x})$ differenzierbar.
 	\begin{enumerate}[label=\alph*\upshape)]
 		\item Dann ist das folgende System mit keinem $d \in \mathbb{R}^n$ lösbar:
-			$$ \langle \nabla f(\overline{x}), d \rangle < 0, ~\langle \nabla g_i(\overline{x}), d \rangle < 0 \quad i \in I_0(\overline{x}) $$
+			\begin{equation}
+				\langle \nabla f(\overline{x}), d \rangle < 0, ~\langle \nabla g_i(\overline{x}), d \rangle < 0 \quad i \in I_0(\overline{x}) \tag*{(3.1)}
+			\end{equation} 
 		\item Falls an $\overline{x}$ die AB gilt, dann ist sogar das folgende System mit keinem $d \in \mathbb{R}^n$ lösbar:
-			$$ \langle \nabla f(\overline{x}), d \rangle < 0, ~ \langle \nabla g_i(\overline{x}), d \rangle \leq 0 \quad i \in I_0(\overline{x}) $$
+			\begin{equation}
+				\langle \nabla f(\overline{x}), d \rangle < 0, ~ \langle \nabla g_i(\overline{x}), d \rangle \leq 0 \quad i \in I_0(\overline{x}) \tag*{(3.2)}
+			\end{equation} 
 	\end{enumerate}
 \end{korollar}
+
+\begin{uebung}
+	Zu $\overline{x} \in M$ jede Richtung $d$ mit (3.1) ist eine zulässige Abstiegsrichtung in $\overline{x}$ im Sinne von Definition 3.1.4, und zwar sowohl für $P$ als auch für das linearisierte Problem $P_{lin}(\overline{x})$.
+\end{uebung}
+
+\begin{uebung}
+	Zu $\overline{x} \in M$ ist jede Richtung $d$ mit (3.2) eine zulässige Abstiegsrichtung für $P_{lin}(\overline{x})$ in $\overline{x}$ im Sinne von Definition 3.1.4 ist.
+\end{uebung}
+ 
+ Stationarität schließt sogar die Existenz gewisser unzulässiger Abstiegsrichtungen aus. Da die notwendige Bedingung aus Korollar 3.2.4a bei verletzter $MFB$ trivialerweise erfüllt sein kann, werden wir im Folgenden versuchen, die Bedingung aus Korollar 3.2.4b algorithmisch zu verwerten. Dazu ist es zunächst erforderlich, an einem Punkt $\overline{x} \in M$ algorithmisch nachprüfbare hinreichende Bedingungen für die Gültigkeit der abstrakt formulierten $AB$ zu kennen.
+ 
+\setcounter{thm}{7}
+
+\begin{satz}
+	An jedem $\overline{x} \in M$ impliziert die MFB die AB.	
+\end{satz}
+
+\begin{uebung}
+	Die Funktion $f \colon \mathbb{R}^n \rightarrow \mathbb{R}$ sei an $\overline{x}$ differenzierbar mit $\nabla f(\overline{x}) \neq 0$, dann
+	$$ C \left( \overline{x}, f_{\leq}^{f(\overline{x})} \right) = \big\{ d \in \mathbb{R}^n ~|~ \langle \nabla f(\overline{x}), d \rangle \leq 0 \big\} $$
+\end{uebung} 
+ Neben Satz 3.2.8 motiviert sich eine andere wichtige hinreichende Bedingung für die Gültigkeit der AB aus der Tatsache, dass die AB eine Linearisierungseigenschaft der zulässigen Menge fordert, die dann erfüllt sein sollte, wenn die Menge ohnehin schon durch endlich viele lineare Ungleichungen beschrieben ist. In diesem Fall nennt man $M$ polyedrisch.
+ 
+\begin{beispiel}
+	Für alle $1 \leq i \leq p$ sei
+$$g_i(x) =a_i^T x + b_i $$
+	mit $a_i \in \mathbb{R}^n$, $b_i \in \mathbb{R}$. In Matrix-Vektor-Schreibweise ist $g(x) \leq 0$ dann gleichbedeutend mit der aus der linearen Optimierung bekannten Restriktion $Ax + b \leq 0$. Hier ist $AB$ automatisch erfüllt.	
+\end{beispiel}
+
+Falls also $\overline{x} \in M$ ein lokaler Minimalpunkt einer dort differenzierbaren Funktion $f$ über einer so definierten Menge $M$ ist, dann lässt sich laut Korollar 3.2.4b das System
+
+	$$	\langle \nabla f(\overline{x}), d \rangle < 0, ~\langle a_i, d \rangle \leq 0, ~ i \in I_0(\overline{x})	$$
+
+mit keinem $d \in \mathbb{R}^n$ lösen.
+ 
+\setcounter{thm}{11}
+ 
+\begin{uebung}
+	In der Beschreibung der Menge $M = \{ x \in \mathbb{R}^n ~|~ g_i(x) \leq 0, i \in I\}$ seien alle Funktionen $g_i$, $i \in I$, konkav auf $\mathbb{R}^n$. Zeigen Sie, dass dann die $AB$ an jedem Punkt von $M$ gilt.
+\end{uebung}
+
+\subsection*{Alternativsätze}
+ 
+Geometrisch bedeutet die Bedingung in Korollar 3.2.4a
+$$ \langle a^k, d \rangle < 0 \quad 1 \leq k \leq r,$$  dass es keinen Vektor $d$ gibt, der gleichzeitig mit allen Vektoren $a_1, \dotsc , a_r$ einen stumpfen Winkel bildet.
+ 
+\begin{center}
+	\includegraphics[scale=0.5]{ab36}
+\end{center} 
+ 
+In Abb. 3.6 sind rechts drei Vektoren eingezeichnet, für die dies der Fall ist, während links ein Vektor $d$ existiert, der mit allen drei Vektoren gleichzeitig einen stumpfen Winkel bildet. Ebenfalls eingezeichnet ist die konvexe Hülle dieser drei Vektoren. Allgemein besteht die konvexe Hülle conv(A) einer Menge $A \subseteq \mathbb{R}^n$ aus der Menge aller Konvexkombinationen von Elementen in $A$. In Abb. 3.6 beobachtet man, dass die Unlösbarkeit des Ungleichungssystems (rechts) damit einhergeht, dass der Nullpunkt in der konvexen Hülle der drei Vektoren enthalten ist, während dies bei Lösbarkeit des Ungleichungssystems (links) nicht der Fall ist. Dass dies tatsächlich immer so ist, führt letztlich auf algorithmisch verwertbare Optimalitätsbedingungen und ist der Inhalt des folgenden zentralen Resultats, dessen vollständiger Beweis einiger Vorbereitung bedarf.
+ 
+\begin{lemma}
+	Für Vektoren $a^k \in \mathbb{R}^n$, $1 \leq k \leq r$, mit $r \in \mathbb{N}$ gilt genau eine der beiden folgenden Alternativen.
+	\begin{enumerate}[label=\alph*\upshape)]
+		\item Das System $\langle a^k, d \rangle < 0$, $1 \leq k \leq r$, hat eine Lösung $d \in \mathbb{R}^n$.
+		\item Es gilt $0 \in \operatorname{conv}(\{ a^1, \dotsc, a^r \})$.
+	\end{enumerate}
+\end{lemma} 
+
+\begin{satz}[Trennungssatz] Es seien $X \subseteq \mathbb{R}^n$ eine nichtleere, abgeschlossene und konvexe Menge sowie $z \in X^c$. Dann existieren ein $a \in \mathbb{R}^n \setminus \{ 0 \}$ und ein $b \in \mathbb{R}$, so dass für alle $x \in X$ die folgende Ungleichungen erfüllt sind:
+	$$ \langle a, x \rangle \leq b < \langle a, z \rangle $$
+\end{satz}
+ 
+\begin{definition*}
+	\begin{enumerate}[label=\alph*\upshape)]
+		\item Konvexe Hülle $\operatorname{conv}(A) = \big\{ \sum_{i=1}^s \lambda_i a^i ~|~ a^i \in A, \lambda_i \geq 0, \sum \lambda_i = 1, 1 \leq i \leq s, s \in \mathbb{N} \big\}$
+		\item Konvexe Kegelhülle $\operatorname{cone}(A) = \big\{ \sum_{i=1}^s \lambda_i a^i ~|~ a^i \in A, \lambda_i \geq 0, 1 \leq i \leq s, s \in \mathbb{N} \big\}$
+	\end{enumerate}	
+\end{definition*}
+ 
+\begin{satz}[Lemma von Farkas] 
+	Für Vektoren $a^k \in \mathbb{R}^n$, $0 \leq k \leq r$, mit $r \in \mathbb{R}$ gilt genau eine der beiden folgenden Alternativen.
+	\begin{enumerate}[label=\alph*\upshape)]
+		\item Das System $\langle a^0, d \rangle < 0, \langle a^k, d \rangle \leq 0$, $1 \leq k \leq r$ hat eine Lösung $d \in \mathbb{R}^n$.
+		\item Es gilt $-a^0 \in \operatorname{cone}(\{a^1, \dotsc, a^r \})$
+	\end{enumerate}
+\end{satz}
+
+\begin{center}
+	\includegraphics[scale=0.5]{ab38}
+\end{center}
+ 
+\begin{satz}[Satz von Carathéodory]
+	Für jede Menge $A \subseteq \mathbb{R}^n$ gelten die folgenden Aussagen:
+	\begin{enumerate}[label=\alph*\upshape)]
+		\item Zu jedem $\overline{x} \in \operatorname{cone}(A) \setminus \{ 0 \}$ existieren ein $r \leq n$ und linear unabhängige $x^k \in A$ sowie $\lambda_k > 0$, $1 \leq k \leq r$ mit $\overline{x} = \sum_{k=1}^r \lambda_k x^k$.
+		\item Zu jedem $\overline{x} \in \operatorname{conv}(A)$ existieren ein $r \leq n + 1$ und $x^1, \dotsc, x^r \in A$, so dass die Vektoren $x^2 - x^1, \dotsc, x^r - x^1$ linear unabhängig sind und dass $\overline{x} \in \operatorname{conv}(\{ x^1, \dotsc, x^r \})$ gilt.
+	\end{enumerate}
+\end{satz} 
+ 
+Die in Satz 3.2.16b auftretende konvexe Hülle $\operatorname{conv}(\{x_1 , \dotsc , x_r \})$ von $r$ Punkten mit linear unabhängigen Vektoren $x^2 - x^1 , \dotsc, x^r - x^1$ wird auch $(r - 1)$-Simplex genannt, und die Vektoren $x^1, \dotsc, x^r$ heißen dann affin unabhängig. ~\bigskip
+
+Der Satz von Carathéodory liefert sofort die folgenden Verbesserungen der Aussagen im Lemma von Gordan und im Lemma von Farkas, wobei $|A|$ die Anzahl der Elemente einer Menge $A$ bezeichne. 
+
+\begin{korollar} ~\
+	\begin{enumerate}[label=\alph*\upshape)]
+		\item In Satz 3.2.13b lassen sich Gewichte $\lambda_k$ mit $|\{ 1 \leq k \leq r ~|~\lambda_k > 0\}| \leq n+1$ wählen.
+		\item In Satz 3.2.15b lassen sich Gewichte $\lambda_k$ mit $|\{ 1 \leq k \leq r ~|~\lambda_k > 0\}| \leq n$ wählen.
+	\end{enumerate}
+\end{korollar}
+
+\subsection*{Optimalitätsbedingungen erster Ordnung ohne Gleichungsrestriktionen}
+
+\begin{satz}[Satz von Fritz John für $J = \emptyset$]
+	Es sei $\overline{x}$ ein lokaler Minimalpunkt von $P$, an dem die Funktionen $f$ und $g_i$, $i \in I_0(\overline{x})$, differenzierbar sind. Dann existieren Multiplikatoren $\kappa \geq 0$, $\lambda_i \geq 0$, $i \in I_0(\overline{x})$, nicht alle null, mit
+	\begin{equation}
+		\kappa \nabla f(\overline{x}) + \sum_{i \in I_0(\overline{x})} \lambda_i \nabla g_i(\overline{x}) = 0 \tag*{(3.3)}
+	\end{equation} 
+	Dabei kann man $\kappa$ und die $\lambda_i$ so wählen, dass entweder $\kappa > 0$ und $|\{ i \in I_0(\overline{x}) ~|~\lambda_I > 0 \} | \leq n$ gilt oder $\kappa = 0$ und $|\{ i \in I_0(\overline{x}) ~|~\lambda_i > 0 \} | \leq n + 1$.
+\end{satz}
+ 
+Die Beschränkung der Anzahl positiver Multiplikatoren in der zweiten Behauptung aus Satz 3.2.18 zieht nach sich, dass die $|I_0(x)| \leq n + 1$. ~\bigskip
+ 
+Zur Motivation der MFB in Definition 3.2.3 haben wir angeführt, dass die im Beweis zu Satz 3.2.18 benutzte Unlösbarkeit des Systems trivialerweise erfüllt sein kann, wenn nämlich $L_< (x, M) = \emptyset$ gilt. 
+ 
+\setcounter{thm}{20}
+
+\begin{lemma}
+	Es sei $\overline{x}$ ein lokaler Minimalpunkt von $P$, an dem die Funktionen $f$ und $g_i$ , $i \in I_0(\overline{x})$, differenzierbar sind. Dann ist (3.3), also
+	$$ \kappa \nabla f(\overline{x}) + \sum_{i \in I_0(\overline{x})} \lambda_i \nabla g_i(\overline{x}) = 0, $$
+	 genau dann mit $\kappa = 0$ erfüllbar, wenn die $MFB$ an $\overline{x}$ verletzt ist.
+\end{lemma}
+
+\begin{satz}[Satz von Karush-Kuhn-Tucker für $J = \emptyset$ unter $MFB$] 
+	Es sei $\overline{x}$ ein lokaler Minimalpunkt von $P$, an dem die Funktionen $f$ und $g_i$, $i \in I_0(\overline{x})$, differenzierbar sind, und an $\overline{x}$ gelte die $MFB$. Dann existieren Multiplikatoren $\lambda_i \geq 0$, $i \in I_0(\overline{x})$ mit
+	  $$ \nabla f(\overline{x}) + \sum_{i \in I_0(\overline{x})} \lambda_i \nabla g_i(\overline{x}) = 0 $$
+	Dabei kann man die $\lambda_i$ so wählen, dass $|\{ i \in I_0 (\overline{x}) ~|~\lambda_i > 0 \}| \leq n$ gilt.
+\end{satz}
+
+\begin{satz}[Satz von Karush-Kuhn-Tucker für $J = \emptyset$ unter $AB$]
+	Die Aussage von Satz 3.2.22 bleibt richtig, wenn man dort \enquote{$MFB$} durch \enquote{$AB$} ersetzt.
+\end{satz}
+
+\begin{korollar}
+	Es seien $g_i(x) = a_i^T x + b_i$, $1 \leq i \leq p$, und $\overline{x}$ sei ein lokaler Minimalpunkt von $P$, an dem $f$ differenzierbar ist. Dann existieren Multiplikatoren $\lambda_i \geq 0$, $i \in I_0(\overline{x})$ mit
+	$$  $$
+	Dabei kann man die $\lambda_i$ so wählen, dass $|\{ i \in I_0(\overline{x})| \lambda_i > 0 \}| \leq n$ gilt.
+\end{korollar}
+ 
+\subsection*{Trennungssatz}
+
+\begin{lemma}
+	Es seien $X \subseteq \mathbb{R}^n$ eine nichtleere abgeschlossene Menge und $z \in \mathbb{R}^n$. Dann ist das Projektionsproblem 
+	$$ Pr(z, X): \quad \min \| x - z \|_2 \text{ s.t. } x \in X $$
+	lösbar.
+\end{lemma}
+
+\begin{satz}
+	Es seien $X \subseteq \mathbb{R}^n$ eine nichtleere, abgeschlossene und konvexe Menge sowie $z \in \mathbb{R}^n$. Dann besitzt das Problem $Pr(z, X)$ einen eindeutigen globalen Minimalpunkt.	
+\end{satz}
+
+\begin{satz}[Variationsformulierung konvexer Probleme]
+	Die Menge $M \subseteq \mathbb{R}^n$ und die Funktion $f \in C^1(M, \mathbb{R})$ seien konvex. Dann gelten die folgenden Aussagen:
+	\begin{enumerate}[label=\alph*\upshape)]
+		\item Der Punkt $\overline{x} \in \mathbb{R}^n$ ist genau dann globaler Minimalpunkt von
+				$$ P: \quad \min f(x) \text{ s.t. } x \in M, $$
+			wenn $\overline{x}$ globaler Minimalpunkt von folgendem ist
+			 $$ \tilde{P}_{lin}(\overline{x}): \quad \min_x \langle \nabla f(\overline{x}), x - \overline{x} \rangle \text{ s.t. } x \in M $$
+		\item Die Menge der globalen Minimalpunkte von $P$ stimmt mit der folgenden Menge überein
+			$$ \big\{ \overline{x} \in M ~|~  \langle \nabla f(\overline{x}), x - \overline{x} \rangle \geq 0 \text{ für alle } x \in M \big\} $$
+	\end{enumerate}	
+\end{satz}
+
+\begin{definition}[Normalenkegel an konvexe Mengen]
+	Für eine konvexe Menge $X \subseteq \mathbb{R}^n$ und $\overline{x} \in X$ heißt
+		$$ N(\overline{x}, X) \coloneqq \big\{ s \in \mathbb{R}^n ~|~\langle s, x - \overline{x} \rangle \leq 0 \text{ für alle } x \in X \big\} $$ \textbf{Normalenkegel} an $X$ in $\overline{x}$. Die Elemente $s$ des \textbf{Normalenkegels} $N(\overline{x}, X)$ nennt man auch (äußere) Normalenrichtungen an $X$ in $\overline{x}$.
+\end{definition}
+ 
+\begin{uebung}
+	für jede (nicht notwendigerweise konvexe) Menge $X \subseteq \mathbb{R}^n$ und jedes $\overline{x} \in X$, dass die Menge $N(\overline{x}, X)$ ein konvexer und abgeschlossener Kegel mit $0 \in N(\overline{x}, X)$ ist.
+\end{uebung} 
+
+Geometrisch interpretiert liegen im Normalenkegel an $X$ in $x$ genau diejenigen Richtungen $s \in \mathbb{R}^n$, mit denen kein Vektor $d$ einen spitzen Winkel bindet, für den $x+d$ in $X$ liegt (was man mittels des Zusammenhangs $x = x + d$ sieht).
+ 
+\begin{korollar}
+	Die Menge $M \subseteq \mathbb{R}^n$ und die Funktion $f \in C^1(M, \mathbb{R})$ seien konvex. Dann ist $\overline{x} \in \mathbb{R}^n$ genau dann globaler Minimalpunkt von
+		$$ P: \quad \min f(x) \text{ s.t. } x \in M $$
+	wenn die Bedingungen $\overline{x} \in X$ und $- \nabla f(\overline{x}) \in N(\overline{x}, X)$ erfüllt sind.
+\end{korollar} 
+ 
+\begin{satz}[Projektionslemma]
+	Es seien $X \subseteq \mathbb{R}^n$ eine nichtleere, abgeschlossene und konvexe Menge sowie $z \in \mathbb{R}^n$. Dann ist der eindeutige Minimalpunkt $pr(z, X)$ des Projektionsproblems
+		$$ Pr(z, X): \quad \min \| x - z \|_2 \text{ s.t. } x \in X $$
+	gleichzeitig die eindeutige Lösung der Bedingungen
+		$$ x \in X \text{ und } z \in x + N(x, X) $$
+\end{satz}
+
+\subsection*{Normalenkegel}
+
+\setcounter{thm}{32}
+
+\begin{definition}[Polarkegel]
+	 Für eine Menge $A \subseteq \mathbb{R}^n$ heißt
+		$$ A^\circ = \big\{ s \in \mathbb{R}^n ~|~\langle s, d \rangle \leq 0 \text{ für alle } d \in A \big\} $$
+	\textbf{Polarkegel} von $A$.
+\end{definition}
+
+Dabei gilt für eine konvexe Menge $X$, dass der Normalenkegel wie folgt lautet: 
+	$$ N(\overline{x}, X) = (X - \overline{x})^\circ. $$
+Für eine beliebige Menge $X$ benutzen wir stattdessen den Polarkegel des äußeren Tangentialkegels als Normalenkegel.
+
+\begin{definition}[Normalenkegel an beliebige Mengen]
+	Für eine Menge $X \subseteq \mathbb{R}^n$ und $\overline{x} \in X$ heißt
+		$$ N(\overline{x}, X) = C^{\circ}(\overline{x}, X) $$
+	\textbf{Normalenkegel} an $X$ in $\overline{x}$. Die Elemente $s$ des Normalenkegels $N(\overline{x}, X)$ heißen wieder (äußere) Normalenrichtungen an $X$ in $\overline{x}$. 
+\end{definition}
+ 
+\begin{satz}
+	Für jede konvexe Menge $X \subseteq \mathbb{R}^n$ und $\overline{x} \in X$ gilt
+	$$ (X - \overline{x})^\circ = C^\circ(\overline{x}, X) $$
+\end{satz}
+
+Satz 3.2.2 besagt in dieser Terminologie tatsächlich, dass an einem lokalen Minimalpunkt $\overline{x}$ von $f$ auf $M$ notwendigerweise die Beziehung
+
+ $$ - \nabla f(\overline{x}) \in N(\overline{x}, M) $$
+
+gilt. Die Stationaritätsbedingung kann man geometrisch also auch so interpretieren, dass an jedem lokalen Minimalpunkt $\overline{x}$ von $P$ der Vektor $-\nabla f(\overline{x})$ (also die steilste Abstiegsrichtung für $f$ in $\overline{x}$) eine äußere Normalenrichtung an $M$ in $\overline{x}$ ist. ~\bigskip
+
+Da die funktionale Beschreibung der Menge $M$ für dieses Ergebnis keine Rolle spielt (sondern nur ihre Geometrie), waren für seine Herleitung keine Constraint Qualifications erforderlich. Im Folgenden werden wir aber sehen, wie sie bei der Herleitung einer expliziten Darstellung der Elemente des Normalenkegels helfen.
+
+\begin{uebung}
+	Für alle $\overline{x} \in M$ gilt die Inklusion $L_{\leq}^\circ(\overline{x}, M) \subseteq N(\overline{x}, M)$.
+\end{uebung}
+
+\begin{uebung}
+	Mit Hilfe des Lemmas von Farkas gilt die folgende Identität für alle $\overline{x} \in M$
+	$$ L_{\leq}^\circ(\overline{x}, M) = \operatorname{cone}(\{ \nabla g_i(\overline{x}), i \in I_0(\overline{x}) \}) $$
+\end{uebung}
+
+\begin{uebung}
+	An $\overline{x} \in M$ gelte die AB. Wegen Übung 3.2.36 und Übung 3.2.37 gilt die Identität
+	$$ N(\overline{x}, M) = \operatorname{cone}(\{ \nabla g_i(\overline{x}), i \in I_0(\overline{x}) \}) $$
+\end{uebung}
+
+Somit gilt für jeden lokalen Minimalpunkt $x$ von $P$, an dem die AB erfüllt ist, d.h.
+$$ -\nabla f(x) \in \operatorname{cone}(\{ \nabla g_i(x), i \in I_0(x) \}), $$
+also gerade die Behauptung des Satzes von Karush-Kuhn-Tucker.
+
+\subsection*{Optimalitätsbedingungen erster Ordnung mit Gleichungsrestriktionen}
+ 
+Von jetzt an sei die zulässige Menge von $P$ wieder durch  Ungleichungen und Gleichungen beschrieben, d. h., es gelte
+
+$$ M = \big\{ x \in \mathbb{R}^n ~|~ g_i(x) \leq 0, i \in I, h_j(x) = 0, j \in J \big\}. $$
+ 
+\begin{satz}
+	Es sei $\overline{x}$ ein lokaler Minimalpunkt von $P$, an dem die Funktionen $f, g_i$, $i \in I_0(\overline{x})$, und $h_j$, $j \in J$, stetig differenzierbar sind. Dann existieren Multiplikatoren $\kappa \geq 0, \lambda_i \geq 0, i \in I_0(\overline{x}), \mu_j \in \mathbb{R}, j \in J$, nicht alle null, mit
+
+		$$ \kappa \nabla f(\overline{x}) + \sum_{i \in I_0(\overline{x})} \lambda_i \nabla g_i(\overline{x}) + \sum_{j \in J} \mu_j \nabla h_j(\overline{x}) = 0 $$
+
+	Dabei kann man $\kappa$ und die $\lambda_i$ so wählen, dass entweder $\kappa > 0$ und $|\{ i \in I_0(\overline{x}) ~|~ \lambda_i > 0 \}| \leq n - q$ gilt oder $\kappa = 0$ und $|\{ i \in I_0(\overline{x}) ~|~ \lambda_i > 0 \}| \leq n - q + 1$.
+\end{satz} 
+
+\begin{definition}[Mangasarian-Fromowitz-Bedingung]
+	Der Punkt $\overline{} \in M$ erfüllt die Mangasarian-Fromowitz-Bedingung (MFB), falls folgende Bedingungen gelten:
+	\begin{enumerate}[label=\alph*\upshape)]
+		\item Die Vektoren $\nabla h_j(\overline{x}), j \in J$, sind linear unabhängig,
+		\item Es existiert ein $d \in \mathbb{R}^n$ mit $\langle \nabla g_i(\overline{x}), d \rangle < 0, i \in I_0(\overline{x}), ~\langle \nabla h_j(\overline{x}), d \rangle = 0, j \in J$
+	\end{enumerate}
+\end{definition}
+ 
+\begin{satz}[Satz von Karush-Kuhn-Tucker]
+	Es sei $\overline{x}$ ein lokaler Minimalpunkt von $P$, an dem die Funktionen $f, g_i$, $i \in I_0(\overline{x})$, und $h_j$, $j \in J$, stetig differenzierbar sind, und an $\overline{x}$ gelte die $MFB$. Dann existieren Multiplikatoren $\lambda_i \geq 0$, $i \in I_0(\overline{x})$, $\mu_j \in \mathbb{R}$, $j \in J$, mit
+	
+		$$ \nabla f(\overline{x}) + \sum_{i \in I_0(\overline{x})} \lambda_i \nabla g_i(\overline{x}) + \sum_{j \in J} \mu_j \nabla h_j(\overline{x}) = 0 $$
+
+	Dabei kann man die $\lambda_i$ so wählen, dass $|\{ i \in I_0(\overline{x}) ~|~ \lambda_i > 0 \}| \leq n - q$ gilt.	
+\end{satz}
+
+\begin{definition}[Lineare-Unabhängigkeits-Bedingung]
+	An $\overline{x} \in M$ gilt die Lineare-Unabhängigkeits-Bedingung (LUB), falls die Vektoren $\nabla g_i(\overline{x})$, $i \in I_0(\overline{x})$, $\nabla h_j(\overline{x})$, $j \in J$, also die Gradienten aller in $\overline{x}$ aktiven Restriktionen, linear unabhängig sind.
+\end{definition}
+ 
+\begin{satz}
+	Die LUB an $\overline{x}$ impliziert die MFB an $\overline{x}$.	
+\end{satz}
+
+\setcounter{thm}{44}
+
+\begin{beispiel}
+	Die Spektralnorm einer Matrix entspricht dem KKT-Multiplikator $\mu$.
+\end{beispiel}
+
+
+\begin{bemerkung}
+	Jede Zahl zu $\lambda$ einem positiven Eigenwert $\lambda$ der Matrix $A^TA$ heißt Singulärwert der $(m, n)$-Matrix $A$.	
+\end{bemerkung}
+
+\subsection*{Karush-Kuhn-Tucker-Punkte}
  
 \end{document}

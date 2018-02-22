@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.11.27)  21 FEB 2018 00:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.11.27)  22 FEB 2018 01:24
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1148,22 +1148,34 @@ Package pdftex.def Info: Requested size: 321.19922pt x 78.2923pt on input line 1
 <ab35.png, id=160, 652.4375pt x 228.855pt>
 File: ab35.png Graphic file (type png)
 <use ab35.png>
-Package pdftex.def Info: ab35.png  used on input line 1162. on input line 1162.
-Package pdftex.def Info: Requested size: 326.21794pt x 114.42722pt on input line 1162.
- [34 <./ab35.png>] [35] [36] (/Users/martin/Dropbox/Skripte/Nichtlineare-Optimierung/.texpadtmp/Skript.aux) ) 
+Package pdftex.def Info: ab35.png  used on input line 1164. on input line 1164.
+Package pdftex.def Info: Requested size: 326.21794pt x 114.42722pt on input line 1164.
+ [34 <./ab35.png>] [35] [36]
+<ab36.png, id=171, 650.43pt x 171.64125pt>
+File: ab36.png Graphic file (type png)
+<use ab36.png>
+Package pdftex.def Info: ab36.png  used on input line 1291. on input line 1291.
+Package pdftex.def Info: Requested size: 325.2142pt x 85.8204pt on input line 1291.
+ [37 <./ab36.png>]
+<ab38.png, id=177, 661.47125pt x 174.6525pt>
+File: ab38.png Graphic file (type png)
+<use ab38.png>
+Package pdftex.def Info: ab38.png  used on input line 1324. on input line 1324.
+Package pdftex.def Info: Requested size: 330.73482pt x 87.32603pt on input line 1324.
+ [38 <./ab38.png>] [39] [40] [41] [42] [43] (/Users/martin/Dropbox/Skripte/Nichtlineare-Optimierung/.texpadtmp/Skript.aux) ) 
 Here is how much of TeX's memory you used:
- 17165 strings out of 492985
- 316464 string characters out of 6132585
+ 17179 strings out of 492985
+ 316614 string characters out of 6132585
  499188 words of memory out of 5000000
- 20368 multiletter control sequences out of 15000+600000
- 546044 words of font info for 120 fonts, out of 8000000 for 9000
+ 20376 multiletter control sequences out of 15000+600000
+ 546146 words of font info for 122 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  68i,9n,66p,10382b,385s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfsx1095.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfsx1200.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfsx2074.pfb>
-Output written on /Users/martin/Dropbox/Skripte/Nichtlineare-Optimierung/.texpadtmp/Skript.pdf (36 pages, 1456174 bytes).
+Output written on /Users/martin/Dropbox/Skripte/Nichtlineare-Optimierung/.texpadtmp/Skript.pdf (43 pages, 1570334 bytes).
 PDF statistics:
- 227 PDF objects out of 1000 (max. 8388607)
- 133 compressed objects within 2 object streams
+ 256 PDF objects out of 1000 (max. 8388607)
+ 151 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 10853 words of extra memory for PDF output out of 12000 (max. 10000000)
+ 10863 words of extra memory for PDF output out of 12000 (max. 10000000)
 
