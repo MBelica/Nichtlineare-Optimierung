@@ -151,6 +151,9 @@
 
 \subsection*{Rechenregeln und Umformungen}
 
+\setcounter{section}{3}
+\setcounter{thm}{0}
+
 \begin{uebung}[Skalare Vielfache und Summen]
 	Gegeben seien $M \subseteq \mathbb{R}^n$ und $f,g \colon M \rightarrow \mathbb{R}$. Dann gilt
 	\begin{enumerate}[label=\alph*\upshape)]
@@ -207,7 +210,9 @@
 
 \subsection*{Abstiegsrichtung}
 
-\begin{definition}
+\setcounter{thm}{0}
+
+\begin{definition}[Abstiegsrichtung]
 	Es seien $f \colon \mathbb{R}^n \rightarrow \mathbb{r}$ und $\overline{x} \in \mathbb{R}^n$. Ein Vektor $d \in \mathbb{R}^n$ heißt \textbf{Abstiegsrichtung} für $f$ in $\overline{x}$, falls
 	$$ \exists \hat{f} > 0 ~\forall t \in (0, \hat{t}) \colon f(\overline{x} + td) < f(\overline{x}). $$
 \end{definition}
@@ -296,7 +301,7 @@
 \end{center}
 
 \begin{center}
-	\includegraphics[scale=0.4]{ab22}
+	\includegraphics[scale=0.5]{ab22}
 \end{center}
 
 \setcounter{thm}{18}
@@ -472,7 +477,7 @@ Neben der Stetigkeit der Zielfunktion $f$ werden wir im gesamten Abschn. 2.2 for
 \end{uebung*}
 
 \begin{center}
-	\includegraphics[scale=0.4]{a23}
+	\includegraphics[scale=0.5]{a23}
 \end{center}
 
 \setcounter{thm}{2}
@@ -835,7 +840,7 @@ sind natürliche Bedingungen dafür $\lim_k t^k = 1$ und $\lim_k A^k = D^2 f(x^*
 Ein möglicher Ansatz Matrizen $A^k$ zu finden mit $\lim_k A^k = D^2 f(x^*)$ besteht darin, zunächst das Sekantenverfahren zur Nullstellensuche einer Funktion von $\mathbb{R}$ nach $\mathbb{R}$ zu betrachten. 
 
 \begin{center}
-	\includegraphics[scale=0.4]{ab28}
+	\includegraphics[scale=0.5]{ab28}
 \end{center}
 
 Hieraus erhält man für $n \geq 1$ di Gleichung
@@ -1061,7 +1066,7 @@ Ein Hauptvorteil dieses Ansatzes besteht darin, dass er sich im Gegensatz zur Do
 
 \setcounter{chapter}{3}
 \setcounter{section}{1}
-\setcounter{thm}{1}
+\setcounter{thm}{0}
 
 Wir betrachten im folgenden Problem
 $$ P: \quad \min_{x \in \mathbb{R}^n} f(x) ~\text{ s.t. }~ g_i(x) \leq 0, i \in I, ~ h_j(x) = 0, j \in J $$
@@ -1138,7 +1143,7 @@ Die funktionale Beschreibung einer zulässigen Menge kann so ungeschickt sein ka
 	Die funktionale Beschreibung von $M$ ist an $\overline{x}$ genau dann nichtdegeneriert, wenn $L_{<}(\overline{x}, M) \neq \emptyset$ gilt.	
 \end{satz}
 
-Es gibt zudem Fälle, in denen schon die Geometrie der zulässigen Menge so ungünstig ist, dass keine funktionale Beschreibung die gewünschte „gute“ Approximation erster Ordnung liefert.
+Es gibt zudem Fälle, in denen schon die Geometrie der zulässigen Menge so ungünstig ist, dass keine funktionale Beschreibung die gewünschte \enquote{gute} Approximation erster Ordnung liefert.
 
 \begin{center}
 	\includegraphics[scale=0.5]{ab34}
@@ -1514,6 +1519,8 @@ $$ M = \big\{ x \in \mathbb{R}^n ~|~ g_i(x) \leq 0, i \in I, h_j(x) = 0, j \in J
 	An $\overline{x} \in M$ gilt die Lineare-Unabhängigkeits-Bedingung (LUB), falls die Vektoren $\nabla g_i(\overline{x})$, $i \in I_0(\overline{x})$, $\nabla h_j(\overline{x})$, $j \in J$, also die Gradienten aller in $\overline{x}$ aktiven Restriktionen, linear unabhängig sind.
 \end{definition}
  
+Das heißt insbesondere, dass falls nur eine Restriktion herrscht, diese im Punkt nicht identisch $0$ ist. 
+ 
 \begin{satz}
 	Die LUB an $\overline{x}$ impliziert die MFB an $\overline{x}$.	
 \end{satz}
@@ -1531,4 +1538,327 @@ $$ M = \big\{ x \in \mathbb{R}^n ~|~ g_i(x) \leq 0, i \in I, h_j(x) = 0, j \in J
 
 \subsection*{Karush-Kuhn-Tucker-Punkte}
  
+Der grundlegende Satz 3.2.41 erlaubt es, das aus dem unrestringierten Fall bekannte Konzept eines kritischen Punkts von $P$ auf den restringierten Fall zu übertragen.
+
+\begin{definition}[Karush-Kuhn-Tucker-Punkt]
+	Zu $\overline{x} \in M$ gebe es $\lambda_i \geq 0$, $i \in I_0(\overline{x})$, $\mu_j \in \mathbb{R}$, $j \in J$ mit
+		$$ \nabla f(\overline{x}) + \sum_{i \in I_0(\overline{x})} \lambda_i \nabla g_i(\overline{x}) + \sum_{j \in J} \mu_j \nabla h_j(\overline{x}) = 0 $$
+	Dann heißt $\overline{x}$ Karush-Kuhn-Tucker-Punkt (KKT-Punkt) von $P$. Die Koeffizienten $\lambda_i$, $i \in I_0(\overline{x})$, und $\mu_j$ j $\in J$ heißen KKT-Multiplikatoren. 
+\end{definition}
+
+Aus Ergebnissen der linearen Algebra folgt, dass die Multiplikatoren eines KKT-Punkts $\overline{x}$ eindeutig bestimmt sind, wenn an $\overline{x}$ die LUB gilt. Satz 3.2.41 und Satz 3.2.43 liefern daher folgendes Ergebnis.
+
+\begin{korollar}
+	Es sei $\overline{x}$ ein lokaler Minimalpunk von $P$, an dem die Funktionen $f$, $g_i$, $i \in I_0(\overline{x})$ und $h_j$, $j \in J$, stetig differenzierbar sind, und an $\overline{x}$ gelte die LUB. Dann ist $\overline{x}$ ein KKT-Punkt von $P$ mit eindeutigen KKT-Multiplikatoren.
+\end{korollar}
+
+\begin{center}
+	\includegraphics[scale=0.5]{a31}
+\end{center}
+ 
+Für kleine Werte von $p$ löst man durch Fallunterscheidung der aktiven Indexmenge das System
+
+\begin{equation}
+	\begin{rcases}
+	\nabla f(x) + \sum_{i \in I_0(x)} \lambda_i \nabla g_i(x) + \sum_{j \in J} \mu_j \nabla h_j(x) & = 0, \\
+	g_i(x) & \leq 0, i \in I, \\
+	h_j(x) & = 0, j \in J, \\
+	\lambda_i & \geq 0, i \in I_0(x).
+\end{rcases} \tag*{(3.8)}
+\end{equation}
+
+Ist $p$ allerdings groß, schlägt man einen anderen Weg ein und löst das folgende System mit einer Komplementaritätsbedingung:
+
+\begin{equation}
+	\begin{rcases}
+	\nabla f(x) + \sum_{i \in I} \lambda_i \nabla g_i(x) + \sum_{j \in J} \mu_j \nabla h_j(x) & = 0, \\
+	g_i(x) & \leq 0, i \in I, \\
+	h_j(x) & = 0, j \in J, \\
+	\lambda_i & \geq 0, i \in I. \\
+	\lambda_i \cdot g_i(x) & = 0, i \in I
+\end{rcases} \tag*{(3.9)}
+\end{equation}
+
+Man fasst die letzte Zeile nicht zu $\sum_{i \in I} \lambda_i g_i(x) = 0$ zusammen, da dies später zu Problemen führt.
+
+\begin{definition}[Strikte Komplementaritätsbedingung]
+	Am KKT-Punkt $\overline{x}$ gelte die LUB, und zu $\overline{x}$ sei ($\overline{\lambda}_{I_0}, \overline{\mu})$ die eindeutige Lösung von (3.8). Dann gilt an $\overline{x}$ die strikte Komplementaritätsbedingung (SKB), falls $\overline{\lambda}_i > 0$ für alle $i \in I_0(\overline{x})$ erfüllt ist.
+\end{definition}
+ 
+Strikte Komplementarität bedeutet hier gerade, dass die Knickstelle dieser Menge, nämlich der Nullpunkt, aus der Menge entfernt wird.
+
+\begin{center}
+	\includegraphics[scale=0.5]{ab310}
+\end{center}
+
+\setcounter{thm}{51}
+ 
+\begin{definition}[Lagrange-Funktion]
+	Die Funktion
+	$$ L \colon \mathbb{R}^n \times \mathbb{R}^p \times \mathbb{R}^q \rightarrow \mathbb{R}, ~ (x, \lambda, \mu) \mapsto f(x) + \sum_{i \in I} \lambda_i g_i(x) + \sum_{j \in J} \mu_j h_j(x) $$
+	heißt \textbf{Lagrange-Funktion} von $P$.
+\end{definition} 
+
+\subsection*{Optimalitätsbedingung zweiter Ordnung}
+
+Um die Form der Optimalitätsbedingungen zweiter Ordnung in der restringierten Optimierung zu motivieren, betrachten wir die Gleichung, die aus $(3.11)$ durch Unterschlagen der Ungleichung entsteht:
+$$ 0 = \mathfrak{T}(x, \lambda, \mu) \coloneqq \begin{pmatrix}
+	\nabla_x L(x, \lambda, \mu) \\ \operatorname{diag}(\lambda) \cdot \nabla_\lambda L(x, \lambda, \mu) \\\
+	\nabla_\mu L(x, \lambda, \mu)
+\end{pmatrix} $$
+
+\setcounter{thm}{54}
+
+\begin{definition}[Kritischer Punkt eines restringierten Problems]
+	Ein Punkt $\overline{x} \in M$, der mit Multiplikatorem $\overline{\lambda}$ und $\overline{\mu}$ die Gleichung $\mathfrak{T}(\overline{x}, \overline{\lambda}, \overline{\mu}) = 0$ erfüllt, heißt\textbf{kritischer Punkt} von $P$.
+\end{definition}
+
+
+Kritische Punkte unterscheiden sich von KKT-Punkten nur dadurch, dass keine Nichtnegativitätsbedingung an $\overline{x}$ gefordert wird.
+
+\setcounter{thm}{56}
+
+\begin{lemma}
+	Es sei $\mathfrak{T}(\overline{x}, \overline{\lambda}, \overline{\mu}) = 0$. Dann ist $D \mathfrak{T}(\overline{x}, \overline{\lambda}, \overline{\mu})$ genau dann nichtsingulär, wenn $\overline{\lambda}_i \neq 0$ für alle $i \in I_0(\overline{x})$ gilt und wenn die folgende Matrix nichtsingulär ist
+	$$ \begin{pmatrix}
+		D^2_x L(\overline{x}, \overline{\lambda}, \overline{\mu}) & \nabla g_{I_0}(\overline{x}) & \nabla h(\overline{x}) \\ D g_{I_0}(\overline{x}) & 0 & 0 \\
+		D h(\overline{x}) & 0 & 0
+	\end{pmatrix} $$
+\end{lemma}
+
+\begin{definition}[Einschränkung einer Matrix]
+	Die $(n-m, n-m)-Matrix A|_{\operatorname{kern}B^T} \coloneqq V^T A V$ heißt \textbf{Einschränkung} von $A$ auf $\operatorname{kern}B^T$.	
+\end{definition}
+
+\setcounter{thm}{59}
+
+Wir nennen
+
+$$ \operatorname{kern} B^T = \big\{ d \in \mathbb{R}^n ~|~ \langle \nabla g_i(\overline{x}), d \rangle = 0, i \in I_0 (\overline{x}), \langle \nabla h_j(\overline{x}), d \rangle = 0, j \in J \big\} \eqqcolon T(\overline{x}, M) $$
+
+\textbf{Tangentialraum} an $M$ in $\overline{x}$.
+
+\begin{lemma}[Strukturlemma]
+	Für eine $(n, n)$-Matrix $A$ und ein $(n,m)$-Matrix $B$ ist die Blockmatrix
+	
+	$$ \begin{pmatrix}
+		A & B \\ B^T & 0
+	\end{pmatrix} $$	
+	genau dann nichtsingulär, wenn $\operatorname{rang}(B) = m$ gilt und wenn $A|_{\operatorname{kern}B^T}$ nichtsingulär ist.
+\end{lemma}
+
+\begin{satz}
+	Es sei $\mathfrak{T}(\overline{x}, \overline{\lambda}, \overline{\mu}) = 0$. Dann ist $\mathfrak{T}(\overline{x}, \overline{\lambda}, \overline{\mu})$ genau dann nichtsingulär, wenn die folgenden drei Bedingungen gleichzeitig gelten:
+	\begin{enumerate}[label=\alph*\upshape)]
+		\item An $\overline{x}$ gilt die LUB.
+		\item Es gilt $\overline{\lambda}_i \neq 0$ für alle $i \in I_0(\overline{x})$
+		\item Die Matrix $D_x^2 L(\overline{x}, \overline{\lambda}, \overline{\mu})|_{T(\overline{x}, M)}$ ist nichtsingulär.
+	\end{enumerate}
+\end{satz}
+
+Es sei darauf hingewiesen, dass im Fall $n = p_0 + q$ die Bedingung $c$ in Satz 3.2.61 trivialerweise erfüllt ist und entfallen kann.
+
+\begin{definition}[Nichtdegenerierter kritischer Punkt eines restringierten Problems]
+	Für einen kritischen Punkt $\overline{x}$ von $P$ mit Multiplikatoren $\overline{\lambda}$, $\overline{\mu}$ seien die Bedingungen a, b und c aus Satz 3.2.61 erfüllt. Dann heißt $\overline{x}$ \textbf{nichtdegenerierter kritischer Punkt} von $P$.
+\end{definition}
+
+Wie im unrestringierten Fall (Abschn. 2.1.4) kann man wieder zeigen, dass für \enquote{fast alle} $C^2$-Optimierungsprobleme $P$ jeder kritische Punkt nichtdegeneriert ist, dass die Bedingungen a, b und c aus Satz 3.2.61 also schwach sind. Weil in Definition 3.2.62 weder an die Multiplikatoren noch an die Eigenwerte der Matrix Vorzeichenbeschränkungen gefordert werden, können nichtdegenerierte kritische Punkte nicht nur Minimalpunkte, sondern auch Maximalpunkte oder Sattelpunkte sein.
+
+\setcounter{thm}{64}
+
+
+\begin{definition}[Nichtdegenerierter Minimalpunkt eines restringierten Problems]
+	Ein KKT-Punkt $\overline{x}$ von P mit Multiplikatoren $\overline{\lambda}$, $\overline{\mu}$ erfülle die folgenden Bedingungen:
+	\begin{enumerate}[label=\alph*\upshape)]
+		\item An $\overline{x}$ gilt die LUB.
+		\item An $\overline{x}$gilt die SKB.
+		\item Die Matrix $D_x^2 L(\overline{x}, \overline{\lambda}, \overline{\mu}) |_{T(\overline{x},M)}$ ist positiv definit.
+	\end{enumerate}
+	Dann heißt $\overline{x}$ nichtdegenerierter lokaler Minimalpunkt von $P$.
+\end{definition}
+
+Die Bedingung c in Definition 3.2.64 ist gleichbedeutend mit der Aussage
+
+
+$$ \forall d \in T(\overline{x},M) \setminus 0: \quad d^T D^2_x L(\overline{x}, \overline{\lambda}, \overline{\mu}) d > 0 $$
+
+Im Fall $n = p_0 + q$ ist sie wieder trivialerweise erfüllt und kann entfallen.
+
+\begin{satz}[Hinreichende Optimalitätsbedingung zweiter Ordnung]
+	Jeder nichtdegenerierte lokale Minimalpunkt ist strikter lokaler Minimalpunkt von $P$.
+\end{satz}
+
+Für die folgende Optimalitätsbedingung zweiter Ordnung, die ohne die Voraussetzungen der LUB und SKB auskommt, seien
+
+\begin{align*}
+	I_{0+} & \coloneqq \big\{ i \in I_0(\overline{x}) ~|~ \overline{\lambda}_i > 0 \big\}, \\
+	I_{00} (\overline{x}) & \coloneqq \big\{ i \in I_{0}(\overline{x}) ~|~ \overline{\lambda}_i = 0 \big\}
+\end{align*}
+
+und
+
+
+	$$ K(\overline{x}, M) = \big\{ d \in \mathbb{R}^n ~|~\langle \nabla f(\overline{x}, d \rangle = 0, \langle \nabla g_i(\overline{x}, d \rangle =0, i \in I_{0+}(\overline{x}), $$
+	$$ ~ \hspace{5cm} \langle \nabla g_i(\overline{x}) , d \rangle \leq 0, i \in I_{00}(\overline{x}), \langle \nabla h_j(\overline{x}), d \rangle = 0, j \in J \big\} $$
+
+\begin{korollar}
+	Ein KKT-Punkt $\overline{x}$ von $P$ mit Multiplikatoren $\overline{\lambda}$, $\overline{\mu}$ erfülle $d^T D_x^2(\overline{x}, \overline{\lambda}, \overline{\mu}) d  > 0$ für alle $d \in K(\overline{x}, M)$. Dann ist $\overline{x}$ strikter lokaler Minimalpunkt von $P$.
+\end{korollar}
+
+Es sei bemerkt, dass die fehlende Voraussetzung der SKB in Korollar 3.2.67 dadurch kompensiert wird, dass die Matrix auf einer gegebenenfalls größeren Menge als in Satz 3.2.66 positiv definit sein muss.
+
+\begin{korollar}[Hinreichende Optimalitätsbedingung erster Ordnung]
+	Ein KKT-Punkt $\overline{x}$ von $P$ erfülle die folgenden Bedingungen:
+	\begin{enumerate}[label=\alph*\upshape)]
+		\item An $\overline{x}$ gilt die LUB.
+		\item An $\overline{x}$ gilt die SKB.
+		\item Es gilt $p_0 + q = n$.
+	\end{enumerate}
+Dann ist $\overline{x}$ strikter lokaler Minimalpunkt von $P$.
+\end{korollar}
+
+Zur Vollständigkeit geben wir auch noch eine hinreichende Optimalitätsbedingung erster Ordnung an, die weder Constraint Qualifications noch Karush-Kuhn-Tucker-Punkte benutzt, sondern nur Fritz-John-Punkte (Satz 3.2.39) mit einer gewissen Rangeigenschaft voraussetzt. Die beteiligten Funktionen brauchen hier nur differenzierbar zu sein.
+
+\begin{satz}
+	Zu $\overline{x} \in M$ gebe es Multiplikatoren $\overline{\kappa} \geq 0$, $\overline{\lambda}_i \geq 0$, $i \in I_0(\overline{x})$, $\overline{\mu}_j \in \mathbb{R}$, $j \in J$, mit 
+	
+	$$ \overline{\kappa} \nabla f(\overline{x}) + \sum_{i \in I_0(\overline{x})} \overline{\lambda}_i \nabla g_i(\overline{x}) + \sum_{j \in J} \overline{\mu}_j \nabla h_j(\overline{x}) = 0 $$
+		
+	und so, dass die Vektoren 
+	
+		$$ \overline{\kappa} \nabla f(\overline{x}), ~ \overline{\lambda}_i \nabla g_i(\overline{x}), i \in I_0(\overline{x}), ~ \overline{\mu}_j \nabla h_j(\overline{x}) , j \in J $$
+		
+	gemeinsam den Rang n besitzen. Dann ist $\overline{x}$ ein strikter lokaler Minimalpunkt von $P$.
+\end{satz}
+
+Es sei daran erinnert, dass hinreichende Optimalitätsbedingungen erster Ordnung für unrestringierte glatte Optimierungsprobleme nicht existieren können (Bemerkung 2.1.34), während sie im restringierten Fall wie gerade gesehen sinnvoll sind. ~\bigskip
+
+Neben den hinreichenden Optimalitätsbedingungen existiert analog zum unrestringierten Fall natürlich auch eine notwendige Optimalitätsbedingung zweiter Ordnung. Wie im unrestringierten Fall unterscheiden sich notwendige und hinreichende Bedingungen durch die Striktheit der auftretenden Ungleichungen.
+
+\begin{satz}[Notwendige Optimalitätsbedingung zweiter Ordnung]
+	Es sei $\overline{x}$ ein lokaler Minimalpunkt von $P$, und an $\overline{x}$ sei die LUB erfüllt. Dann gilt:
+	\begin{enumerate}[label=\alph*\upshape)]
+		\item $\overline{x}$ ist KKT-Punkt von P mit eindeutigen Multiplikatoren $\overline{\lambda} \geq 0$ und $\overline{\mu}$.
+		\item Die Matrix $D_x2 L(\overline{x}, \overline{\lambda}, \overline{\mu}) |_{T(\overline{x},M)}$ ist positiv semidefinit.
+	\end{enumerate}
+\end{satz}
+
+\subsection*{Konvexe Optimierungsprobleme}
+
+Das restringierte Optimierungsproblem
+
+$$ P: \quad  \min f (x) \text{ s.t. } x \in M $$
+
+heißt konvex, falls die Menge $M \subseteq \mathbb{R}^n$ und die Funktion $f \colon M \rightarrow \mathbb{R}$ konvex sind.
+
+\setcounter{thm}{71}
+
+\begin{uebung}
+	Die Funktionen $g_i \colon \mathbb{R}^n \rightarrow \mathbb{R}$, $i \in I$, seien konvex, und die Funktionen $h_j \colon \mathbb{R}^n \rightarrow \mathbb{R}$, $j \in J$, seien affin-linear, d. h., für alle $j \in J$ gelte
+	
+	$$ h_j (x) = a_j^T x + b_j $$
+	
+	mit $a_j \in \mathbb{R}^n$ und $b_j \in \mathbb{R}$. Dann ist die Menge $M$ konvex.
+\end{uebung}
+
+\begin{definition}[Konvex beschriebene Menge]
+	Wir nennen eine mit beliebigen Indexmengen $I$ und $J $durch Ungleichungen und Gleichungen gegebene Menge
+		$$ M = \big\{ x \in \mathbb{R}^n ~|~ g_i(x) \leq 0, i \in I, h_j(x) = 0, j \in J \big\} $$
+	\textbf{konvex beschrieben}, wenn die Funktionen $g_i \coloneqq \mathbb{R}^n \rightarrow \mathbb{R}$, $i \in I$, konvex und die Funktionen $h_j \colon \mathbb{R}^n \rightarrow \mathbb{R}$, $j \in J$, affin-linear sind.
+\end{definition}
+
+Übung 3.2.72 besagt in dieser Terminologie, dass konvex beschriebene Mengen konvex sind.
+
+\begin{definition}[Slater-Bedingung]
+	Die Menge $M \subseteq \mathbb{R}^n$ sei konvex beschrieben. Dann erfüllt $M$ die Slater-Bedingung (SB), falls die folgenden beiden Bedingungen erfüllt sind:
+	\begin{enumerate}[label=\alph*\upshape)]
+		\item Es gilt $\operatorname{rang}(A) = q$.
+		\item Es gibt einen Punkt $x^* \in \mathbb{R}^n$ mit $g(x^*) < 0$ und $h(x^*) = 0$. 
+	\end{enumerate}
+\end{definition}
+
+
+Die SB ist eine globale Bedingung an $M$, denn der Slater-Punkt $x^*$ braucht nichts mit einem Optimalpunkt von $P$ zu tun zu haben. In der Tat können nichtkonvexe Probleme einen Slater-Punkt besitzen, während gleichzeitig in einem Optimalpunkt die MFB verletzt ist. Bei glatten konvexen Optimierungsproblemen kann dieser Effekt nicht auftreten.
+
+\begin{center}
+	\includegraphics[scale=0.5]{ab312}
+\end{center}
+
+\begin{satz}
+	Die Menge $M \subseteq \mathbb{R}^n$ sei konvex beschrieben, nichtleer, und die Funktionen $g_i \colon \mathbb{R}^n \rightarrow \mathbb{R}$, $i \in I$, seien zusätzlich stetig differenzierbar. Dann sind die folgenden Aussagen äquivalent:
+	\begin{enumerate}[label=\alph*\upshape)]
+		\item Die MFB gilt überall in $M$.
+		\item Die MFB gilt irgendwo in $M$.
+		\item $M$ erfüllt die SB.
+	\end{enumerate}
+\end{satz}
+
+Dass die lokale Regularitätsbedingung MFB mit der globalen Regularitätsbedingung SB äquivalent sein kann, liegt an der Voraussetzung einer globalen Struktur an P, nämlich der Konvexität. ~\bigskip
+
+Laut Korollar 2.1.41 sind im glatten konvexen unrestringierten Fall die kritischen Punkte mit den globalen Minimalpunkten identisch. Zu vermuten ist also, dass im restringierten Fall die KKT-Punkte den globalen Minimalpunkten entsprechen. Im Folgenden werden wir sehen, dass dies zumindest unter der SB richtig ist.
+
+\begin{korollar}
+	Das Problem $P$ sei konvex, und $M$ erfülle die $SB$. Dann ist jeder lokale Minimalpunkt von $P$ KKT-Punkt.
+\end{korollar}
+
+\begin{satz}
+	Der Punkt $\overline{x}$ sei KKT-Punkt des konvexen Problems $P$. Dann ist $\overline{x}$ ein globaler Minimalpunkt von $P$.
+\end{satz}
+
+Im Gegensatz zur notwendigen Optimalitätsbedingung aus Korollar 3.2.76 benötigt die hinreichende Bedingung in Satz 3.2.77 keinerlei Regularitätsvoraussetzung. Insgesamt erhalten wir folgende \enquote{Charakterisierung} für globale Minimalpunkte konvexer Probleme P:
+
+	$$ \overline{x} \text{ globaler Minimalpunkt } \xRightarrow[]{SB} \overline{x} \text{ KKT-Punkt } \Rightarrow \overline{x} \text{ globaler Minimalpunkt } $$
+
+\section{Numerische Verfahren}
+
+Dieser Abschnitt behandelt einige numerische Verfahren zur Lösung des Problems
+
+$$ P: \quad \min_{x \in \mathbb{R}^n} f(x) ~\text{ s.t. } g_i(x) \leq 0, i \in I, h_j(x) = 0, j \in J, $$
+
+mit hinreichend glatten Funktionen $f$, $g$ und $h$.
+
+\subsection*{Straftermverfahren}
+
+\begin{definition}[Straftermfunktion]
+	Eine Funktion $\alpha \colon \mathbb{R}^n \rightarrow \mathbb{R}$ heißt Straftermfunktion für $M \subseteq \mathbb{R}^n$, falls folgende Bedingungen erfüllt sind:
+	\begin{enumerate}[label=\alph*\upshape)]
+		\item Für alle $x \in M$ gilt $\alpha(x) = 0$.
+		\item Für alle $x \in Mc$ gilt $\alpha(x) > 0$.
+	\end{enumerate}	
+\end{definition}
+
+Das Straftermverfahren bedient sich des Skalarisierungsansatzes zur Lösung des Mehrzielproblems, d. h., minimiert wird eine gewichtete Summe der beiden Zielfunktionen $f$ und $\alpha$. Aufgrund von Übung 1.3.1a genügt es dabei, nur eine der beiden Funktionen mit einem Gewicht zu versehen. Dies führt auf den Ansatz, $P$ durch ein unrestringiertes Problem mit Zielfunktion
+$$ P(t): \min_{x \in \mathbb{R}^n} f(x) + t \cdot \alpha(x) $$
+
+Die exakte Lösung von P würde man für jedes t mit der „idealen“ Straftermfunktion $\alpha(x) =  +\infty$ für alle $x \in M^c$ erhalten. Da dies nicht numerisch realisierbar ist, folgt mit
+	$$ g_i^+(x) \coloneqq \max \{ 0, g_i(x) \}, ~ i \in I $$
+Wegen der Definitheit von Normen betrachten wir mit einem $r \in \mathbb{N}$ der Term
+$$ \alpha_r(x) \coloneqq \| (g_1^+(x), \dotsc, g_p^+(x), h_1(x), \dotsc, h_q(x)) \|_r^r $$
+Diese verschwindet genau dann, wenn auch das Argument eintragsweise verschwindet.
+
+\begin{uebung}
+	Zeigen Sie mit Hilfe von Übung 2.1.12, dass die Funktionen $\varphi(a) = \max \{0, a\}$ und $abs(a) = |a|$ an jedem $a \in \mathbb{R}$ einseitig richtungsdifferenzierbar sind, und zwar mit für alle $d \in \mathbb{R}$ 
+	$$ \varphi'(a, d) = \begin{cases}
+		0, & \text{ falls } a < 0 \\
+		\max \{ 0, d \}, & \text{ falls } a = 0 \\ d, & \text{ falls } a > 0
+	\end{cases} $$
+	$$ abs'(a, d) = \begin{cases}
+		-d, & \text{ falls } a < 0 \\ |d|, & \text{ falls } a = 0 \\ d, & \text{ falls } a > 0
+	\end{cases} $$
+\end{uebung}
+
+\begin{uebung}
+	Für auf $\mathbb{R}^n$ stetig differenzierbare Funktionen $g$ und $h$ die einseitige Richtungsdifferenzierbarkeit der $\ell_1$-Straftermfunktion an jedem $x \in \mathbb{R}^n$ mit
+	$$ \alpha_1'(x, d) = \sum_{i \in I_0(x)} \max \{ 0, \langle \nabla g_i(x), d \rangle \} + \sum_{i \in I_+(x)} \langle \nabla g_i(x), d \rangle - \sum_{j \in J_{-}(x)} \langle \nabla h_j(x), d \rangle $$
+	$$  ~\hspace{3cm} + \sum_{j \in J_0(x)} |\langle \nabla h_j(x), d \rangle | + \sum_{j \in J_{+}(x)} \langle \nabla h_j(x), d \rangle $$
+\end{uebung}
+
+\begin{uebung}
+	Die Funktion $\varphi^2(a) = (\max\{0, a\})^2$ ist an jedem $a \in \mathbb{R}$ stetig differenzierbar und für auf $\mathbb{R}^n$ stetig differenzierbare Funktionen $g$ und $h$ ist daher auch $\alpha_2$ auf ganz $\mathbb{R}^n$ stetig differenzierbar.
+\end{uebung}
+
+\begin{satz}
+	Die Funktion $\alpha \colon \mathbb{R}^n \rightarrow \mathbb{R}$ sei eine stetige Straftermfunktion für $M$, $(t^k)$ sei eine monoton wachsende Folge mit $\lim_k t^k = +\infty$, und für alle $k \in \mathbb{N}$ sei $x^k$ ein globaler Minimalpunkt von $P(t^k)$. Dann ist jeder Häufungspunkt $x^*$ von $(x^k)$ ein globaler Minimalpunkt von $P$.
+\end{satz}
+
 \end{document}
