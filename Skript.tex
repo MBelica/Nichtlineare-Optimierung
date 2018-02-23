@@ -213,8 +213,8 @@
 \setcounter{thm}{0}
 
 \begin{definition}[Abstiegsrichtung]
-	Es seien $f \colon \mathbb{R}^n \rightarrow \mathbb{r}$ und $\overline{x} \in \mathbb{R}^n$. Ein Vektor $d \in \mathbb{R}^n$ heißt \textbf{Abstiegsrichtung} für $f$ in $\overline{x}$, falls
-	$$ \exists \hat{f} > 0 ~\forall t \in (0, \hat{t}) \colon f(\overline{x} + td) < f(\overline{x}). $$
+	Es seien $f \colon \mathbb{R}^n \rightarrow \mathbb{R}$ und $\overline{x} \in \mathbb{R}^n$. Ein Vektor $d \in \mathbb{R}^n$ heißt \textbf{Abstiegsrichtung} für $f$ in $\overline{x}$, falls
+	$$ \exists \hat{t} > 0 ~\forall t \in (0, \hat{t}) \colon f(\overline{x} + td) < f(\overline{x}). $$
 \end{definition}
 
 \begin{uebung}
@@ -297,18 +297,18 @@
 \subsection*{Geometrische Eigenschaften von Gradienten}
 
 \begin{center}
-	\includegraphics[scale=0.5]{a21}
+	\includegraphics[scale=0.5]{img/a21}
 \end{center}
 
 \begin{center}
-	\includegraphics[scale=0.5]{ab22}
+	\includegraphics[scale=0.5]{img/ab22}
 \end{center}
 
 \setcounter{thm}{18}
 
 \begin{bemerkung*}
 	Man kann zeigen, dass jeder Vektor $d \in \mathbb{R}^n$ mit $\langle \nabla f(\overline{x}), d \rangle > 0$ eine Anstiegsrichtung erster Ordnung ist. Da für einen nichtkritischen Punkt $\overline{x}$ die Gradientenrichtung $d =\nabla f(\overline{x})$ die strikte Ungleichung
-	$$ \langle \nabla f(\overline{x}), \nabla f(\overline{x}) \rangle = \{ \nabla f(\overline{x}) \|_2^2 > 0 $$
+	$$ \langle \nabla f(\overline{x}), \nabla f(\overline{x}) \rangle = \| \nabla f(\overline{x}) \|_2^2 > 0 $$
 	erfüllt, ist $d = \nabla f(\overline{x})$ also eine Anstiegsrichtung erster Ordnung für $f$ in $\overline{x}$, und man kann zeigen, dass $\nabla f(\overline{x})$ senkrecht auf dem Rand von $f_{\leq}^{f(\overline{x})}$ steht.
 \end{bemerkung*}
 
@@ -360,7 +360,7 @@
 \end{satz}
 
 \begin{center}
-	\includegraphics[scale=0.5]{a22}
+	\includegraphics[scale=0.5]{img/a22}
 \end{center}
 
 \setcounter{thm}{29}
@@ -431,7 +431,7 @@
 \end{bemerkung*}
 
 \begin{center}
-	\includegraphics[scale=0.5]{ab24}
+	\includegraphics[scale=0.5]{img/ab24}
 \end{center}
 
 \begin{satz}[$C^1$-Charakterisierung von Konvexität]
@@ -459,7 +459,7 @@
 \setcounter{section}{2}
 \setcounter{thm}{0}
 
-\subsection{Abstiegsverfahren}
+\subsection*{Abstiegsverfahren}
 Zunächst betrachten wir Verfahren, die in jedem Iterationsschritt einen Abstieg im Zielfunktionswert erzeugen, für die also
 
 $$ \forall k \in \mathbb{N}_0: \quad f(x^{k+1}) < f(x^k) $$
@@ -477,7 +477,7 @@ Neben der Stetigkeit der Zielfunktion $f$ werden wir im gesamten Abschn. 2.2 for
 \end{uebung*}
 
 \begin{center}
-	\includegraphics[scale=0.5]{a23}
+	\includegraphics[scale=0.5]{img/a23}
 \end{center}
 
 \setcounter{thm}{2}
@@ -575,11 +575,11 @@ Eine in modernen Implementierungen von Optimierungsverfahren sehr beliebte inexa
 	 mit $c_1 = \sigma$.
 	
 \begin{center}
-	\includegraphics[scale=0.5]{ab25}
+	\includegraphics[scale=0.5]{img/ab25}
 \end{center}	
 
 \begin{center}
-	\includegraphics[scale=0.5]{a24}
+	\includegraphics[scale=0.5]{img/a24}
 \end{center}
 
 \begin{satz}
@@ -593,12 +593,12 @@ Eine in modernen Implementierungen von Optimierungsverfahren sehr beliebte inexa
 
 Man sollte $t^0$ also so initialisieren, wie in Algorithmus 2.4 angegeben, wobei sich die Wahl $\gamma = 10^{-4}$ bewährt hat. Es ist außerdem nicht schwer zu sehen, dass sich die Armijo-Regel auch für nur einseitig richtungsdifferenzierbare Funktionen einsetzen lässt, indem man das Skalarprodukt $\lambda \nabla f(\overline{x}), d \rangle$ durch $f'(\overline{x}, d)$ ersetzt.
 
-\subsection{Gradientenverfahren}
+\subsection*{Gradientenverfahren}
 
 Aufgrund seiner geometrischen Grundidee ist dies das Verfahren des steilsten Abstiegs.
 
 \begin{center}
-	\includegraphics[scale=0.5]{a25}
+	\includegraphics[scale=0.5]{img/a25}
 \end{center}
 
 \begin{satz}
@@ -623,7 +623,7 @@ Aufgrund seiner geometrischen Grundidee ist dies das Verfahren des steilsten Abs
 Falls die Höhenlinien von $f$ die Form lang gezogener Ellipsen mit einem Minimalpunkt $x^*$ in deren gemeinsamem Zentrum besitzen, dann zeigt $-\nabla f(x^k)$ typischerweise nicht in die Richtung von $x^*$. Die Iterierten springen dadurch entlang einer Zickzacklinie, weshalb man in Anlehnung an die englischsprachige Literatur auch vom Zigzagging-Effekt spricht.
 
 \begin{center}
-	\includegraphics[scale=0.5]{ab26}
+	\includegraphics[scale=0.5]{img/ab26}
 \end{center}
 
 \begin{definition}[Konvergenzgeschwindigkeiten]
@@ -701,7 +701,7 @@ Da die quadrierten Abstände der Iterierten zum Grenzpunkt linear konvergieren, 
 \end{lemma}
 
 \begin{center}
-	\includegraphics[scale=0.5]{a26}
+	\includegraphics[scale=0.5]{img/a26}
 \end{center}
 
 In Zeile 2 von Algorithmus 2.6 wählt man häufig $A^0 = E$, also als erste Suchrichtung die Gradientenrichtung $d^0 = - \nabla f(x^0)$. In Zeile 3 wäre ein konsistenteres Abbruchkriterium eigentlich 
@@ -840,7 +840,7 @@ sind natürliche Bedingungen dafür $\lim_k t^k = 1$ und $\lim_k A^k = D^2 f(x^*
 Ein möglicher Ansatz Matrizen $A^k$ zu finden mit $\lim_k A^k = D^2 f(x^*)$ besteht darin, zunächst das Sekantenverfahren zur Nullstellensuche einer Funktion von $\mathbb{R}$ nach $\mathbb{R}$ zu betrachten. 
 
 \begin{center}
-	\includegraphics[scale=0.5]{ab28}
+	\includegraphics[scale=0.5]{img/ab28}
 \end{center}
 
 Hieraus erhält man für $n \geq 1$ di Gleichung
@@ -960,7 +960,7 @@ Satz 2.2.58 motiviert den Algorithmus 2.7, da er für $f (x) = q(x) = \frac{1}{2
 Wegen Rundungsfehlern bricht das Verfahren aber selten tatsächlich nach $n$ Schritten ab, so dass auch seine Konvergenzgeschwindigkeit untersucht wurde. Es stellt sich heraus, dass sie von der Wurzel der Konditionszahl (also dem Quotienten aus größtem und kleinstem Eigenwert) der Matrix $A^T A$ abhängt. Es bietet sich daher an, das Gleichungssystem $Ax = b$ zunächst so äquivalent umzuformen, dass diese Konditionszahl sinkt. Dies ist als Präkonditionierung bekannt.
 
 \begin{center}
-	\includegraphics[scale=0.5]{a27}
+	\includegraphics[scale=0.5]{img/a27}
 \end{center}
 
 \begin{bemerkung}
@@ -998,7 +998,7 @@ Die Lösung zu diesem Problem ergibt sich $d_C^k \coloneqq - \frac{s^k t^k}{\| \
 $$ s^k \coloneqq \begin{cases} 1, & \text{ falls } Df(x^k) A^k \nabla f(x^k)\leq 0 \\ \min \left\{ \frac{\| \nabla f(^k) \|_2^3}{t^k Df(x^k) A^k \nabla f(x^k)}, 1 \right\}, & \text{ sonst} \end{cases} $$
 
 \begin{center}
-	\includegraphics[scale=0.75]{a28}
+	\includegraphics[scale=0.75]{img/a28}
 \end{center}
 
 \begin{definition}[Cauchy-Punkt]
@@ -1037,7 +1037,7 @@ $$ \hat{d}(s) = \begin{cases}
 \end{cases} $$
 
 \begin{center}
-	\includegraphics[scale=0.5]{ab210}
+	\includegraphics[scale=0.5]{img/ab210}
 \end{center}
 
 \begin{uebung}
@@ -1146,7 +1146,7 @@ Die funktionale Beschreibung einer zulässigen Menge kann so ungeschickt sein ka
 Es gibt zudem Fälle, in denen schon die Geometrie der zulässigen Menge so ungünstig ist, dass keine funktionale Beschreibung die gewünschte \enquote{gute} Approximation erster Ordnung liefert.
 
 \begin{center}
-	\includegraphics[scale=0.5]{ab34}
+	\includegraphics[scale=0.5]{img/ab34}
 \end{center}
 
 \setcounter{thm}{16}
@@ -1166,7 +1166,7 @@ Der äußere Tangentialkegel ist im Gegensatz zum äußeren Linearisierungskegel
 Abb. 3.5 zeigt Beispiele für innere und äußere Tangentialkegel sowie Vektoren $\overline{d}^1 \notin \Gamma(\overline{x}^1, M)$ und $\overline{d}^2 \in C(\overline{x}^2, M)$. Würde man in Definition 3.1.17 keine variablen Richtungen zulassen, so resultierte dies hingegen in $\overline{d}^1 \in \Gamma(\overline{x}^1, M)$ und $\overline{d}^2 \notin C(\overline{x}^2, M)$.
 
 \begin{center}
-	\includegraphics[scale=0.5]{ab35}
+	\includegraphics[scale=0.5]{img/ab35}
 \end{center}
 
 \begin{lemma}
@@ -1293,7 +1293,7 @@ Geometrisch bedeutet die Bedingung in Korollar 3.2.4a
 $$ \langle a^k, d \rangle < 0 \quad 1 \leq k \leq r,$$  dass es keinen Vektor $d$ gibt, der gleichzeitig mit allen Vektoren $a_1, \dotsc , a_r$ einen stumpfen Winkel bildet.
  
 \begin{center}
-	\includegraphics[scale=0.5]{ab36}
+	\includegraphics[scale=0.5]{img/ab36}
 \end{center} 
  
 In Abb. 3.6 sind rechts drei Vektoren eingezeichnet, für die dies der Fall ist, während links ein Vektor $d$ existiert, der mit allen drei Vektoren gleichzeitig einen stumpfen Winkel bildet. Ebenfalls eingezeichnet ist die konvexe Hülle dieser drei Vektoren. Allgemein besteht die konvexe Hülle conv(A) einer Menge $A \subseteq \mathbb{R}^n$ aus der Menge aller Konvexkombinationen von Elementen in $A$. In Abb. 3.6 beobachtet man, dass die Unlösbarkeit des Ungleichungssystems (rechts) damit einhergeht, dass der Nullpunkt in der konvexen Hülle der drei Vektoren enthalten ist, während dies bei Lösbarkeit des Ungleichungssystems (links) nicht der Fall ist. Dass dies tatsächlich immer so ist, führt letztlich auf algorithmisch verwertbare Optimalitätsbedingungen und ist der Inhalt des folgenden zentralen Resultats, dessen vollständiger Beweis einiger Vorbereitung bedarf.
@@ -1326,7 +1326,7 @@ In Abb. 3.6 sind rechts drei Vektoren eingezeichnet, für die dies der Fall ist,
 \end{satz}
 
 \begin{center}
-	\includegraphics[scale=0.5]{ab38}
+	\includegraphics[scale=0.5]{img/ab38}
 \end{center}
  
 \begin{satz}[Satz von Carathéodory]
@@ -1553,7 +1553,7 @@ Aus Ergebnissen der linearen Algebra folgt, dass die Multiplikatoren eines KKT-P
 \end{korollar}
 
 \begin{center}
-	\includegraphics[scale=0.5]{a31}
+	\includegraphics[scale=0.5]{img/a31}
 \end{center}
  
 Für kleine Werte von $p$ löst man durch Fallunterscheidung der aktiven Indexmenge das System
@@ -1588,7 +1588,7 @@ Man fasst die letzte Zeile nicht zu $\sum_{i \in I} \lambda_i g_i(x) = 0$ zusamm
 Strikte Komplementarität bedeutet hier gerade, dass die Knickstelle dieser Menge, nämlich der Nullpunkt, aus der Menge entfernt wird.
 
 \begin{center}
-	\includegraphics[scale=0.5]{ab310}
+	\includegraphics[scale=0.5]{img/ab310}
 \end{center}
 
 \setcounter{thm}{51}
@@ -1781,7 +1781,7 @@ heißt konvex, falls die Menge $M \subseteq \mathbb{R}^n$ und die Funktion $f \c
 Die SB ist eine globale Bedingung an $M$, denn der Slater-Punkt $x^*$ braucht nichts mit einem Optimalpunkt von $P$ zu tun zu haben. In der Tat können nichtkonvexe Probleme einen Slater-Punkt besitzen, während gleichzeitig in einem Optimalpunkt die MFB verletzt ist. Bei glatten konvexen Optimierungsproblemen kann dieser Effekt nicht auftreten.
 
 \begin{center}
-	\includegraphics[scale=0.5]{ab312}
+	\includegraphics[scale=0.5]{img/ab312}
 \end{center}
 
 \begin{satz}
@@ -1809,7 +1809,10 @@ Im Gegensatz zur notwendigen Optimalitätsbedingung aus Korollar 3.2.76 benötig
 
 	$$ \overline{x} \text{ globaler Minimalpunkt } \xRightarrow[]{SB} \overline{x} \text{ KKT-Punkt } \Rightarrow \overline{x} \text{ globaler Minimalpunkt } $$
 
-\section{Numerische Verfahren}
+\section*{Numerische Verfahren}
+
+\setcounter{section}{3}
+\setcounter{thm}{0}
 
 Dieser Abschnitt behandelt einige numerische Verfahren zur Lösung des Problems
 
@@ -1818,6 +1821,8 @@ $$ P: \quad \min_{x \in \mathbb{R}^n} f(x) ~\text{ s.t. } g_i(x) \leq 0, i \in I
 mit hinreichend glatten Funktionen $f$, $g$ und $h$.
 
 \subsection*{Straftermverfahren}
+
+
 
 \begin{definition}[Straftermfunktion]
 	Eine Funktion $\alpha \colon \mathbb{R}^n \rightarrow \mathbb{R}$ heißt Straftermfunktion für $M \subseteq \mathbb{R}^n$, falls folgende Bedingungen erfüllt sind:
@@ -1857,8 +1862,205 @@ Diese verschwindet genau dann, wenn auch das Argument eintragsweise verschwindet
 	Die Funktion $\varphi^2(a) = (\max\{0, a\})^2$ ist an jedem $a \in \mathbb{R}$ stetig differenzierbar und für auf $\mathbb{R}^n$ stetig differenzierbare Funktionen $g$ und $h$ ist daher auch $\alpha_2$ auf ganz $\mathbb{R}^n$ stetig differenzierbar.
 \end{uebung}
 
+\begin{center}
+	\includegraphics[scale=0.5]{img/ab313}
+\end{center}
+
+\setcounter{thm}{5}
+
 \begin{satz}
 	Die Funktion $\alpha \colon \mathbb{R}^n \rightarrow \mathbb{R}$ sei eine stetige Straftermfunktion für $M$, $(t^k)$ sei eine monoton wachsende Folge mit $\lim_k t^k = +\infty$, und für alle $k \in \mathbb{N}$ sei $x^k$ ein globaler Minimalpunkt von $P(t^k)$. Dann ist jeder Häufungspunkt $x^*$ von $(x^k)$ ein globaler Minimalpunkt von $P$.
 \end{satz}
+
+\begin{center}
+	\includegraphics[scale=0.5]{img/a32}
+\end{center}
+
+Algorithmus 3.2 ist wegen seiner einfachen Implementierbarkeit zwar in der Praxis sehr beliebt, aber in dem Sinne nur konzeptionell, dass die Verfahren aus Abschn. 2.2 ohne weitere Voraussetzungen nicht \textit{globale} Minimalpunkte der Hilfsprobleme $P(t^k)$ aus Zeile 6 identifizieren können. Die Anwendbarkeit der Verfahren aus Abschn. 2.2 setzt außerdem eine glatte Straftermfunktion voraus, also beispielsweise $\alpha_2$, aber nicht $\alpha_1$. \bigskip
+
+Selbst bei Nutzung einer glatten Straftermfunktion wird die numerische Behandlung der Probleme $P(t)$ für wachsende $t$ zunehmend schwieriger, da die Zielfunktion $f (x) + t \alpha(x)$ dann am Rand von $M$ eine immer stärkere Krümmung aufweist. Wird eine gewisse Schranke für $t$ überschritten, ist die theoretisch glatte Zielfunktion von $P(t)$ numerisch nicht mehr von einer am Rand von $M$ nichtglatten Funktion unterscheidbar, so dass die Verfahren aus Abschn. 2.2 gegebenenfalls nicht mehr funktionieren.
+
+Ein weiterer Nachteil von Straftermverfahren besteht darin, dass die Punkte $x(t)$ mit $t > 0$ für $P$ üblicherweise unzulässig sind. Beispiel 3.3.5 belegt außerdem, dass man einen exakten Optimalpunkt von $P$ mit dem differenzierbaren $\ell_2$-Strafterm im Allgemeinen tatsächlich nur für $t \rightarrow \infty$ erhält. Von Algorithmus 3.2 kann man also nur erwarten, einen \enquote{fast zulässigen} Punkt $x_k$ in dem Sinne zu generieren, dass sein Zulässigkeitsmaß $\alpha(x^k) < \epsilon/t^k$ (statt $\alpha(x^k) = 0$) erfüllt. ~\bigskip
+
+Mit der $\ell_1$-Straftermfunktion $\alpha_1$ findet man hingegen den exakten Optimalpunkt von $P$ unter schwachen Voraussetzungen bereits für genügend großes $t$. Das Verfahren mit $\ell_-1$-Straftermfunktion nennt man daher exaktes Straftermverfahren.
+
+\setcounter{thm}{7}
+
+\begin{satz}
+	Es sei $\overline{x}$ ein nichtdegenerierter lokaler Minimalpunkt von $P$ mit Multiplikatoren $\overline{\lambda}$, $\overline{\mu}$. Dann ist $\overline{x}$ für alle 
+	$$ t > \| (\overline{\lambda}_{I_0}, \overline{\mu})\|_\infty (= \max \{ \overline{\lambda}_i, i \in I_0(\overline{x}), |\overline{\mu}_j|, j \in J. \}) $$
+	auch lokaler Minimalpunkt von $P_1(t)$.
+\end{satz}
+
+Ein wesentlicher Nachteil der $\ell_1$-Straftermfunktion ist die mangelnde Glattheit der unrestringierten Hilfsprobleme $P_1(t)$, $t > 0$, so dass man dieses Verfahren überwiegend für Probleme anwendet, bei denen $P$ selbst bereits nichtglatt ist.
+
+Ein weiterer Nachteil besteht darin, dass die Schranke $\|(\overline{\lambda}_{I_0}, \overline{\mu})\|_\infty$ nicht a priori bekannt ist. In Abschn. 3.3.6 werden wir die $\ell_1$-Straftermfunktion trotzdem numerisch sinnvoll zum Einsatz bringen können.
+
+\subsection*{Multiplikatorenverfahren}
+
+Einen glatten und exakten Strafterm liefert die folgende Überlegung, die wir wieder nur für den Fall $I = \emptyset$ darstellen, da sich Ungleichungen an nichtdegenerierten kritischen Punkten wie Gleichungen verhalten.
+
+\setcounter{thm}{9}
+
+\begin{satz}
+	Es sei $\overline{x}$ ein nichtdegenerierter lokaler Minimalpunkt von P mit Multiplikator $\overline{\mu}$. Dann existiert ein  $\overline{t} > 0$, so dass $\overline{x}$ für alle $t > \overline{t}$ ein strikter lokaler Minimalpunkt von $\pi(x, t, \overline{\mu}) \coloneqq L(x, \overline{\mu}) + t \| h(x) \|_2^2$ ist.	
+\end{satz}
+
+Der vom exakten Straftermverfahren bekannte Nachteil, dass die von $t$ zu überschreitende Schranke a priori unbekannt ist, bleibt leider auch beim Multiplikatorenverfahren erhalten. 
+
+\subsection*{Barrierevrfahren}
+
+
+Barriereverfahren behandeln die Ungleichungsrestriktionen in P, weshalb wir uns hier auf den Fall ohne Gleichungen konzentrieren. Im Fall $J \neq \emptyset$ reduziert der Barriereansatz $P$ zumindest auf ein Problem mit $I = \emptyset$. Zum Problem
+		$$ P: \quad \min_{x \in \mathbb{R}^n} f(x) ~\text{ s.t. }~ g_i(x) \leq 0, i \in I $$
+	mit 
+		$$ M_{<} \coloneqq \big\{ x \in \mathbb{R}^n ~|~ g_i(x) < 0, i \in I \big\} \neq \emptyset $$
+	
+d. h., die aus der konvexen Optimierung bekannte Slater-Bedingung (SB) sei erfüllt. Grundidee von Barriereverfahren ist es, P durch ein Problem zu ersetzen, bei dem die Ungleichungsrestriktionen nicht aktiv werden können. Im Folgenden bezeichnen wir mit $\operatorname{bd}A$ den (topologischen) Rand einer Menge $A\subseteq \mathbb{R}^n$ (d. h. die Menge aller Punkte, für die jede ihrer Umgebungen sowohl ein Element von $A$ als auch ein Element von $A^c$ enthält; bd = boundary).	
+	
+\begin{definition}[Barrierefunktion]
+	Die Funktion $\beta \colon M_< \rightarrow \mathbb{R}$ heißt \textbf{Barrierefunktion} für $M$, falls für alle Folgen $(x^k) \subseteq M_<$ mit $\lim_k x^k = \overline{x} \in \operatorname{bd}M_<$ folgendes gilt:
+	$$ \lim_k \beta(x^k) = + \infty $$	
+\end{definition}
+
+Die definierende Eigenschaft der Barrierefunktion lässt sich als \enquote{Strafe für zur große Nähe zum Rand von M} interpretieren. Ein wichtiger Barriereterm ist (Frischs) logarithmische Barrierefunktion
+
+$$ \beta(x) = - \sum_{i \in I} \log(-g_i(x)). $$
+
+Ein Barriereverfahren ersetzt $P$ durch das Problem
+	$$ P(t): \quad \min_{x \in \mathbb{R}^n} f(x)+ t \cdot \beta (x) ~\text{ s.t. }~x \in M $$
+	
+	mit $t > 0$, wobei die die Menge $M$ beschreibenden Ungleichungsrestriktionen aufgrund des Barriereterms nicht aktiv werden können. Die Zielfunktion von $P(t)$ ist nur auf $M_<$ definiert.
+
+\setcounter{thm}{12}
+
+\begin{satz}
+	Es gelte $M = \operatorname{cl}(M_<)$ , $\beta$ sei stetig auf $M_<$, und für $t^k \searrow 0$ seien $x^k$ globale Minimalpunkte von $P(t^k)$. Dann ist jeder Häufungspunkt $x^*$ von $(x^k)$ globaler Minimalpunkt von $P$.
+\end{satz}
+
+\begin{center}
+	\includegraphics[scale=0.5]{img/ab316}
+\end{center}
+
+\begin{uebung}
+	Die Voraussetzung $M = \operatorname{cl}(M_<)$ aus Satz 3.3.13 lässt sich durch die Forderung der $MFB$ in ganz $M$ garantieren.
+\end{uebung}	
+	
+Zur numerischen Behandlung der Hilfsprobleme $P(t^k)$ in Algorithmus 3.3 durch die Verfahren aus Abschn. 2.2 ist es zunächst natürlich erforderlich, eine auf $M_<$ mindestens einmal stetig differenzierbare Barrierefunktion $\beta$ zu wählen. Wie Algorithmus 3.2 ist Algorithmus 3.3 aber alleine schon deshalb nur konzeptionell, weil die Verfahren aus Abschn. 2.2 ohne weitere Voraussetzungen nicht globale Minimalpunkte der Hilfsprobleme $P(t^k)$ in Zeile 6 identifizieren können.	
+	
+\begin{center}
+	\includegraphics[scale=0.475]{img/a33}
+\end{center}
+
+Außerdem wird hier die numerische Behandlung der Probleme $P(t^k)$ für fallende $t^k$ zunehmend schwieriger, da die Barrierefunktion $\beta$ dann am Rand von $M$ eine immer stärkere Krümmung aufweist. Bei der numerischen Lösung des Hilfsproblems $P(t^k)$ mit einem der Verfahren aus Abschn. 2.2 ist darauf zu achten, dass eine zu große Schrittweite zur Verletzung der theoretisch inaktiven Restriktionen $g_i(x) \leq 0$, $i \in I$, führen kann. Daher muss man diese Nebenbedingung numerisch explizit berücksichtigen und gegebenenfalls hinreichend kleine Schrittweiten wählen. ~\bigskip
+
+Immerhin ist für $t > 0$ jeder optimale Punkt von $P(t$ ein innerer Punkt von$ M$, Barriereverfahren sind also (primale) Innere-Punkte-Methoden. Falls man die numerische Iteration bei einer Inneren-Punkte-Methode nach wenigen Schritten beenden muss, ohne ein Abbruchkriterium erfüllt zu haben, liegt immerhin ein zulässiger Punkt mit üblicherweise verbessertem Zielfunktionswert vor. ~\bigskip
+
+Wir stellen das Wolfe-dual Problem auf:
+	$$ D: \quad \max_{x, \lambda} L(x, \lambda) ~\text{ s.t. }~\nabla_xL(x, \lambda) = 0, \lambda \geq 0 $$
+Ferner sei $v_D$ das Supremum der Funktion $L$ über der zulässigen Menge von $D$ und $v_P$ das Infimum der Funktion $f$ über der zulässigen Menge von $P$. Dann gilt für jedes konvexe $C^1$-Problem $P$ nach dem schwachen Dualitätssatz $v_D \leq v_P$. Die demnach nichtnegative Differenz $v_P - v_D$ wird Dualitätslücke genannt.	Für jeden zulässigen Punkt $\overline{x}$ von $P$ und jedes $\overline{\lambda}$, so dass $(\overline{x}, \overline{\lambda})$ zulässig für $D$ ist, bildet die Differenz
+
+$$ f(\overline{x}) - L(\overline{x}, \overline{\lambda}) \geq v_P - v_D \geq 0 $$
+per Definition von $v_P$ und $v_D$ eine Oberschranke für die Dualitätslücke. Findet man also einen primal zulässigen Punkt $\overline{x}$ und einen zugehörigen dual zulässigen Punkt $(\overline{x}, \overline{\lambda})$ mit $f (\overline{x}) - L(\overline{x}, \overline{\lambda}) = 0$, so ist $\overline{x}$ ein global minimaler Punkt für $P$ und $(\overline{x}, \overline{\lambda})$ ein global maximaler Punkt für $D$. ~\bigskip
+
+Da die Bedingung
+
+	$$ 0 = f(\overline{x}) - L(\overline{x}, \overline{\lambda}) = - \sum_{i \in I} \overline{\lambda}_i g_i(\overline{x}) $$
+
+gemeinsam mit der primalen und dualen Zulässigkeit genau bedeutet, dass $\overline{x}$ ein KKT-unkt von $P$ mit Multiplikatoren $\overline{\lambda}$ ist, haben wir damit einerseits einen alternativen, auf Dualitätstheorie basierenden Beweis für Satz 3.2.77 erbracht. Andererseits werden wir im Folgenden sehen, dass auch das Abbruchkriterium $t^k < \epsilon$ aus Algorithmus 3.3 eine Oberschranke für die Dualitätslücke liefert. ~\bigskip
+
+Dazu schreiben wir auf, was die Fermat’sche Regel (Satz 2.1.13) für den unrestringierten Optimalpunkt $x^k$ von $P(t^k)$ mit
+$$ \lambda_i^k \coloneqq - \frac{t^k}{g_i(x^k)}, ~ i \in I $$
+erfüllt dieser also die Gleichung
+$$ \nabla_x L(c^k, \lambda^k) = 0 $$
+
+Wegen $t^k > 0$ und $g_i(x^k) < 0$, $i \in I$, gilt ferner $\lambda^k > 0$, so dass $(x^k , \lambda^k)$ insgesamt ein zulässiger Punkt des Wolfe-dualen Problems $D$ ist. Da außerdem $x^k$ primal zulässig ist, erhalten wir aus den obigen Überlegungen
+
+	$$ 0 \leq v_p - v_D \leq f(x^k) - L(x^k, \lambda^k) = - \sum_{i \in I} \lambda_i^k g_i(x^k)= - \sum_{i \in I} \left( - \frac{t^k}{g_i(x^k)} \right) g_i(x^k) = p t^k $$
+
+Eine Interpretation des Abbruchkriteriums $t^k < \epsilon$ in Algorithmus 3.3 besteht also darin, dass dann die Dualitätslücke beim Terminieren unter dem Wert $p \epsilon$ liegt. ~\bigskip
+
+Da das Barriereverfahren allerdings ein rein primales Verfahren ist, formulieren wir noch ein aus diesen Überlegungen folgendes rein primales Resultat zum Abbruchkriterium.
+
+\begin{satz}
+	Bei Anwendung von Algorithmus 3.3 auf ein $C^1$-Problem $P$ mit auf $\mathbb{R}^n$ konvexen Funktionen $f$ und $g_i$, $i \in I$, sowie mit der logarithmischen Barrierefunktion $\beta(x) - \log \left(- g_i(x) \right)$ erfüllt der generierte Punkt $\overline{x}$ die Ungleichungen 
+
+	$$ v_P \leq f(\overline{x}) < v_p + p \epsilon $$
+\end{satz}
+
+Wegen der primalen Zulässigkeit des Punkts $\overline{x}$ handelt es sich bei ihm nach Satz 3.3.15 um einen sogenannten $(p \epsilon)$-optimalen Punkt von $P$. Instabilität folgt auch aus der Wahl von $\lambda^k$, da sowohl Nenner als auch Zähler gegen 0 streben.
+
+\subsection*{Primal-duale Innere-Punkte-Methoden}
+	
+Die im vorhergehenden Abschnitt hergeleitete Optimalitätsbedingung erster Ordnung für $x^k$ in $P(t^k)$ ist äquivalent zur Lösbarkeit des Systems
+
+\begin{align*}
+	\nabla f(x) + \sum_{i \in I} \lambda_i \nabla g_i(x) & = 0, \\
+	g_i(x) & < 0, i \in I \\
+	\lambda_i & > 0, i \in I \\
+	\lambda_i \cdot g_i(x) + t & = 0, i \in I
+\end{align*}	
+durch $(t^k, x^k, \lambda^k)$. Dieses System ist offenbar eng mit dem KKT-System von $P$ verwandt, indem nämlich dessen Komplementaritätsbedingungen durch den Parameter $t$ gestört werden. Entscheidend an dieser Beobachtung ist, dass beim Grenzübergang $t \searrow 0$ keine numerische Instabilität mehr zu erwarten ist. Dies führt auf die folgende Klasse von Karush-Kuhn-Tucker-Verfahren. Grundidee dieser Verfahren ist es, für $t \searrow 0$ Nullstellen von
+	$$ \mathfrak{T}(t, x, \lambda) = \begin{pmatrix}
+		\nabla f(x) + \sum_{i \in I} \lambda_i \nabla g_i(x) \\
+		\operatorname{diag}(\lambda) \cdot g(x) + t \cdot e
+	\end{pmatrix} $$
+	
+mit $g(x(t)) < 0$ und $\lambda(t) > 0$ zu berechnen, wobei $e$ wieder den Einservektor bezeichnet. Im Fall der Konvergenz $x(t) \rightarrow \overline{x}$ und $\lambda(t) \rightarrow \overline{\lambda}$ ist $\overline{x}$ offenbar KKT-Punkt von $P$ mit Multiplikator $\overline{\lambda}$. Vorteil dieses Ansatzes ist, dass weder Probleme mit numerischer Instabilität noch mit dem Definitionsbereich einer Barrierefunktion auftreten. In der Tat könnte man Nullstellen von $\mathfrak{T}(t, x, \lambda)$ numerisch sogar für $t < 0$ suchen, was inhaltlich natürlich nicht sinnvoll ist.
+
+\setcounter{thm}{16}
+
+\begin{satz}
+	Es sei $\overline{x}$ ein nichtdegenerierter lokaler Minimalpunkt von $P$ mit Multiplikator $\overline{\lambda}$. Dann gibt es eine Umgebung $V$ von $0$ und ($C^{k-1}-$)Funktionen $x(t)$, $\lambda(t)$ auf $V$ mit $(x(0), \lambda(0)) = (\overline{x}, \overline{\lambda})$, $\mathcal{T}(t, x(t), \lambda(t)) = 0$ für alle $t \in V$ sowie $g(x(t)) < 0$ und $\lambda(t) > 0$ für alle positiven $t \in V$.
+\end{satz}	
+
+\begin{definition}[Primal-dualer zentraler Pfad]
+	Mit den Bezeichnungen aus Satz 3.3.17 heißt die Menge
+
+		$$ C_{CP} = \big\{ (x(t), \lambda(t)) ~|~ t \in V, t> 0 \big\} $$
+		
+	primal-dualer zentraler Pfad an $(\overline{x}, \overline{\lambda})$.
+\end{definition}
+
+Da der Rechenaufwand zur Identifizierung eines $\epsilon$-genauen Minimalpunkts selbst im Worst Case nur polynomial in der Problemdimension anwächst, und dies insbesondere für lineare Optimierungsprobleme gilt, sind primal-duale InnerePunkte-Methoden in dieser Hinsicht dem Simplex-Algorithmus überlegen, der im Worst Case exponentiellen Rechenaufwand besitzt.
+
+\subsection*{SQP-Verfahren}
+
+Verfahren des Sequential Quadratic Programming (SQP) nutzen die Idee des NewtonVerfahrens, eine Lösung eines nichtlinearen Problems durch die sukzessive Lösung von Linearisierungen anzunähern.~\bigskip
+
+Wählt man als nichtlineares Problem dabei zunächst naiv das Optimierungsproblem P selbst, dann ist die Linearisierung ein lineares Optimierungsproblem, das sich etwa mit dem Simplex-Algorithmus oder mit primal-dualen Innere-Punkte-Methoden lösen lässt. Um die Lösung dieser Linearisierung wird P dann erneut linearisiert, die Linearisierung gelöst und so fort. Dieser Ansatz führt etwa auf das Verfahren der zulässigen Richtungen von Zoutendijk. Wegen schlechter Identifizierung aktiver Indizes können bei diesem Verfahren sogenanntes Jamming und Konvergenz gegen einen nichtkritischen Punkt auftreten. Für eine erfolgreichere Weiterentwicklung, die unter dem Namen Sequential Linear Programming (SLP) bekannt ist, sei auf verwiesen. ~\bigskip
+
+Die Linearisierung des Problems $P$ selbst verallgemeinert allerdings gar nicht die Newton-Idee aus der unrestringierten Optimierung. Dort wird nicht die Zielfunktion linearisiert (was in Abwesenheit von Nebenbedingungen ja üblicherweise zu einem unbeschränkten Problem führen würde), sondern die Optimalitätsbedingung erster Ordnung $\nabla f(x) = 0$: Man setzt $x^{k+1} = x^k + d^k$ mit einer Lösung $d^k$ der um $x^k$ linearisierten Bedingung erster Ordnung
+
+	$$ \nabla f(x^k) + D^2 f(x^k) \cdot d^k = 0 $$
+
+Wie wir bereits in Übung 2.2.43 gesehen haben, ist diese Gleichung sogar wieder eine Optimalitätsbedingung erster Ordnung, nämlich für das quadratische Optimierungsproblem
+
+	$$ Q^k : \quad \min_{d \in \mathbb{R}^n} \langle \nabla f(x^k), d \rangle + \frac{1}{2} d^T D^2 f(x^k) d $$
+	
+Bei Konvergenz der Folge $(x^k)$ gegen einen nichtdegenerierten lokalen Minimalpunkt ist die Matrix $D^2 f (x^k)$ für alle hinreichend großen $k$ aus Stetigkeitsgründen positiv definit, so dass es sich bei $Q^k$ zusätzlich um ein konvexes Optimierungsproblem handelt. Die Lösung $d^k$ der linearisierten Bedingung erster Ordnung ist dann globaler Minimalpunkt von $Q^k$. ~\bigskip
+
+Das ungedämpfte Newton-Verfahren für unrestringierte Probleme besteht also im Wesentlichen darin, eine Folge quadratischer Optimierungsprobleme zu lösen, was zu der Bezeichnung Sequential Quadratic Programming (SQP) führt.Zu vermuten ist also, dass man für eine Verallgemeinerung des Newton-Verfahrens auf den restringierten Fall die Funktionen $f$, $g_i$, $i \in I$, $h_j$, $j \in J$, quadratisch approximieren und die entstehenden Probleme mit quadratischer Zielfunktion und quadratischen Nebenbedingungen lösen muss. Tatsächlich haben die Hilfsprobleme aber eine viel einfachere Struktur. ~\bigskip
+
+Um dies zu sehen, betrachten wir zunächst das Newton-Verfahren zur Lösung des KKTSystems von P in Abwesenheit von Ungleichungsrestriktionen, d. h. für $I = \emptyset$. Gesucht ist also eine Nullstelle von
+
+	$$ \mathfrak{T}(x, \mu) = \begin{pmatrix}
+	\nabla_x L(x, \mu) \\ h(x) \end{pmatrix} $$
+	
+Zu gegebenen $x^k$ und $\mu^k$ setzt das Newton-Verfahren dafür $\begin{pmatrix} x^{k+1} \mu^{k+1} \end{pmatrix} = \begin{pmatrix} x^k \\ \mu^k \end{pmatrix} + \begin{pmatrix} d^k \\ \sigma^k \end{pmatrix}$ mit einer Lösung $(d^k, \sigma^k)$ von
+
+\begin{equation}
+	0 = \mathfrak{T}(x^k, \mu^k) + D \mathfrak{T}(x^k, \mu^k) \begin{pmatrix} d \\ \sigma \end{pmatrix} \tag*{(3.27)}
+\end{equation} 
+
+\begin{lemma}
+	Es sei $\overline{x}$ ein nichtdegenerierter lokaler Minimalpunkt von $P$ mit Multiplikator $\overline{\mu}$, und der Startpunkt $(x^0, \mu^0)$ liege hinreichend nahe bei $(\overline{x}, \overline{\mu})$. Dann konvergiert $(x^k, \mu^k)$ quadratisch gegen $(\overline{x}, \overline{\mu})$.
+\end{lemma}
+
+Wir können festgestellen, dass man die Lösung $(d^k, \sigma^k)$ von (3.27) auch als KKTPunkt und Multiplikator von
+
+	$$ Q^k \colon \quad \min_{d \in \mathbb{R}^n} \langle \nabla f(x^k), d \rangle + \frac{1}{2} d^T D_x^2 L(x^k, \mu^k) d ~\text{ s.t. }~ h(x^k) + D h(x^k) d = 0 $$
+
+gewinnen kann. Im Gegensatz zur obigen Vermutung ist also nur die Zielfunktion des Hilfsproblems quadratisch, während die Nebenbedingungen sogar linear sind. Probleme dieses Typs heißen quadratische Optimierungsprobleme, man erhält also wieder ein SQPVerfahren. Angemerkt sei ferner, dass man für $J = \emptyset$ gerade das Problem $Q^k$ aus dem unrestringierten Fall erhält, so dass wir in der Tat eine Verallgemeinerung des NewtonVerfahrens vom unrestringierten auf den restringierten Fall entwickelt haben.
 
 \end{document}
