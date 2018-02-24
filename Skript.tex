@@ -556,7 +556,7 @@ Eine exakte Schrittweite zu berechnen, um den größtmöglichen Abstieg von $x$ 
 
 \subsubsection*{Konstante Schrittweiten}
 
-Falls die Funktion f keine besondere Struktur aufweist, lohnt sich der Aufwand nicht, in jedem Iterationsschritt eine exakte Schrittweite $t_e^k$ zu berechnen. Daher bnutzt man dann lieber inexakte Schrittweiten, die ebenfalls effizient, aber erheblich leichter zu berechnen sind. ~\bigskip
+Falls die Funktion $f$ keine besondere Struktur aufweist, lohnt sich der Aufwand nicht, in jedem Iterationsschritt eine exakte Schrittweite $t_e^k$ zu berechnen. Daher bnutzt man dann lieber inexakte Schrittweiten, die ebenfalls effizient, aber erheblich leichter zu berechnen sind. ~\bigskip
 
 Eine zunächst naheliegend erscheinende Möglichkeit dafür besteht darin 
  $$ t_c^k = - \frac{\langle \nabla f(x^k), d^k \rangle}{L \cdot \|d^k \|_2^2} $$
@@ -570,7 +570,7 @@ Auch diese Schrittweitre ist effizient, genauso wie die exakte. Im speziellen Fa
 Eine in modernen Implementierungen von Optimierungsverfahren sehr beliebte inexakte Schrittweitensteuerung geht auf eine Idee von Armijo zurück: Zu $x \in f_{\leq}^{f(x^0)}$ seien $d$ eine Abstiegsrichtung erster Ordnung und $\sigma \in (0,1)$. Dann existiert ein $t > 0$, so dass für alle $t \in (0, \hat{t})$ die Werte $\varphi_d(t)$ unter der \enquote{nach oben gedrehten Tangente} $\varphi_d(0) + t \sigma \varphi_d'(0)$ liegen, so dass also gilt:	
 	$$ f(x + td) \leq f(x) + t \sigma \langle \nabla f(x), d \rangle $$
 	
-	Offensichtlich erfüllt jedes solche $t$££ die Bedingung (2.3):
+	Offensichtlich erfüllt jedes solche $t$ die Bedingung (2.3):
 	$$ \exists c_1 > 0 ~\forall k\in \mathbb{N}: \quad f(x^k + t^k d^k) - f(x^k) \leq c_1 \cdot t^k \langle \nabla f(x^k), d^k \rangle $$
 	 mit $c_1 = \sigma$.
 	
