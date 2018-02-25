@@ -695,9 +695,15 @@ Da die quadrierten Abstände der Iterierten zum Grenzpunkt linear konvergieren, 
 \end{uebung}
 
 \begin{lemma}
-	Es sei $\nabla f(x) \neq 0$. Dann löst der Vektor 
-	$$ d = - \frac{- \nabla_A f(x)}{\| \nabla_A f(x) \|_A} $$
-	das Problem $\min \langle \nabla f(x), d \rangle$ s.t. $\| d \|_A = 1$, und zwar mit optimalem Wert $- \| \nabla_A f(x) \|_A$.
+	Es sei $\nabla f(x) \neq 0$. Dann löst der Vektor
+	 
+		$$ d = - \frac{- \nabla_A f(x)}{\| \nabla_A f(x) \|_A} $$
+		
+	das Problem 
+	
+		$$ \min \langle \nabla f(x), d \rangle ~\text{ s.t. }~ \| d \|_A = 1, $$
+	
+	und zwar mit optimalem Wert $- \| \nabla_A f(x) \|_A$.
 \end{lemma}
 
 \begin{center}
@@ -907,7 +913,7 @@ mit $A = A^T \succ 0$ und $b \in \mathbb{R}^n$.
 \begin{uebung}
 	Für $k \in \mathbb{N}$ seien $d^0, \dotsc, d^k$ paarweise konjugiert bezüglich $A$ und sämtlich ungleich null. Es gilt
 	\begin{enumerate}[label=\alph*\upshape)]
-		\item Die Vektoren $d^0, \dotsc, d^k$ sind linear unabhängig. insbesondere gilt $k < n$
+		\item Die Vektoren $d^0, \dotsc, d^k$ sind linear unabhängig. Insbesondere gilt $k < n$
 		\item Für $k = n - 1$ gilt
 			$$ A^{-1} = \sum_{l=0}^{n-1} \frac{(d^l)(d^l)^T}{(d^l)^T A (d^l)} $$	
 	\end{enumerate}
@@ -922,12 +928,12 @@ mit $A = A^T \succ 0$ und $b \in \mathbb{R}^n$.
 	Die Vektoren $d^0, \dotsc, d^{n-1}$ seien paarweise konjugiert bezüglich $A$ und sämtlich ungleich null. Dann ist $x^n$ der globale Minimalpunkt von $q$.
 \end{satz}
 		
-Satz 2.2.55 besagt, dass ein Abstiegsverfahren für die konvex-quadratische Funktion $q$ bei exakter Schrittweitensteuerung und paarweise konjugierten Suchrichtungen nach höchstens n Schritten den globalen Minimalpunkt von q findet. Da für ein Abstiegsverfahren wegen $f (x^{k+1}) < f(x^k)$ stets $t_e^k \cdot d^k = x^{k+1} - x^k \neq 0$ gilt, kann insbesondere keiner der Vektoren $d^k$ verschwinden. ~\bigskip
+Satz 2.2.55 besagt, dass ein Abstiegsverfahren für die konvex-quadratische Funktion $q$ bei exakter Schrittweitensteuerung und paarweise konjugierten Suchrichtungen nach höchstens $n$ Schritten den globalen Minimalpunkt von $q$ findet. Da für ein Abstiegsverfahren wegen $f (x^{k+1}) < f(x^k)$ stets $t_e^k \cdot d^k = x^{k+1} - x^k \neq 0$ gilt, kann insbesondere keiner der Vektoren $d^k$ verschwinden. ~\bigskip
 
 Im nächsten Schritt suchen wir nach Möglichkeiten, konjugierte Suchrichtungen explizit zu erzeugen. Der folgende Satz besagt, dass man konjugierte Richtungen zum Beispiel aus den Quasi-Newton-Verfahren der Broyden-Familie erhält.
 
 \begin{satz}
-	Für $\theta \geq 0$ werde Algorithmus 2.6 mit $t^k = t_e^k$ und $B^{k+1} = B^{k+1}_{\theta}$ auf $q() = \frac{1}{2} x^T A x + b^T x$ mit $A = A^T \succ 0$ angewendet, und für ein $k \in \mathbb{N}$ seien die Iterierten $x^0, \dotsc, x^k$ paarweise verschieden. Dann sind die Richtungen $d^0, \dotsc, d^{k-1}$ paarweise konjugiert bezüglich $A$ und sämtlich von null verschieden.
+	Für $\theta \geq 0$ werde Algorithmus 2.6 mit $t^k = t_e^k$ und $B^{k+1} = B^{k+1}_{\theta}$ auf $q(d) = \frac{1}{2} x^T A x + b^T x$ mit $A = A^T \succ 0$ angewendet, und für ein $k \in \mathbb{N}$ seien die Iterierten $x^0, \dotsc, x^k$ paarweise verschieden. Dann sind die Richtungen $d^0, \dotsc, d^{k-1}$ paarweise konjugiert bezüglich $A$ und sämtlich von null verschieden.
 \end{satz}
 
 Bei Wahl exakter Schrittweiten minimieren die Quasi-Newton-Verfahren der Broyden-Familie konvex-quadratische Funktionen also in höchstens $n$ Schritten. Für eine beliebige $C^2$-Funktion $f$ lässt sich das dahingehend interpretieren, dass sie die lokale quadratische Approximation an $f$ in $n$ Schritten minimieren, im Hinblick auf Übung 2.2.43 also einen Schritt des Newton-Verfahrens simulieren. Unter geeigneten Voraussetzungen und mit Neustarts nach jeweils $n$ Schritten konvergieren sie daher \enquote{n-Schritt-quadratisch}.
@@ -992,7 +998,7 @@ $$ r^k \coloneqq \frac{f(x^k) - f(x^k + d^k)}{m^k(0)- m^k(d^k)} $$
 
 Ein entscheidender Vorteil von Trust-Region-Verfahren gegenüber Variable-Metrik-Verfahren besteht allerdings darin, dass die Matrizen $A^k$ nicht positiv definit zu sein brauchen. Insbesondere für $A^k \equiv 0$ erhält man als \enquote{Trust-Region-Gradientenverfahren} lediglich ein übliches Gradientenverfahren mit einer speziellen Schrittweitensteuerung. Von einem solchen Verfahren ist wegen Satz 2.2.23 keine schnelle Konvergenz zu erwarten. ~\bigskip
 
- Allerdings auch hier eine inexakte Lösung von $TR^k$, um globale Konvergenz zu gewährleisten. Eine Möglichkeit dafür besteht darin, die zulässige Menge von TR k stark zu verkleinern und beispielsweise nur nichtnegative Vielfache der beim Verfahren gefundenen Suchrichtung zuzulassen:
+ Allerdings genügt auch hier eine inexakte Lösung von $TR^k$, um globale Konvergenz zu gewährleisten. Eine Möglichkeit dafür besteht darin, die zulässige Menge von $TR^k$ stark zu verkleinern und beispielsweise nur nichtnegative Vielfache der beim Verfahren gefundenen Suchrichtung zuzulassen:
 $$ TR_C^k: \quad \min_{s \in \mathbb{R}} m^k \left( - \frac{s \cdot t^k}{\| \nabla f(x^k) \|_2} \cdot \nabla f(x^k) \right) \text{ s.t. } 0 \leq s \leq 1 $$
 Die Lösung zu diesem Problem ergibt sich $d_C^k \coloneqq - \frac{s^k t^k}{\| \nabla f(x^k) \|_2} \nabla f(x^k)$ mit
 $$ s^k \coloneqq \begin{cases} 1, & \text{ falls } Df(x^k) A^k \nabla f(x^k)\leq 0 \\ \min \left\{ \frac{\| \nabla f(^k) \|_2^3}{t^k Df(x^k) A^k \nabla f(x^k)}, 1 \right\}, & \text{ sonst} \end{cases} $$
@@ -1056,11 +1062,11 @@ $$ d_{DL} = \begin{cases}
  
  \subsubsection*{Minimierung auf einem zweidimensionalen Teilraum}
 
-Die inexakte Lösung von $TR$ durch die Dogleg-Methode kann verbessert werden, indem man $TR$ nicht auf den eindimensionalen Polygonzug einschränkt, sondern auf den zweidimensionalen Teilraum, der von d G und d A aufgespannt wird. In diesem Raum liegen insbesondere alle Punkte des Polygonzugs. Man erhält das Hilfsproblem
+Die inexakte Lösung von $TR$ durch die Dogleg-Methode kann verbessert werden, indem man $TR$ nicht auf den eindimensionalen Polygonzug einschränkt, sondern auf den zweidimensionalen Teilraum, der von $d_G$ und $d_A$ aufgespannt wird. In diesem Raum liegen insbesondere alle Punkte des Polygonzugs. Man erhält das Hilfsproblem
 
 $$ \min_{d \in \mathbb{R}^n} m(d) \text{ s.t. } \| d \|_2 \leq t, ~ d \in \operatorname{bild}(\nabla f(x), A^{-1} \nabla f(x)) $$
 
-Ein Hauptvorteil dieses Ansatzes besteht darin, dass er sich im Gegensatz zur DoglegMethode sinnvoll auf indefinite Matrizen A erweitern lässt. Für Details sei auf [25] verwiesen.
+Ein Hauptvorteil dieses Ansatzes besteht darin, dass er sich im Gegensatz zur Dogleg-Methode sinnvoll auf indefinite Matrizen A erweitern lässt. Für Details sei auf [25] verwiesen.
 
 \chapter*{II. Restringierte Probleme}
 
@@ -1954,7 +1960,7 @@ Zur numerischen Behandlung der Hilfsprobleme $P(t^k)$ in Algorithmus 3.3 durch d
 
 Außerdem wird hier die numerische Behandlung der Probleme $P(t^k)$ für fallende $t^k$ zunehmend schwieriger, da die Barrierefunktion $\beta$ dann am Rand von $M$ eine immer stärkere Krümmung aufweist. Bei der numerischen Lösung des Hilfsproblems $P(t^k)$ mit einem der Verfahren aus Abschn. 2.2 ist darauf zu achten, dass eine zu große Schrittweite zur Verletzung der theoretisch inaktiven Restriktionen $g_i(x) \leq 0$, $i \in I$, führen kann. Daher muss man diese Nebenbedingung numerisch explizit berücksichtigen und gegebenenfalls hinreichend kleine Schrittweiten wählen. ~\bigskip
 
-Immerhin ist für $t > 0$ jeder optimale Punkt von $P(t$ ein innerer Punkt von$ M$, Barriereverfahren sind also (primale) Innere-Punkte-Methoden. Falls man die numerische Iteration bei einer Inneren-Punkte-Methode nach wenigen Schritten beenden muss, ohne ein Abbruchkriterium erfüllt zu haben, liegt immerhin ein zulässiger Punkt mit üblicherweise verbessertem Zielfunktionswert vor. ~\bigskip
+Immerhin ist für $t > 0$ jeder optimale Punkt von $P(t)$ ein innerer Punkt von $M$, Barriereverfahren sind also (primale) Innere-Punkte-Methoden. Falls man die numerische Iteration bei einer Inneren-Punkte-Methode nach wenigen Schritten beenden muss, ohne ein Abbruchkriterium erfüllt zu haben, liegt immerhin ein zulässiger Punkt mit üblicherweise verbessertem Zielfunktionswert vor. ~\bigskip
 
 Wir stellen das Wolfe-dual Problem auf:
 	$$ D: \quad \max_{x, \lambda} L(x, \lambda) ~\text{ s.t. }~\nabla_xL(x, \lambda) = 0, \lambda \geq 0 $$
@@ -2040,7 +2046,7 @@ Wie wir bereits in Übung 2.2.43 gesehen haben, ist diese Gleichung sogar wieder
 	
 Bei Konvergenz der Folge $(x^k)$ gegen einen nichtdegenerierten lokalen Minimalpunkt ist die Matrix $D^2 f (x^k)$ für alle hinreichend großen $k$ aus Stetigkeitsgründen positiv definit, so dass es sich bei $Q^k$ zusätzlich um ein konvexes Optimierungsproblem handelt. Die Lösung $d^k$ der linearisierten Bedingung erster Ordnung ist dann globaler Minimalpunkt von $Q^k$. ~\bigskip
 
-Das ungedämpfte Newton-Verfahren für unrestringierte Probleme besteht also im Wesentlichen darin, eine Folge quadratischer Optimierungsprobleme zu lösen, was zu der Bezeichnung Sequential Quadratic Programming (SQP) führt.Zu vermuten ist also, dass man für eine Verallgemeinerung des Newton-Verfahrens auf den restringierten Fall die Funktionen $f$, $g_i$, $i \in I$, $h_j$, $j \in J$, quadratisch approximieren und die entstehenden Probleme mit quadratischer Zielfunktion und quadratischen Nebenbedingungen lösen muss. Tatsächlich haben die Hilfsprobleme aber eine viel einfachere Struktur. ~\bigskip
+Das ungedämpfte Newton-Verfahren für unrestringierte Probleme besteht also im Wesentlichen darin, eine Folge quadratischer Optimierungsprobleme zu lösen, was zu der Bezeichnung Sequential Quadratic Programming (SQP) führt. Zu vermuten ist also, dass man für eine Verallgemeinerung des Newton-Verfahrens auf den restringierten Fall die Funktionen $f, g_i$, $i \in I$, $h_j$, $j \in J$, quadratisch approximieren und die entstehenden Probleme mit quadratischer Zielfunktion und quadratischen Nebenbedingungen lösen muss. Tatsächlich haben die Hilfsprobleme aber eine viel einfachere Struktur. ~\bigskip
 
 Um dies zu sehen, betrachten wir zunächst das Newton-Verfahren zur Lösung des KKTSystems von P in Abwesenheit von Ungleichungsrestriktionen, d. h. für $I = \emptyset$. Gesucht ist also eine Nullstelle von
 
@@ -2061,6 +2067,72 @@ Wir können festgestellen, dass man die Lösung $(d^k, \sigma^k)$ von (3.27) auc
 
 	$$ Q^k \colon \quad \min_{d \in \mathbb{R}^n} \langle \nabla f(x^k), d \rangle + \frac{1}{2} d^T D_x^2 L(x^k, \mu^k) d ~\text{ s.t. }~ h(x^k) + D h(x^k) d = 0 $$
 
-gewinnen kann. Im Gegensatz zur obigen Vermutung ist also nur die Zielfunktion des Hilfsproblems quadratisch, während die Nebenbedingungen sogar linear sind. Probleme dieses Typs heißen quadratische Optimierungsprobleme, man erhält also wieder ein SQPVerfahren. Angemerkt sei ferner, dass man für $J = \emptyset$ gerade das Problem $Q^k$ aus dem unrestringierten Fall erhält, so dass wir in der Tat eine Verallgemeinerung des NewtonVerfahrens vom unrestringierten auf den restringierten Fall entwickelt haben.
+gewinnen kann. Im Gegensatz zur obigen Vermutung ist also nur die Zielfunktion des Hilfsproblems quadratisch, während die Nebenbedingungen sogar linear sind. Probleme dieses Typs heißen quadratische Optimierungsprobleme, man erhält also wieder ein SQP-Verfahren. Angemerkt sei ferner, dass man für $J = \emptyset$ gerade das Problem $Q^k$ aus dem unrestringierten Fall erhält, so dass wir in der Tat eine Verallgemeinerung des Newton-Verfahrens vom unrestringierten auf den restringierten Fall entwickelt haben. ~\bigskip
+
+Da sich die beschriebene Reduktion des restringierten Problems $Q^k$ auf ein niedrigdimensionaleres unrestringiertes Problem mit Mitteln der linearen Algebra auch algorithmisch umsetzen lässt, haben wir gleichzeitig einen numerischen Ansatz zur Lösung der quadratischen Hilfsprobleme $Q^k$ gefunden, das reduzierte SQP-Verfahren. ~\bigskip
+
+Nun sei wieder $I \neq \emptyset$ erlaubt. Ein allgemeines SQP-Verfahren definiert zu gegebenem $(x^k, \lambda^k, \mu^k)$ die neue Iterierte als $x^{k+1} = x^k + t^k d^k$ mit einem KKT-Punkt $d^k$
+$$ Q^k \colon \quad \min_{d \in \mathbb{R}^n} \langle \nabla f(x^k), d \rangle + \frac{1}{2} d^T L^k d ~\text{ s.t. }~ g(x^k) + D g(x^k) d \leq 0, h(x^k) + D h(^k) d = 0 $$
+
+wobei $L^k$ für $D_x^2 L(x^k, \lambda^k, \mu^k)$ oder für eine Approximation davon steht (was etwa auf Quasi-Newton-SQP-Verfahren führt) und wobei $t^k$ nach einer Schrittweitensteuerung bestimmt wird (Abschn. 3.3.6). ~\bigskip 
+
+Wegen der Polyedralität der zulässigen Menge von $Q^k$ und Korollar 3.2.24 ist jeder optimale Punkt $d^k$ von $Q^k$ automatisch KKT-Punkt. Falls außerdem $L^k$ positiv semi-definit ist, dann ist $Q^k$ zusätzlich ein konvexes Optimierungsproblem, so dass nach Satz 3.2.77 jeder KKT-Punkt $d^k$ auch globaler Minimalpunkt von $Q^k$ ist. Diese und nachfolgende (Semi-)Definitheitsforderungen an $L^k$ könnte man (wie oben im rein gleichungsrestringierten Fall) wieder nur auf dem Lösungsraum des homogenen Systems $Dg(x^k)d \leq 0, Dh(x^k)d = 0$ stellen, wovon wir zur Übersichtlichkeit im Rahmen dieses Lehrbuchs aber keinen Gebrauch machen werden. ~\bigskip
+
+Besitzt jedenfalls $Q^k$ einen KKT-Punkt $d^k = 0$, so kann das SQP-Verfahren mit einem KKT-Punkt $x^k$ von $P$ abbrechen.
+
+\begin{lemma}
+	Für $d^k = 0$ ist $x^k$ KKT-Punkt von $P$.
+\end{lemma}
+
+Numerisch nutzt man Lemma 3.3.20 natürlich aus, indem man bereits für $\|d^k\|_2 \leq \epsilon_1$ mit einer Toleranz $\epsilon_1 > 0$ abbricht. Der Punkt $x^k$ ist dann die Approximation eines KKT-Punkts von $P$ mit Multiplikatoren $\tau^k$ und $\sigma^k$ wie im Beweis von Lemma 3.3.20, wobei die Abschätzung
+
+	$$ \| \nabla f(x^k) + \nabla g(x^k) \tau^k + \nabla h(x^k) \sigma^k \|_2 = \| L^k d^k \|_2 \leq \| L^k \|_2 \epsilon_1 $$
+
+per Spektralnorm $\| L^k \|_2$ von $L^k$ folgt. Um auch Abschätzungen für die ungefähre Einhaltung der restlichen Bedingungen im KKT-System zu erhalten, kann man das Abbruchkriterium etwa mit einer weiteren Toleranz $\epsilon_2 > 0$ um 
+	$$\max \big\{ |Dh_j(x^k ) d^k |, j \in J, -Dg_i(x^k)d^k, i \in I \big\} \leq \epsilon_2 $$ erweitern. Eine Möglichkeit zur Lösung quadratischer Optimierungsprobleme wie $Q^k$ wird in Abschn. 3.3.7 ausführlich behandelt.
+
+\subsection*{Meritfunktionen und Filter}
+
+Wir wenden uns nun der Schrittweitensteuerung im SQP-Verfahren zu, also der Bestimmung des $t^k > 0$, mit dem nach der Berechnung von $d^k$, $\tau^k$ und $\sigma^k$
+
+	$$ \begin{pmatrix} x^{k+1} \\ \lambda^{k+1} \\ \mu^{k+1} \end{pmatrix} = \begin{pmatrix} x^k \\ \lambda^k \\ \mu^k \end{pmatrix} + t^k \begin{pmatrix} d^k \\ \tau^k \\ \sigma^k \end{pmatrix} $$
+
+gesetzt wird. Wie im unrestringierten Fall ist eine grundlegende Frage zunächst, ob $d^k$ eine Abstiegsrichtung für $f$ in $x^k$ ist, so dass man dann $t^k$ wie im unrestringierten Fall so wählen könnte, dass durch die neue Iterierte ein hinreichend großer Abstieg in $f$ realisiert wird. Nach Lemma 3.3.20 dürfen wir jedenfalls von $d^k \neq 0$ ausgehen, sobald ein Iterationsschritt erforderlich wird. ~\bigskip
+
+Falls die Iterierte $x^k$ für $P$ zulässig ist, falls also $g(x^k) \leq 0$ und $h(x^k) = 0$ gilt, liefert $d^k$ tatsächlich manchmal eine Abstiegsrichtung erster Ordnung für $f$. Dann ist nämlich $d = 0$ zulässig für das Optimierungsproblem $Q^k$ und dessen optimaler Wert daher durch null nach oben beschränkt. Falls nun auch noch $L^k$ positiv definit ist, erhalten wir
+
+	$$ \langle \nabla f(x^k) , d^k \rangle \leq - \frac{1}{2} (d^k)^T L^k d^k < 0 $$
+	
+weshalb $d^k$ Abstiegsrichtung erster Ordnung für $f$ in $x^k$ ist. Leider ist $x^k$ nicht notwendigerweise zulässig für $P$. Dann ist nicht nur obiges Argument unmöglich, sondern tatsächlich muss die Richtung $d1k$ auch für \enquote{zunehmende Zulässigkeit} der nächsten Iterierten sorgen und kann daher nicht immer Abstiegsrichtung für $f$ sein. Allerdings werden wir im Folgenden sehen, dass $d^k$ wenigstens eine Abstiegsrichtung für die Hilfszielfunktion des $\ell_1$-Straftermverfahrens
+
+	$$ A_1(\rho, x) = f(x) + \rho \alpha_1(x) $$
+
+mit hinreichend großem $\rho > 0$ ist (Abschn. 3.3.1). Dies bedeutet, dass die Iteration $x^{k + 1} = x^k + t^k d^k$ für hinreichend kleines $t^k > 0$ zumindest eine gewichtete Summe aus Zielfunktion $f$ und Zulässigkeitsmaß $\alpha_1$ reduziert. ~\bigskip
+
+Jede solche Funktion, für die man sinnvollerweise einen Abstieg durch $d^k$ wünschen kann, heißt Meritfunktion (also \enquote{Gütefunktion}). Das folgende Resultat besagt, dass zum Beispiel $A_1(\rho, \cdot)$ für hinreichend großes $\rho > 0$ eine Meritfunktion ist. Nach Übung 3.3.3 ist $A_1(\rho, \cdot)$ einseitig richtungsdifferenzierbar an jedem $x \in \mathbb{R}^n$ mit berechenbarer Richtungsableitung $A_1'(\rho, x, d)$, so dass wir jede Richtung $d \in \mathbb{R}^n$ mit $A_1'(\rho, x, d)$ als Abstiegsrichtung erster Ordnung für $A_1(\rho, \cdot)$ in $x$ auffassen dürfen.
+
+\begin{satz}
+	Es sei $L^k \succ 0$, und es sei $d^k \neq 0$ ein KKT-Punkt von $Q^k$ mit Multiplikatoren $\tau^k, \sigma^k$. Dann ist $d^k$ für alle $\rho \geq \|(\tau^k, \sigma^k) \|_{\infty}$ eine Abstiegsrichtung erster Ordnung für $A_1 (\rho, x) = f(x) + \rho \alpha_1(x)$ in $x^k$.
+\end{satz}
+
+Die Funktion $A_1 (\rho, x)$ ist nach Satz 3.3.21 für hinreichend große $\rho$ nicht nur eine Meritfunktion, sondern sie ist sogar richtungsdifferenzierbar mit $A_1' < 0$ für $d_k \neq. 0$ Daher kann man den Abstieg in $A_1(\rho, x)$ von $x^k$ aus in Richtung $d^k$ tatsächlich numerisch durch eine inexakte eindimensionale Minimierung umsetzen, zum Beispiel per Armijo-Regel mit der am Ende von Abschn. 2.2.2 erwähnten Anpassung an richtungsdifferenzierbare Funktionen. Auch die erforderliche Größe von $\rho$ ist hier bekannt, denn sie ist laut Satz 3.3.21 durch die (bekannten) Multiplikatoren $\tau^k$ und $\sigma^k$ zum Optimalpunkt $d^k$ von $Q^k$ bestimmt. ~\bigskip
+
+Zusammengefasst besteht die vorgestellte Idee zur Schrittweitensteuerung bei SQP-Verfahren also darin, zu einer Iterierten $x^k$ und einer Lösung $d^k$ des SQP-Unterproblems $Q^k$ per Armijo-Regel einen Abstieg in der Meritfunktion $A_1(\rho, x)$ zu erzielen, wobei ein passendes $\rho$ sich aus den Multiplikatoren zu $d^k$ berechnet. Im Hinblick auf die nachfolgende Idee sei daran erinnert, dass die Armijo-Regel zu große und damit inakzeptable Werte von $t$ so lange per Backtracking Line Search (also durch Multiplikation mit einem Reduktionsfaktor) reduziert, bis der Wert der Meritfunktion durch die neue Iterierte passend verringert wird.
+
+\begin{center}
+	\includegraphics[scale=0.5]{img/ab318}
+\end{center}
+
+Die Schrittweitenbestimmung per inexakter eindimensionaler Minimierung der Meritfunktion $f (x) + \rho \alpha_1 (x)$ basiert letztlich auf der Wahl des in Abschn. 3.3.1 diskutierten Skalarisierungsansatzes für das Mehrzielproblem
+
+	$$ \min_x \begin{pmatrix} f(x) \\ \alpha_1(x) \end{pmatrix} $$
+
+Filterverfahren behandeln dieses Mehrzielproblem auf eine andere Weise, die ohne Wahl eines Parameters $\rho$ auskommt. Sie bedienen sich des Konzepts der dominierten Punkte eines Mehrzielproblems. ~\bigskip
+
+Das grundsätzliche Vorgehen eines Filter-SQP-Verfahrens besteht darin, bei für den Filter akzeptablen Iterierten $x^{k+1}$ das Paar $(f (x^{k+1}), \alpha_1(x^{k+1}))$ in den Filter aufzunehmen und alle von diesem Paar dominierten Filtereinträge zu löschen. Abb. 3.18 illustriert einen Filter mit vier Einträgen sowie die Höhenlinie einer Meritfunktion $f + \rho \alpha_1$ im $(f , \alpha_1)$-Raum durch den Punkt $(f (x^{k}), \alpha_1(x^{k}))$. Während der Punkt $x^{k+1}$ vom Filter, aber nicht von der Meritfunktion akzeptiert wird, verhält es sich für den Punkt $\tilde{x}^{k+1}$ gerade andersherum. Filter akzeptieren also im Allgemeinen andere neue Iterierte als Meritfunktionen. ~\bigskip
+
+Dass eine neue Iterierte $x^k + t d^k$ nicht vom Filter akzeptiert wird, entspricht bei Meritfunktionen dem Fall, dass $t$ zu groß ist, um den Wert der Meritfunktion zu senken. Wie geschildert ist es dann die Grundidee der Armijo-Regel, $t$ per Backtracking Line Search zu reduzieren, bis der Wert der Meritfunktion durch die neue Iterierte verringert wird. Analog lässt sich auch die Filteridee mit einem Backtracking Line Search kombinieren, wobei $t$ so lange mit einem Reduktionsfaktor multipliziert wird, bis die neue Iterierte vom Filter akzeptiert wird. Man spricht dann von einem Backtracking-Line-Search-Filter-SQPVerfahren. ~\bigskip
+
+Falls $x^k + d^k$ nicht vom Filter akzeptiert wird, besteht eine alternative Möglichkeit, eine näher an $x^k$ liegende neue Iterierte zu erzeugen, in einem Trust-Region-Ansatz. Dabei wird das Problem $Q^k$ mit der zusätzlichen Restriktion $\| d\|_{\infty} \leq t^k$ versehen, und der Trust-Region-Radius $t^k$ wird mit auf Abschn. 2.2.10 basierenden Ideen angepasst, bis die neue Iterierte vom Filter akzeptiert wird. Die dadurch entstehende Klasse der Trust-Region-Filter-SQP-Verfahren bildet für viele restringierte nichtlineare Optimierungsprobleme zurzeit die effizienteste und stabilste numerische Lösungsstrategie.
 
 \end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.11.27)  24 FEB 2018 11:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.11.27)  25 FEB 2018 23:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1106,22 +1106,22 @@ Package pdftex.def Info: Requested size: 278.53995pt x 70.26231pt on input line 
 <img/a26.png, id=93, 625.33624pt x 382.42876pt>
 File: img/a26.png Graphic file (type png)
 <use img/a26.png>
-Package pdftex.def Info: img/a26.png  used on input line 704. on input line 704.
-Package pdftex.def Info: Requested size: 312.66736pt x 191.2139pt on input line 704.
+Package pdftex.def Info: img/a26.png  used on input line 710. on input line 710.
+Package pdftex.def Info: Requested size: 312.66736pt x 191.2139pt on input line 710.
  [17] [18 <./img/a26.png>] [19] [20] [21]
 <img/ab28.png, id=112, 623.32875pt x 196.735pt>
 File: img/ab28.png Graphic file (type png)
 <use img/ab28.png>
-Package pdftex.def Info: img/ab28.png  used on input line 843. on input line 843.
-Package pdftex.def Info: Requested size: 311.6636pt x 98.36725pt on input line 843.
+Package pdftex.def Info: img/ab28.png  used on input line 849. on input line 849.
+Package pdftex.def Info: Requested size: 311.6636pt x 98.36725pt on input line 849.
  [22 <./img/ab28.png>] [23] [24] [25] [26]
 <img/a27.png, id=130, 619.31375pt x 333.245pt>
 File: img/a27.png Graphic file (type png)
 <use img/a27.png>
-Package pdftex.def Info: img/a27.png  used on input line 963. on input line 963.
-Package pdftex.def Info: Requested size: 309.65611pt x 166.62209pt on input line 963.
+Package pdftex.def Info: img/a27.png  used on input line 969. on input line 969.
+Package pdftex.def Info: Requested size: 309.65611pt x 166.62209pt on input line 969.
  [27 <./img/a27.png>]
-Overfull \hbox (7.68042pt too wide) in paragraph at lines 993--994
+Overfull \hbox (7.68042pt too wide) in paragraph at lines 999--1000
 []\T1/cmr/m/n/10.95 (-20) Ein ent-schei-den-der Vor-teil von Trust-Region-Verfahren ge-gen-über Variable-Metrik-Verfahren
  []
 
@@ -1129,64 +1129,64 @@ Overfull \hbox (7.68042pt too wide) in paragraph at lines 993--994
 <img/a28.png, id=138, 478.78876pt x 571.13374pt>
 File: img/a28.png Graphic file (type png)
 <use img/a28.png>
-Package pdftex.def Info: img/a28.png  used on input line 1001. on input line 1001.
-Package pdftex.def Info: Requested size: 359.09068pt x 428.34926pt on input line 1001.
+Package pdftex.def Info: img/a28.png  used on input line 1007. on input line 1007.
+Package pdftex.def Info: Requested size: 359.09068pt x 428.34926pt on input line 1007.
  [29 <./img/a28.png>]
 <img/ab210.png, id=143, 679.53876pt x 260.975pt>
 File: img/ab210.png Graphic file (type png)
 <use img/ab210.png>
-Package pdftex.def Info: img/ab210.png  used on input line 1040. on input line 1040.
-Package pdftex.def Info: Requested size: 339.76855pt x 130.48718pt on input line 1040.
+Package pdftex.def Info: img/ab210.png  used on input line 1046. on input line 1046.
+Package pdftex.def Info: Requested size: 339.76855pt x 130.48718pt on input line 1046.
  [30] [31 <./img/ab210.png>] [32
 
 ]
 <img/ab34.png, id=155, 642.4pt x 156.585pt>
 File: img/ab34.png Graphic file (type png)
 <use img/ab34.png>
-Package pdftex.def Info: img/ab34.png  used on input line 1149. on input line 1149.
-Package pdftex.def Info: Requested size: 321.19922pt x 78.2923pt on input line 1149.
+Package pdftex.def Info: img/ab34.png  used on input line 1155. on input line 1155.
+Package pdftex.def Info: Requested size: 321.19922pt x 78.2923pt on input line 1155.
  [33 <./img/ab34.png>]
 <img/ab35.png, id=160, 652.4375pt x 228.855pt>
 File: img/ab35.png Graphic file (type png)
 <use img/ab35.png>
-Package pdftex.def Info: img/ab35.png  used on input line 1169. on input line 1169.
-Package pdftex.def Info: Requested size: 326.21794pt x 114.42722pt on input line 1169.
+Package pdftex.def Info: img/ab35.png  used on input line 1175. on input line 1175.
+Package pdftex.def Info: Requested size: 326.21794pt x 114.42722pt on input line 1175.
  [34 <./img/ab35.png>] [35] [36]
 <img/ab36.png, id=171, 650.43pt x 171.64125pt>
 File: img/ab36.png Graphic file (type png)
 <use img/ab36.png>
-Package pdftex.def Info: img/ab36.png  used on input line 1296. on input line 1296.
-Package pdftex.def Info: Requested size: 325.2142pt x 85.8204pt on input line 1296.
+Package pdftex.def Info: img/ab36.png  used on input line 1302. on input line 1302.
+Package pdftex.def Info: Requested size: 325.2142pt x 85.8204pt on input line 1302.
  [37 <./img/ab36.png>]
 <img/ab38.png, id=177, 661.47125pt x 174.6525pt>
 File: img/ab38.png Graphic file (type png)
 <use img/ab38.png>
-Package pdftex.def Info: img/ab38.png  used on input line 1329. on input line 1329.
-Package pdftex.def Info: Requested size: 330.73482pt x 87.32603pt on input line 1329.
+Package pdftex.def Info: img/ab38.png  used on input line 1335. on input line 1335.
+Package pdftex.def Info: Requested size: 330.73482pt x 87.32603pt on input line 1335.
  [38 <./img/ab38.png>] [39] [40] [41] [42]
 <img/a31.png, id=194, 634.37pt x 265.99374pt>
 File: img/a31.png Graphic file (type png)
 <use img/a31.png>
-Package pdftex.def Info: img/a31.png  used on input line 1556. on input line 1556.
-Package pdftex.def Info: Requested size: 317.18422pt x 132.99654pt on input line 1556.
+Package pdftex.def Info: img/a31.png  used on input line 1562. on input line 1562.
+Package pdftex.def Info: Requested size: 317.18422pt x 132.99654pt on input line 1562.
  [43 <./img/a31.png>]
 <img/ab310.png, id=200, 633.36626pt x 142.5325pt>
 File: img/ab310.png Graphic file (type png)
 <use img/ab310.png>
-Package pdftex.def Info: img/ab310.png  used on input line 1591. on input line 1591.
-Package pdftex.def Info: Requested size: 316.68236pt x 71.26607pt on input line 1591.
-LaTeX Font Info:    Try loading font information for U+euf on input line 1605.
+Package pdftex.def Info: img/ab310.png  used on input line 1597. on input line 1597.
+Package pdftex.def Info: Requested size: 316.68236pt x 71.26607pt on input line 1597.
+LaTeX Font Info:    Try loading font information for U+euf on input line 1611.
  (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/ueuf.fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
 ) (/usr/local/texlive/2017/texmf-dist/tex/latex/microtype/mt-euf.cfg
 File: mt-euf.cfg 2006/07/03 v1.1 microtype config. file: AMS Euler Fraktur (RS)
 ) [44 <./img/ab310.png>]
-Overfull \hbox (0.91197pt too wide) in paragraph at lines 1630--1631
+Overfull \hbox (0.91197pt too wide) in paragraph at lines 1636--1637
 \T1/cmr/bx/n/10.95 Definition 3.2.58 \T1/cmr/m/n/10.95 (-20) (Ein-schrän-kung ei-ner Ma-trix)\T1/cmr/bx/n/10.95 . \T1/cmr/m/n/10.95 (-20) Die $\OT1/cmr/m/n/10.95 (-20) (\OML/cmm/m/it/10.95 n \OMS/cmsy/m/n/10.95 ^^@ \OML/cmm/m/it/10.95 m; n \OMS/cmsy/m/n/10.95 ^^@ \OML/cmm/m/it/10.95 m\OT1/cmr/m/n/10.95 (-20) ) \OMS/cmsy/m/n/10.95 ^^@ \OML/cmm/m/it/10.95 MatrixA\OMS/cmsy/m/n/10.95 j[] [][]\OT1/cmr/m/n/10.95 (-20) =
  []
 
 [45]
-Overfull \hbox (13.44516pt too wide) in paragraph at lines 1705--1706
+Overfull \hbox (13.44516pt too wide) in paragraph at lines 1711--1712
 \T1/cmr/bx/n/10.95 Korollar 3.2.67. \T1/cmr/m/n/10.95 (-20) Ein KKT-Punkt $[]$ von $\OML/cmm/m/it/10.95 P$ \T1/cmr/m/n/10.95 (-20) mit Mul-ti-pli-ka-to-ren $[]$, $[]$ er-fül-le $\OML/cmm/m/it/10.95 d[]D[]\OT1/cmr/m/n/10.95 (-20) ([]\OML/cmm/m/it/10.95 ; []; []\OT1/cmr/m/n/10.95 (-20) )\OML/cmm/m/it/10.95 d >
  []
 
@@ -1194,46 +1194,52 @@ Overfull \hbox (13.44516pt too wide) in paragraph at lines 1705--1706
 <img/ab312.png, id=215, 649.42625pt x 201.75375pt>
 File: img/ab312.png Graphic file (type png)
 <use img/ab312.png>
-Package pdftex.def Info: img/ab312.png  used on input line 1784. on input line 1784.
-Package pdftex.def Info: Requested size: 324.71233pt x 100.87662pt on input line 1784.
+Package pdftex.def Info: img/ab312.png  used on input line 1790. on input line 1790.
+Package pdftex.def Info: Requested size: 324.71233pt x 100.87662pt on input line 1790.
  [48 <./img/ab312.png>] [49]
 <img/ab313.png, id=224, 722.7pt x 364.36125pt>
 File: img/ab313.png Graphic file (type png)
 <use img/ab313.png>
-Package pdftex.def Info: img/ab313.png  used on input line 1866. on input line 1866.
-Package pdftex.def Info: Requested size: 361.3491pt x 182.18018pt on input line 1866.
+Package pdftex.def Info: img/ab313.png  used on input line 1872. on input line 1872.
+Package pdftex.def Info: Requested size: 361.3491pt x 182.18018pt on input line 1872.
  [50]
 <img/a32.png, id=229, 665.48625pt x 439.6425pt>
 File: img/a32.png Graphic file (type png)
 <use img/a32.png>
-Package pdftex.def Info: img/a32.png  used on input line 1876. on input line 1876.
-Package pdftex.def Info: Requested size: 332.74231pt x 219.82071pt on input line 1876.
+Package pdftex.def Info: img/a32.png  used on input line 1882. on input line 1882.
+Package pdftex.def Info: Requested size: 332.74231pt x 219.82071pt on input line 1882.
  [51 <./img/ab313.png> <./img/a32.png>] [52]
 <img/ab316.png, id=239, 745.78625pt x 452.69125pt>
 File: img/ab316.png Graphic file (type png)
 <use img/ab316.png>
-Package pdftex.def Info: img/ab316.png  used on input line 1942. on input line 1942.
-Package pdftex.def Info: Requested size: 372.89221pt x 226.34506pt on input line 1942.
+Package pdftex.def Info: img/ab316.png  used on input line 1948. on input line 1948.
+Package pdftex.def Info: Requested size: 372.89221pt x 226.34506pt on input line 1948.
  [53]
 <img/a33.png, id=243, 707.64375pt x 485.815pt>
 File: img/a33.png Graphic file (type png)
 <use img/a33.png>
-Package pdftex.def Info: img/a33.png  used on input line 1952. on input line 1952.
-Package pdftex.def Info: Requested size: 336.13428pt x 230.76451pt on input line 1952.
- [54 <./img/ab316.png> <./img/a33.png>] [55] [56] [57] [58] [59] (/Users/martin/Dropbox/Skripte/Nichtlineare-Optimierung/.texpadtmp/Skript.aux) ) 
+Package pdftex.def Info: img/a33.png  used on input line 1958. on input line 1958.
+Package pdftex.def Info: Requested size: 336.13428pt x 230.76451pt on input line 1958.
+ [54 <./img/ab316.png> <./img/a33.png>] [55] [56] [57] [58] [59] [60]
+<img/ab318.png, id=268, 513.92pt x 144.54pt>
+File: img/ab318.png Graphic file (type png)
+<use img/ab318.png>
+Package pdftex.def Info: img/ab318.png  used on input line 2123. on input line 2123.
+Package pdftex.def Info: Requested size: 256.95937pt x 72.2698pt on input line 2123.
+ [61 <./img/ab318.png>] [62] (/Users/martin/Dropbox/Skripte/Nichtlineare-Optimierung/.texpadtmp/Skript.aux) ) 
 Here is how much of TeX's memory you used:
- 17257 strings out of 492985
- 318199 string characters out of 6132585
+ 17264 strings out of 492985
+ 318293 string characters out of 6132585
  499188 words of memory out of 5000000
- 20426 multiletter control sequences out of 15000+600000
- 547938 words of font info for 131 fonts, out of 8000000 for 9000
+ 20430 multiletter control sequences out of 15000+600000
+ 547989 words of font info for 132 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  68i,12n,66p,10382b,385s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfsx1095.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfsx1200.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfsx2074.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb>
-Output written on /Users/martin/Dropbox/Skripte/Nichtlineare-Optimierung/.texpadtmp/Skript.pdf (59 pages, 2131601 bytes).
+Output written on /Users/martin/Dropbox/Skripte/Nichtlineare-Optimierung/.texpadtmp/Skript.pdf (62 pages, 2171946 bytes).
 PDF statistics:
- 328 PDF objects out of 1000 (max. 8388607)
- 191 compressed objects within 2 object streams
+ 340 PDF objects out of 1000 (max. 8388607)
+ 198 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 12946 words of extra memory for PDF output out of 14400 (max. 10000000)
+ 12951 words of extra memory for PDF output out of 14400 (max. 10000000)
 
